@@ -10,7 +10,7 @@ export default defineConfig({
     twitterHandle: "scintillar",
     github: {
       owner: "scintillar-com",
-      repo: "ui-registry",
+      repo: "registry",
       label: "Github",
       showStars: true,
     },
@@ -35,7 +35,7 @@ export default defineConfig({
     skipBlocks: ["hello-world", "example-form"],
   },
 
-  // The marketing landing lives in registry-shell-site; `pnpm shell` serves
+  // The marketing landing lives in registry-website; `pnpm shell` serves
   // the shell's built-in component/block index at `/`.
 
   // installCommandTemplate defaults to

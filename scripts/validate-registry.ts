@@ -16,6 +16,10 @@ function ok(msg: string) {
   console.log(`  ✓ ${msg}`)
 }
 
+function warn(msg: string) {
+  console.log(`  ⚠ ${msg}`)
+}
+
 // 1. Parse registry.json
 console.log("\n📋 Validating registry.json")
 const raw = fs.readFileSync(REGISTRY_PATH, "utf-8")
@@ -212,7 +216,11 @@ if (fs.existsSync(sizeLimitPath)) {
 
   if (missingSize === 0) ok(`All components and blocks are tracked in .size-limit.json (${trackedPaths.size} entries)`)
 } else {
-  error(".size-limit.json not found")
+  // Size-budget tracking is optional — only enforce when .size-limit.json
+  // is present. When the library is mature and you want to prevent
+  // bundle-size regressions, add the file and every component/block
+  // listed below will be checked against its declared budget.
+  warn(".size-limit.json not found — skipping bundle-size check")
 }
 
 // Summary

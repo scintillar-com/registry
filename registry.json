@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "ui-registry",
+  "name": "@sntlr/registry",
   "homepage": "https://ui.sntlr.app",
   "items": [
     {

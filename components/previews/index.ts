@@ -1,6 +1,6 @@
 import { createElement, Fragment, type ComponentType, type ReactNode } from "react"
 import dynamic from "next/dynamic"
-import type { PreviewLoader } from "../../../ui-registry/lib/registry-adapter"
+import type { PreviewLoader } from "@sntlr/registry-shell/shell/lib/registry-adapter"
 
 const map: Record<string, ComponentType> = {
   "account-deletion-form": dynamic(() =>

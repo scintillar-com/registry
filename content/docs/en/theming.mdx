@@ -63,7 +63,7 @@ Dark mode is wired via [next-themes](https://github.com/pacanukeyin/next-themes)
 </NextThemesProvider>
 ```
 
-`disableTransitionOnChange` is important — without it, every CSS transition fires when the user toggles themes, causing a full-page flicker. The header's [`<ThemeToggle />`](https://github.com/scintillar-com/ui-registry/blob/main/components/theme-toggle.tsx) calls `setTheme("dark" | "light" | "system")` from the `useTheme()` hook.
+`disableTransitionOnChange` is important — without it, every CSS transition fires when the user toggles themes, causing a full-page flicker. The header's [`<ThemeToggle />`](https://github.com/scintillar-com/registry/blob/main/components/theme-toggle.tsx) calls `setTheme("dark" | "light" | "system")` from the `useTheme()` hook.
 
 ## Adding a custom color token
 
