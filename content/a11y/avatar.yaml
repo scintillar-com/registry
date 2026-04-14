@@ -1,0 +1,42 @@
+component: Avatar
+wcag: AA
+standard: WAI-ARIA 1.2
+element: span
+role: img
+delegatesTo: Radix UI Avatar
+description: >
+  Displays a user avatar image with a fallback for when the image is
+  unavailable or loading. Built on Radix UI Avatar which handles image
+  loading states. The AvatarImage renders an <img> element and the
+  AvatarFallback displays initials or an icon when the image fails to load.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    Avatar is not focusable by default as it is a static display element.
+    If wrapped in an interactive element (e.g. a profile link), focus is
+    managed by the parent.
+
+screenReader:
+  announcements:
+    - The alt text on AvatarImage is announced as the accessible name
+    - If no image is loaded, AvatarFallback content is read as inline text
+  notes: >
+    When the image fails to load, ensure the fallback provides equivalent
+    information. If the avatar is purely decorative, use alt="" on the image.
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for fallback text on avatar background)"
+  ui: "Meets WCAG AA (>3:1 for avatar border if present)"
+
+motion:
+  reducedMotion: No animations by default
+
+consumerResponsibilities:
+  - Always provide meaningful alt text on AvatarImage (e.g. the user's name)
+  - If the avatar is purely decorative, set alt="" to hide it from screen readers
+  - Ensure AvatarFallback content (initials or icon) conveys the same identity as the image
+  - When the avatar is interactive (e.g. opens a profile), wrap it in a focusable element with an aria-label

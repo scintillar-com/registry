@@ -1,0 +1,48 @@
+component: Dialog
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: dialog
+delegatesTo: Radix UI Dialog
+description: >
+  A modal dialog that overlays the page. Focus is trapped inside the dialog
+  while open. Built on Radix UI Dialog which provides full ARIA compliance
+  including aria-modal, aria-labelledby, and aria-describedby.
+
+keyboard:
+  - key: Escape
+    action: Closes the dialog
+  - key: Tab
+    action: Cycles focus through focusable elements inside the dialog
+  - key: Shift+Tab
+    action: Cycles focus backwards through the dialog
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is automatically moved to the first focusable element when the dialog
+    opens. On close, focus returns to the trigger element. Focus is trapped —
+    Tab/Shift+Tab cycle within the dialog boundary.
+
+screenReader:
+  announcements:
+    - Dialog title is announced via aria-labelledby
+    - Dialog description is announced via aria-describedby
+    - The dialog is announced as a modal dialog (aria-modal="true")
+  notes: >
+    The overlay prevents interaction with elements behind the dialog.
+    Screen readers will not navigate outside the dialog while it is open.
+
+contrast:
+  text: "Meets WCAG AA — dialog uses card-foreground on card background"
+  ui: "Close button meets 3:1 contrast ratio"
+
+motion:
+  reducedMotion: Open/close animations respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Always include a DialogTitle for screen reader context
+  - Include DialogDescription for additional context when needed
+  - Ensure the trigger element clearly indicates it opens a dialog
+  - For destructive actions, consider using aria-describedby to link to a warning

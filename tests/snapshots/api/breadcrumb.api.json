@@ -1,0 +1,44 @@
+[
+  {
+    "displayName": "Breadcrumb",
+    "description": "Navigation wrapper that provides an accessible breadcrumb landmark.",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbList",
+    "description": "Ordered list that lays out breadcrumb items horizontally with wrapping.",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbItem",
+    "description": "A single breadcrumb entry that contains a link or the current page indicator.",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbLink",
+    "description": "A navigational link within a breadcrumb item.",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "BreadcrumbPage",
+    "description": "Marks the current page in the breadcrumb trail with `aria-current=\"page\"`.",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbSeparator",
+    "description": "Visual separator between breadcrumb items, defaulting to a chevron icon.",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbEllipsis",
+    "description": "Ellipsis indicator used to represent collapsed breadcrumb items.",
+    "props": []
+  }
+]

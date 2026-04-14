@@ -1,0 +1,55 @@
+component: RadioGroup
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: radiogroup
+delegatesTo: Radix UI RadioGroup
+description: >
+  A set of radio buttons built on Radix UI RadioGroup. Implements the
+  WAI-ARIA radio group pattern with roving tabindex — only the selected
+  (or first) radio item is in the tab order. Arrow keys navigate between
+  items within the group.
+
+keyboard:
+  - key: ArrowDown
+    action: Moves focus and selection to the next radio item
+  - key: ArrowRight
+    action: Moves focus and selection to the next radio item
+  - key: ArrowUp
+    action: Moves focus and selection to the previous radio item
+  - key: ArrowLeft
+    action: Moves focus and selection to the previous radio item
+  - key: Tab
+    action: Moves focus into the radio group (to the selected item) or out of the group
+  - key: Space
+    action: Selects the focused radio item if not already selected
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Uses roving tabindex so only the selected radio item is in the tab order.
+    Arrow keys move both focus and selection. Focus ring is visible on the
+    currently focused radio item.
+
+screenReader:
+  announcements:
+    - Each radio item announces its label, checked state, and position (e.g. "1 of 3")
+    - The radio group label is announced via aria-labelledby or aria-label on the group
+    - Selection changes are announced immediately
+  notes: >
+    Radix RadioGroup manages aria-checked on each item and sets the
+    appropriate radiogroup role on the container.
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for label text)"
+  ui: "Meets WCAG AA (>3:1 for radio circle border and selected indicator)"
+
+motion:
+  reducedMotion: Selection transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide a group label using aria-label or aria-labelledby on the RadioGroup root
+  - Pair each RadioGroupItem with a visible Label using htmlFor
+  - Ensure all radio items have distinct, descriptive labels
+  - Use a fieldset and legend pattern if semantic grouping is important

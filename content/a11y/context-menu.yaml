@@ -1,0 +1,64 @@
+component: ContextMenu
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: menu
+delegatesTo: Radix UI ContextMenu
+description: >
+  A context menu triggered by right-click (or long-press on touch devices).
+  Built on Radix UI ContextMenu which provides the full WAI-ARIA menu pattern.
+  Once open, keyboard behavior is identical to DropdownMenu.
+
+keyboard:
+  - key: Enter
+    action: Activates the focused menu item
+  - key: Space
+    action: Activates the focused menu item
+  - key: ArrowDown
+    action: Moves focus to the next item
+  - key: ArrowUp
+    action: Moves focus to the previous item
+  - key: ArrowRight
+    action: Opens a submenu when focused on a submenu trigger
+  - key: ArrowLeft
+    action: Closes a submenu and returns focus to the parent menu
+  - key: Escape
+    action: Closes the menu
+  - key: Home
+    action: Moves focus to the first item
+  - key: End
+    action: Moves focus to the last item
+  - key: Type-ahead
+    action: Focuses the next item matching typed characters
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus moves to the first menu item when the menu opens. Arrow keys move
+    focus between items. On close, focus returns to the element that was
+    focused before the context menu was triggered. Focus is trapped within
+    the menu while it is open.
+
+screenReader:
+  announcements:
+    - Menu items are announced with their role (menuitem, menuitemcheckbox, menuitemradio)
+    - Checked state is announced for checkbox and radio items
+    - Disabled items are announced as dimmed/unavailable
+  notes: >
+    Context menus are not discoverable via keyboard alone — the trigger area
+    does not indicate that a context menu is available. Ensure critical
+    actions are accessible through other means.
+
+contrast:
+  text: "Meets WCAG AA — menu uses popover-foreground on popover background"
+  ui: "Focus indicator and item highlight meet 3:1 contrast ratio"
+
+motion:
+  reducedMotion: Open/close animations respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Never place essential actions only in a context menu — they are not keyboard-discoverable
+  - Provide alternative access to context menu actions via buttons or menus
+  - Use ContextMenuLabel to group related items
+  - Avoid deeply nested submenus for usability

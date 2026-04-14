@@ -1,0 +1,51 @@
+{
+  "component": "confirm-dialog",
+  "hasUnitTests": true,
+  "hasInteractionTests": true,
+  "hasVisualTests": true,
+  "hasA11yTests": true,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/blocks/confirm-dialog.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders the trigger button",
+        "opens the dialog when the trigger is clicked",
+        "confirm button is enabled and clicking it calls onConfirm",
+        "confirm button is disabled until the exact value is typed",
+        "typing a wrong value keeps the confirm button disabled",
+        "cancel button closes the dialog",
+        "Escape key closes the dialog"
+      ]
+    },
+    {
+      "file": "tests/e2e/interaction/confirm-dialog.spec.ts",
+      "type": "interaction",
+      "tests": [
+        "opens dialog on trigger click",
+        "Escape closes the dialog",
+        "Cancel button closes the dialog",
+        "focus is trapped inside the dialog"
+      ]
+    },
+    {
+      "file": "tests/e2e/visual/components.spec.ts",
+      "type": "visual",
+      "tests": [
+        "confirm-dialog matches snapshot"
+      ]
+    },
+    {
+      "file": "tests/e2e/a11y/components.spec.ts",
+      "type": "a11y",
+      "tests": [
+        "confirm-dialog has no a11y violations"
+      ]
+    }
+  ],
+  "totalTests": 13
+}

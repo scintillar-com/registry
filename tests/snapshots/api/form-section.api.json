@@ -1,0 +1,56 @@
+[
+  {
+    "displayName": "FormSection",
+    "description": "A standardized form section container using Card. Ensures visual uniformity\nacross form layouts with title, description, content area, and optional footer.\nPass `h-full` via className to fill the parent container — content will flex.",
+    "props": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "destructive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "footerSeparator",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

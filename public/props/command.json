@@ -1,0 +1,76 @@
+[
+  {
+    "displayName": "Command",
+    "description": "Searchable command menu container powered by cmdk.",
+    "props": []
+  },
+  {
+    "displayName": "CommandDialog",
+    "description": "Command menu rendered inside a modal dialog overlay.",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Command Palette",
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Search for a command to run...",
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "showCloseButton",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "CommandInput",
+    "description": "Text input with a search icon for filtering command items.",
+    "props": []
+  },
+  {
+    "displayName": "CommandList",
+    "description": "Scrollable container that holds command groups and items.",
+    "props": []
+  },
+  {
+    "displayName": "CommandEmpty",
+    "description": "Placeholder shown when no command items match the current query.",
+    "props": []
+  },
+  {
+    "displayName": "CommandGroup",
+    "description": "Labeled group of related command items within the list.",
+    "props": []
+  },
+  {
+    "displayName": "CommandItem",
+    "description": "Selectable row within a command list that triggers an action.",
+    "props": []
+  },
+  {
+    "displayName": "CommandShortcut",
+    "description": "Muted keyboard shortcut hint displayed alongside a command item.",
+    "props": []
+  },
+  {
+    "displayName": "CommandSeparator",
+    "description": "Horizontal divider between command groups or items.",
+    "props": []
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "component": "InputOTP",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "input",
+  "role": "textbox",
+  "delegatesTo": "input-otp",
+  "description": "Built on the input-otp library. Renders a segmented input for one-time password or verification code entry. Each slot is visually distinct but backed by a single native input element.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to/from the OTP input"
+    },
+    {
+      "key": "0-9 / a-z",
+      "action": "Fills the current slot and advances to the next"
+    },
+    {
+      "key": "Backspace",
+      "action": "Deletes the value in the current slot and moves to the previous"
+    },
+    {
+      "key": "Arrow Left",
+      "action": "Moves the caret to the previous slot"
+    },
+    {
+      "key": "Arrow Right",
+      "action": "Moves the caret to the next slot"
+    },
+    {
+      "key": "Ctrl+V / Cmd+V",
+      "action": "Pastes a full code across all slots"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus ring appears on the currently active slot. The underlying input receives focus; slot highlight is managed visually by the library.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The input is announced with its accessible label and current value",
+      "Slot position context is conveyed via the library's internal handling"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for slot values and placeholder indicators)",
+    "ui": "Meets WCAG AA (>3:1 for slot borders, separators, and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "Caret blink animation respects prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Always provide an accessible label via aria-label or an associated <label> element",
+    "Communicate the expected code length to the user (e.g. \"Enter the 6-digit code\")",
+    "Provide clear error messaging when the entered code is invalid"
+  ]
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "displayName": "FormSection",
+    "description": "A standardized form section container using Card. Ensures visual uniformity\nacross form layouts with title, description, content area, and optional footer.\nPass `h-full` via className to fill the parent container — content will flex.",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Section title."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional description below the title."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "defaultValue": null,
+        "description": "Form fields content."
+      },
+      {
+        "name": "footer",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Footer content (e.g., save/cancel buttons)."
+      },
+      {
+        "name": "footerSeparator",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Whether to show a separator between content and footer."
+      },
+      {
+        "name": "destructive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Whether this section represents a dangerous/destructive action."
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Compact mode: reduces padding, title size, and internal spacing so the\nsection fits in tighter containers (e.g., bento cards, side panels)."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

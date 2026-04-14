@@ -1,0 +1,263 @@
+[
+  {
+    "displayName": "Sidebar",
+    "description": "Main sidebar container with variant, side, and collapsible props.",
+    "props": [
+      {
+        "name": "collapsible",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "offcanvas"
+      },
+      {
+        "name": "side",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "left"
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "sidebar"
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarContent",
+    "description": "Scrollable main content area of the sidebar.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarFooter",
+    "description": "Bottom section of the sidebar for user profile/actions.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarGroup",
+    "description": "Groups related sidebar items together.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarGroupAction",
+    "description": "Action button shown in a sidebar group header.",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarGroupContent",
+    "description": "Content container within a sidebar group.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarGroupLabel",
+    "description": "Title label for a sidebar group.",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarHeader",
+    "description": "Top section of the sidebar for branding/logo.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarInput",
+    "description": "A styled input field for use inside the sidebar.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarInset",
+    "description": "Wrapper for the main content area adjacent to the sidebar.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenu",
+    "description": "List element wrapping sidebar menu items.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuAction",
+    "description": "Secondary action button displayed on a menu item.",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "showOnHover",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuBadge",
+    "description": "Badge or count indicator displayed on a menu item.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuButton",
+    "description": "Interactive button within a menu item, with optional tooltip support.",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      },
+      {
+        "name": "tooltip",
+        "type": "string | (TooltipContentProps & RefAttributes<HTMLDivElement>)",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuItem",
+    "description": "List item element wrapping a single menu item.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuSkeleton",
+    "description": "Loading placeholder skeleton for a menu item.",
+    "props": [
+      {
+        "name": "showIcon",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuSub",
+    "description": "Nested submenu list within a sidebar menu item.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuSubButton",
+    "description": "Button or link within a nested submenu item.",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "md"
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuSubItem",
+    "description": "Item within a nested submenu.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarProvider",
+    "description": "Context provider that wraps the sidebar and main content.",
+    "props": [
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarRail",
+    "description": "Drag handle for resizing the sidebar on desktop.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarSeparator",
+    "description": "Horizontal divider line between sidebar sections.",
+    "props": []
+  },
+  {
+    "displayName": "SidebarTrigger",
+    "description": "Button that toggles the sidebar open/closed.",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "useSidebar",
+    "description": "Hook for accessing sidebar context (state, toggle, isMobile).",
+    "props": []
+  }
+]

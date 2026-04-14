@@ -1,0 +1,36 @@
+[
+  {
+    "displayName": "EmailUpdateForm",
+    "description": "An email update form section. Shows the current email as readonly,\nwith fields for a new email and password confirmation.\nUses FormSection for consistent layout.",
+    "props": [
+      {
+        "name": "currentEmail",
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "The user's current email address (displayed as readonly)."
+      },
+      {
+        "name": "onSubmit",
+        "type": "(data: { newEmail: string; password: string; }) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user submits the new email."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user cancels."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

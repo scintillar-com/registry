@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "AppSwitcher",
+    "description": "A multi-organization, multi-project switcher with search, used in app headers or sidebars.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onCreateOrg",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onCreateProject",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSelect",
+        "type": "(orgId: string, projectId: string) => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "organizations",
+        "type": "Organization[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "selectedOrgId",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "selectedProjectId",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

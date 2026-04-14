@@ -1,0 +1,41 @@
+component: ProfileForm
+wcag: AA
+standard: WAI-ARIA 1.2
+element: form
+role: form
+delegatesTo: null
+description: >
+  A form section for editing user profile information including name, email,
+  bio, and an optional avatar. Native form elements provide built-in semantics.
+
+keyboard:
+  - key: Tab
+    action: Navigates between form fields, avatar button, and action buttons
+  - key: Enter
+    action: Submits the form or activates the focused button
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus follows natural tab order through inputs and buttons. The avatar
+    upload area is focusable when showAvatar is enabled.
+
+screenReader:
+  announcements:
+    - Each input is announced with its associated label
+    - The avatar area is announced with its aria-label
+    - Save and Cancel buttons are announced as their visible text
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for all text)"
+  ui: "Meets WCAG AA (>3:1 for borders and focus rings)"
+
+motion:
+  reducedMotion: All transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - The avatar upload area must have an aria-label describing its purpose
+  - Ensure onSave communicates success or failure to the user
+  - Provide validation feedback for required fields

@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "UserStatus",
+    "description": "Displays a user avatar with name, subtitle, and presence status indicator.",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "User display name."
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Subtitle (e.g., role, email, team)."
+      },
+      {
+        "name": "avatarUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Avatar image URL."
+      },
+      {
+        "name": "initials",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Avatar fallback initials."
+      },
+      {
+        "name": "status",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": "Presence status."
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default",
+        "description": "Avatar size."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

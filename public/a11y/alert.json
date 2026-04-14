@@ -1,0 +1,34 @@
+{
+  "component": "Alert",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "alert",
+  "delegatesTo": null,
+  "description": "Renders a static div with role=\"alert\". The alert is not interactive and is announced immediately by screen readers when it appears in the DOM. The variant prop is visual only and does not affect semantics.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Alerts are not focusable. They are static containers that rely on role=\"alert\" for screen reader announcements.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Content is announced immediately when the alert appears in the DOM via role=\"alert\"",
+      "The variant prop (e.g. destructive) is visual only and is not announced"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for alert text and description)",
+    "ui": "Meets WCAG AA (>3:1 for borders and background indicators)"
+  },
+  "motion": {
+    "reducedMotion": "No animations by default"
+  },
+  "consumerResponsibilities": [
+    "Keep alert text concise so screen reader announcements are clear",
+    "Do not use alerts for static content that does not change; use a different pattern instead",
+    "If the alert contains links or actions, ensure they are individually keyboard-focusable"
+  ]
+}

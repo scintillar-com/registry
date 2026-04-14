@@ -1,0 +1,222 @@
+---
+title: Collaboration en direct
+description: Branchez LiveCursor et LiveCaret sur un vrai backend, diffusez la présence sur les tableaux de données, et concevez des UI multi-utilisateurs.
+order: 4
+---
+
+# Collaboration en direct
+
+Scintillar fournit deux primitives — `LiveCursor` et `LiveCaret` — et un ensemble de patrons pour afficher la présence d'utilisateurs distants sur des UI riches (tableaux de données, éditeurs de texte, canevas). Les composants sont agnostiques au transport : vous fournissez les positions et les identités, ils gèrent le rendu.
+
+## Les deux primitives
+
+### `<LiveCursor />` — curseurs sur un canevas
+
+```tsx
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+<div className="relative h-screen">
+  <LiveCursor
+    name="Alice"
+    color="#10b981"
+    x={120}
+    y={240}
+    display="avatar"        // ou "name" (par défaut)
+    avatarUrl="https://..."  // requis pour display="avatar"
+    absolute                 // positionné par rapport au parent .relative le plus proche
+  />
+</div>
+```
+
+Le composant est `pointer-events-none` et `aria-hidden` — il n'intercepte jamais les événements souris, donc le canevas/document sous-jacent reste entièrement interactif. La position est appliquée via `transform: translate(...)` pour que le GPU gère chaque frame.
+
+### `<LiveCaret />` — carets de collaborateurs dans le texte
+
+```tsx
+import { LiveCaret } from "@/components/ui/live-caret"
+
+<p>
+  Bonjour, monde. <LiveCaret name="Édith" color="var(--color-primary)" display="name" />
+</p>
+```
+
+Le caret est une barre colorée d'1em de haut avec une étiquette (ou un avatar) ancrée au-dessus. Placez-le inline à la position où le curseur de l'utilisateur distant se trouve dans le modèle du document.
+
+## Modes d'affichage (nom vs avatar)
+
+Les deux composants acceptent `display: "name" | "avatar"`. Pour `"avatar"`, vous devez fournir `avatarUrl`. L'avatar est encapsulé dans un conteneur carré `aspect-square overflow-hidden rounded-full` avec un anneau coloré qui correspond à la couleur de l'utilisateur, donc les avatars SVG (par exemple dicebear) ne peuvent pas s'afficher en ovale.
+
+Un groupe de boutons `DisplayModeToggle` est pratique pour basculer le mode sur plusieurs curseurs/carets à la fois — rendez un seul toggle et passez son état à chaque `<LiveCursor />` / `<LiveCaret />` de la page.
+
+## Brancher sur un vrai backend
+
+Les composants ne sont pas livrés avec un transport — vous choisissez. Trois fournisseurs courants :
+
+### Liveblocks
+
+```tsx
+"use client"
+import { useOthers, useUpdateMyPresence } from "@liveblocks/react/suspense"
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+function Canvas() {
+  const others = useOthers()
+  const updateMyPresence = useUpdateMyPresence()
+
+  return (
+    <div
+      className="relative h-screen"
+      onPointerMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        updateMyPresence({ cursor: { x: e.clientX - rect.left, y: e.clientY - rect.top } })
+      }}
+    >
+      {others.map(({ connectionId, presence, info }) =>
+        presence.cursor ? (
+          <LiveCursor
+            key={connectionId}
+            name={info.name}
+            color={info.color}
+            x={presence.cursor.x}
+            y={presence.cursor.y}
+            display="avatar"
+            avatarUrl={info.avatarUrl}
+            absolute
+          />
+        ) : null
+      )}
+    </div>
+  )
+}
+```
+
+### Yjs + y-websocket
+
+```tsx
+import * as Y from "yjs"
+import { WebsocketProvider } from "y-websocket"
+import { useEffect, useState } from "react"
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+const doc = new Y.Doc()
+const provider = new WebsocketProvider("wss://votre.serveur", "nom-de-salle", doc)
+
+function Canvas() {
+  const [peers, setPeers] = useState<Array<{ id: number; cursor: { x: number; y: number }; user: any }>>([])
+
+  useEffect(() => {
+    const sync = () => {
+      const states = Array.from(provider.awareness.getStates().entries())
+      setPeers(
+        states
+          .filter(([id]) => id !== provider.awareness.clientID)
+          .map(([id, s]) => ({ id, cursor: s.cursor, user: s.user }))
+          .filter((p) => p.cursor)
+      )
+    }
+    provider.awareness.on("change", sync)
+    return () => provider.awareness.off("change", sync)
+  }, [])
+
+  return (
+    <div
+      className="relative h-screen"
+      onPointerMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        provider.awareness.setLocalStateField("cursor", {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        })
+      }}
+    >
+      {peers.map((p) => (
+        <LiveCursor key={p.id} name={p.user.name} color={p.user.color} x={p.cursor.x} y={p.cursor.y} absolute />
+      ))}
+    </div>
+  )
+}
+```
+
+### Supabase Realtime
+
+```tsx
+import { createClient } from "@supabase/supabase-js"
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+const supabase = createClient(/* ... */)
+const channel = supabase.channel("room:design", { config: { presence: { key: userId } } })
+
+channel
+  .on("presence", { event: "sync" }, () => {
+    const state = channel.presenceState()
+    /* render LiveCursor pour chaque pair */
+  })
+  .subscribe(async (status) => {
+    if (status === "SUBSCRIBED") await channel.track({ cursor: { x: 0, y: 0 }, user: { name, color } })
+  })
+
+// Sur pointer move :
+channel.track({ cursor: { x, y }, user: { name, color } })
+```
+
+## Throttling des broadcasts
+
+`pointermove` se déclenche à la fréquence de rafraîchissement de l'écran — 60–120 Hz. Diffuser chaque événement sature le réseau et le destinataire. Limitez à ~30 Hz avec `requestAnimationFrame` :
+
+```ts
+let scheduled = false
+let lastEvent: PointerEvent | null = null
+
+function onPointerMove(e: PointerEvent) {
+  lastEvent = e
+  if (scheduled) return
+  scheduled = true
+  requestAnimationFrame(() => {
+    scheduled = false
+    if (!lastEvent) return
+    broadcast({ x: lastEvent.clientX, y: lastEvent.clientY })
+    lastEvent = null
+  })
+}
+```
+
+Un patron encore plus serré : mettez à jour le `transform` du curseur local directement via un ref, à l'intérieur d'une seule boucle `requestAnimationFrame` (aux côtés des agents distants), pour que le curseur local ne déclenche aucun re-render React.
+
+## Présence au niveau de la ligne sur un DataTable
+
+Vous pouvez montrer « qui édite quoi » sur des UI tabulaires sans inventer un nouveau composant — superposez un avatar dans la cellule la plus à droite via le renderer `cell`. Le `BentoDataTableCard` de la page d'accueil fait exactement ça :
+
+```tsx
+{
+  id: "amount",
+  header: t("amount"),
+  cell: (row) => {
+    const presenceUrl = presences[row.id]
+    return (
+      <div className="relative flex items-center h-full pr-7">
+        <span className="font-mono">${row.amount}</span>
+        {presenceUrl && (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute right-0 top-1/2 size-5 aspect-square overflow-hidden rounded-full border-2 border-primary shadow-md bg-background z-20"
+          >
+            <img src={presenceUrl} alt="" width={20} height={20} className="block size-full object-cover" />
+          </span>
+        )}
+      </div>
+    )
+  },
+  defaultWidth: 110,
+}
+```
+
+Le wrapper de cellule est en `h-full` pour que l'avatar absolu se centre verticalement par rapport à la hauteur de la ligne (et pas seulement par rapport au texte du montant). Le `pr-7` réservé empêche le texte de la valeur d'entrer en collision avec l'avatar.
+
+Combinez ça avec un canal Liveblocks/Yjs/Supabase où chaque pair diffuse `{ rowId, avatarUrl }` quand il entre en « mode édition » sur une ligne, et l'efface quand il en sort.
+
+## Bonnes pratiques
+
+- **Incluez toujours une `color` stable par utilisateur.** Tirer dans une palette fixe de 8–16 couleurs hachées par identifiant d'utilisateur permet de reconnaître facilement la même personne d'une session à l'autre
+- **Ne diffusez pas le curseur de l'utilisateur local.** Soit vous filtrez votre propre connexion à la réception, soit vous rendez le curseur local avec un `playerCursorRef` séparé (le patron de la démo BentoCursors) pour qu'il ne fasse jamais d'aller-retour sur le réseau
+- **Utilisez `pointer-events-none` et `aria-hidden` sur chaque indicateur de présence distant.** Ils sont décoratifs — le contenu sous-jacent reste interactif et les lecteurs d'écran restent propres
+- **Larguez la présence après ~30s d'inactivité.** Sinon les utilisateurs périmés s'accumulent

@@ -1,0 +1,43 @@
+component: MfaForm
+wcag: AA
+standard: WAI-ARIA 1.2
+element: section
+role: region
+delegatesTo: null
+description: >
+  A form section for managing multi-factor authentication settings. Contains
+  toggle buttons for enabling/disabling MFA and selecting the authentication
+  method (app or SMS).
+
+keyboard:
+  - key: Tab
+    action: Navigates between the MFA toggle, method options, and setup button
+  - key: Enter
+    action: Activates the focused toggle or button
+  - key: Space
+    action: Activates the focused toggle or button
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus follows natural tab order through toggles and buttons. Focus ring
+    uses standard ring styling.
+
+screenReader:
+  announcements:
+    - The MFA toggle announces its enabled/disabled state
+    - Method options are announced with their labels
+    - The setup button is announced as its visible text
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for all text)"
+  ui: "Meets WCAG AA (>3:1 for borders and focus rings)"
+
+motion:
+  reducedMotion: All transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Ensure onToggle and onSetup communicate state changes to the user
+  - Provide clear labeling for the chosen MFA method

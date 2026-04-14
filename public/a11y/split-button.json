@@ -1,0 +1,65 @@
+{
+  "component": "SplitButton",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": "button, menu",
+  "description": "A composite component combining a primary <button> with a dropdown menu trigger. The primary button handles the main action, while the dropdown provides secondary actions via a menu.\n",
+  "keyboard": [
+    {
+      "key": "Enter",
+      "action": "Activates the primary button or the focused menu item"
+    },
+    {
+      "key": "Space",
+      "action": "Activates the primary button or the focused menu item"
+    },
+    {
+      "key": "Enter / Space (on dropdown trigger)",
+      "action": "Opens the dropdown menu"
+    },
+    {
+      "key": "ArrowDown",
+      "action": "Moves focus to the next menu item"
+    },
+    {
+      "key": "ArrowUp",
+      "action": "Moves focus to the previous menu item"
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the dropdown menu"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus between the primary button and dropdown trigger"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus ring appears on both the primary button and the dropdown trigger independently. When the menu is open, focus moves into the menu items.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The primary button label is announced as its accessible name",
+      "The dropdown trigger is announced with aria-label \"More options\"",
+      "Menu items are announced by their labels",
+      "Destructive items are visually styled but not semantically differentiated"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for all variants)",
+    "ui": "Meets WCAG AA (>3:1 for borders and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Ensure the primary button label clearly communicates the default action",
+    "For destructive actions in the dropdown, consider adding confirmation dialogs",
+    "Disabled state applies to both the primary button and dropdown trigger"
+  ]
+}

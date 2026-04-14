@@ -1,0 +1,38 @@
+{
+  "component": "formula-editor",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": true,
+  "hasPerformanceTests": true,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/blocks/formula-editor.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders textarea with placeholder",
+        "value prop controls the textarea content",
+        "onChange fires on input",
+        "onBlur fires on Escape key"
+      ]
+    },
+    {
+      "file": "tests/e2e/a11y/components.spec.ts",
+      "type": "a11y",
+      "tests": [
+        "formula-editor has no a11y violations"
+      ]
+    },
+    {
+      "file": "tests/e2e/performance/mount-time.spec.ts",
+      "type": "performance",
+      "tests": [
+        "formula-editor mounts under threshold"
+      ]
+    }
+  ],
+  "totalTests": 6
+}

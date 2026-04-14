@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "OrgMembersForm",
+    "description": "Organization member management form with invite, role assignment, and removal.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "members",
+        "type": "OrgMember[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onInvite",
+        "type": "(email: string, roleId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onRemove",
+        "type": "(memberId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onResendInvite",
+        "type": "(memberId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onRoleChange",
+        "type": "(memberId: string, roleId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "roles",
+        "type": "RoleOption[]",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

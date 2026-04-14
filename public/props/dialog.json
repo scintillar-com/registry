@@ -1,0 +1,68 @@
+[
+  {
+    "displayName": "Dialog",
+    "description": "Root dialog component that manages open/closed state.",
+    "props": []
+  },
+  {
+    "displayName": "DialogClose",
+    "description": "Button that closes the dialog when clicked.",
+    "props": []
+  },
+  {
+    "displayName": "DialogContent",
+    "description": "Dialog content container rendered inside a portal with an overlay backdrop.\nIncludes an optional close button in the top-right corner (shown by default).",
+    "props": [
+      {
+        "name": "showCloseButton",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "DialogDescription",
+    "description": "Secondary descriptive text displayed below the dialog title.",
+    "props": []
+  },
+  {
+    "displayName": "DialogFooter",
+    "description": "Layout container for dialog action buttons, with an optional close button.",
+    "props": [
+      {
+        "name": "showCloseButton",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "DialogHeader",
+    "description": "Layout container for the dialog title and description.",
+    "props": []
+  },
+  {
+    "displayName": "DialogOverlay",
+    "description": "Semi-transparent backdrop rendered behind the dialog content.",
+    "props": []
+  },
+  {
+    "displayName": "DialogPortal",
+    "description": "Renders dialog content into a React portal outside the DOM hierarchy.",
+    "props": []
+  },
+  {
+    "displayName": "DialogTitle",
+    "description": "The dialog heading, rendered as an accessible title.",
+    "props": []
+  },
+  {
+    "displayName": "DialogTrigger",
+    "description": "Button that opens the dialog when clicked.",
+    "props": []
+  }
+]

@@ -1,0 +1,111 @@
+[
+  {
+    "displayName": "gradientToCss",
+    "description": "",
+    "props": [
+      {
+        "name": "type",
+        "type": "enum",
+        "required": true,
+        "defaultValue": null,
+        "description": "Gradient type."
+      },
+      {
+        "name": "angle",
+        "type": "number",
+        "required": true,
+        "defaultValue": null,
+        "description": "Angle in degrees for linear/angular gradients."
+      },
+      {
+        "name": "stops",
+        "type": "GradientStop[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Array of color stops."
+      }
+    ]
+  },
+  {
+    "displayName": "ColorSwatch",
+    "description": "Displays a color preview swatch with support for solid colors, opacity, and gradients.",
+    "props": [
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Hex color value (e.g. \"#6366f1\")."
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100",
+        "description": "Opacity percentage (0–100). Shows a split preview when < 100."
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional gradient configuration. Overrides hex when type is not \"solid\"."
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "required": false,
+        "defaultValue": "size-6",
+        "description": "Tailwind size class for the swatch (e.g. \"size-6\", \"size-10\")."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  },
+  {
+    "displayName": "ColorValue",
+    "description": "Displays a color swatch alongside a formatted color code label.",
+    "props": [
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Hex color value."
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100",
+        "description": "Opacity percentage (0–100)."
+      },
+      {
+        "name": "format",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "hex",
+        "description": "Color format for the displayed label."
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional gradient configuration."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

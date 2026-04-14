@@ -1,0 +1,32 @@
+[
+  {
+    "displayName": "SocialLinks",
+    "description": "Displays a row or column of social media link buttons with platform icons.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "direction",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "horizontal"
+      },
+      {
+        "name": "links",
+        "type": "SocialLink[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "showLabels",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    ]
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "FileUpload",
+    "description": "A drag-and-drop file upload area with click-to-browse fallback.",
+    "props": [
+      {
+        "name": "accept",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "labels",
+        "type": "Partial<{ dropText: string; anyFileType: string; acceptedPrefix: string; maxSizePrefix: string; }>",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "maxSize",
+        "type": "number",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onFilesChange",
+        "type": "(files: File[]) => void",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  }
+]

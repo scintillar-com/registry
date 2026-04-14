@@ -1,0 +1,46 @@
+component: Toggle
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button
+role: button
+delegatesTo: Radix UI Toggle
+description: >
+  A two-state toggle button built on Radix UI Toggle. Renders a button with
+  aria-pressed indicating the current pressed state. Supports pressed and
+  not-pressed states with automatic ARIA management.
+
+keyboard:
+  - key: Enter
+    action: Toggles the pressed state
+  - key: Space
+    action: Toggles the pressed state
+  - key: Tab
+    action: Moves focus to/from the toggle button
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus ring uses a visible outline via focus-visible pseudo-class. Disabled
+    toggles remove pointer events and reduce opacity.
+
+screenReader:
+  announcements:
+    - The toggle label is announced as the accessible name
+    - The pressed state (pressed or not pressed) is announced via aria-pressed
+    - State changes are announced immediately when toggled
+  notes: >
+    Radix Toggle manages aria-pressed automatically. Screen readers will
+    announce the button as "pressed" or "not pressed" based on state.
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for label text in both states)"
+  ui: "Meets WCAG AA (>3:1 for toggle border and pressed-state background)"
+
+motion:
+  reducedMotion: State transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - When using icon-only toggles, always provide an aria-label describing the action
+  - Ensure the visual difference between pressed and unpressed states is clear and not color-only
+  - If the toggle controls another element, use aria-controls to link them

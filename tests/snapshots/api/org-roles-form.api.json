@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "OrgRolesForm",
+    "description": "Organization role and permission management form with an RBAC permission matrix.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onCreateRole",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onDeleteRole",
+        "type": "(roleId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onRolesChange",
+        "type": "(roles: Role[]) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "permissions",
+        "type": "Permission[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "roles",
+        "type": "Role[]",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

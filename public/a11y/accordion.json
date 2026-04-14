@@ -1,0 +1,63 @@
+{
+  "component": "Accordion",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "region",
+  "delegatesTo": "Radix UI Accordion",
+  "description": "Uses Radix UI Accordion primitives. Each item has a trigger that toggles visibility of the associated content panel. Content panels use role=\"region\" and triggers expose aria-expanded state.\n",
+  "keyboard": [
+    {
+      "key": "Enter",
+      "action": "Toggles the focused accordion item open or closed"
+    },
+    {
+      "key": "Space",
+      "action": "Toggles the focused accordion item open or closed"
+    },
+    {
+      "key": "Arrow Down",
+      "action": "Moves focus to the next accordion trigger"
+    },
+    {
+      "key": "Arrow Up",
+      "action": "Moves focus to the previous accordion trigger"
+    },
+    {
+      "key": "Home",
+      "action": "Moves focus to the first accordion trigger"
+    },
+    {
+      "key": "End",
+      "action": "Moves focus to the last accordion trigger"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus into/out of the accordion trigger list"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus ring appears on the active trigger. Arrow keys move focus between triggers without wrapping by default.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Triggers announce their label and expanded/collapsed state via aria-expanded",
+      "Content panels are announced as regions with an accessible name derived from the trigger"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for trigger labels and content text)",
+    "ui": "Meets WCAG AA (>3:1 for borders and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All open/close transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Ensure each accordion item has a meaningful trigger label",
+    "Avoid nesting interactive elements inside trigger buttons",
+    "When using single-collapse mode, consider whether users need to close all items"
+  ]
+}

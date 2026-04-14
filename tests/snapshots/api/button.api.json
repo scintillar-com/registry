@@ -1,0 +1,26 @@
+[
+  {
+    "displayName": "Button",
+    "description": "",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      }
+    ]
+  }
+]

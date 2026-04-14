@@ -1,0 +1,34 @@
+{
+  "component": "Separator",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "separator",
+  "delegatesTo": "Radix UI Separator",
+  "description": "Renders as an <hr> or <div> with role=\"separator\" to visually and semantically divide content. The decorative prop controls whether the separator is exposed to assistive technology — when decorative is true, aria-hidden=\"true\" is set and the separator has role=\"none\".\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Separator is not focusable as it is a static, non-interactive element.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Non-decorative separators are announced as a separator landmark",
+      "Decorative separators (decorative=true) are hidden from screen readers via aria-hidden"
+    ],
+    "notes": "The orientation prop (horizontal or vertical) is communicated to assistive technology via aria-orientation on non-decorative separators.\n"
+  },
+  "contrast": {
+    "text": "N/A — separator contains no text",
+    "ui": "Meets WCAG AA (>3:1 for the separator line against background)"
+  },
+  "motion": {
+    "reducedMotion": "No animations by default"
+  },
+  "consumerResponsibilities": [
+    "Set decorative={true} when the separator is purely visual and carries no semantic meaning",
+    "When the separator divides meaningful content sections, leave decorative as false",
+    "Use the appropriate orientation (horizontal or vertical) for the layout context"
+  ]
+}

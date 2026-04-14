@@ -1,0 +1,56 @@
+{
+  "component": "Command",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "listbox",
+  "delegatesTo": "cmdk",
+  "description": "Built on the cmdk library. Provides a command palette with type-ahead filtering. The list of results uses role=\"listbox\" and items are selectable via keyboard.\n",
+  "keyboard": [
+    {
+      "key": "Arrow Down",
+      "action": "Moves highlight to the next item in the list"
+    },
+    {
+      "key": "Arrow Up",
+      "action": "Moves highlight to the previous item in the list"
+    },
+    {
+      "key": "Enter",
+      "action": "Selects the currently highlighted item"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus to/from the command input"
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the command palette when used inside a dialog"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus starts in the search input. Arrow keys move a virtual highlight through the filtered results without moving DOM focus from the input.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The input is announced as a search field",
+      "Highlighted items are announced as the user arrows through the list",
+      "Group labels are announced to provide context for grouped items"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for item labels and input text)",
+    "ui": "Meets WCAG AA (>3:1 for highlight indicator and borders)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide a meaningful placeholder for the search input",
+    "When used inside a dialog, ensure the dialog has an accessible label",
+    "Include an empty-state message when no results match the filter"
+  ]
+}

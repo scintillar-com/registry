@@ -1,0 +1,22 @@
+[
+  {
+    "displayName": "Toggle",
+    "description": "A two-state button that can be toggled on or off.",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": "The visual style variant of the toggle."
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": "The size of the toggle."
+      }
+    ]
+  }
+]

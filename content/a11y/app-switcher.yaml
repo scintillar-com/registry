@@ -1,0 +1,54 @@
+component: AppSwitcher
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: combobox
+delegatesTo: button, command
+description: >
+  A composite component combining a button trigger (role="combobox") with a
+  command palette popover. Used to switch between organizations and projects.
+  The trigger button displays the current selection and opens a searchable list.
+
+keyboard:
+  - key: Enter
+    action: Opens the popover or selects the focused item
+  - key: Space
+    action: Opens the popover or selects the focused item
+  - key: ArrowDown
+    action: Moves focus to the next item in the command list
+  - key: ArrowUp
+    action: Moves focus to the previous item in the command list
+  - key: Escape
+    action: Closes the popover
+  - key: Tab
+    action: Moves focus to/from the trigger button
+  - key: Printable characters
+    action: Type-ahead search filters the list in real time
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is trapped within the popover when open. The search input receives
+    focus automatically when the popover opens. Closing the popover returns
+    focus to the trigger button.
+
+screenReader:
+  announcements:
+    - The trigger button announces the current org and project selection
+    - aria-expanded communicates whether the popover is open
+    - Command items are announced by their org and project names
+    - "No results found" is announced when the search yields no matches
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for text and descriptions)"
+  ui: "Meets WCAG AA (>3:1 for borders, focus rings, and check icons)"
+
+motion:
+  reducedMotion: All transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide meaningful organization names and initials for the avatar fallbacks
+  - Handle the onSelect callback to update application state
+  - Consider providing onCreateOrg and onCreateProject handlers for a complete experience

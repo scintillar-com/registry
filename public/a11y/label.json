@@ -1,0 +1,38 @@
+{
+  "component": "Label",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "label",
+  "role": null,
+  "delegatesTo": "Radix UI Label",
+  "description": "Renders a native <label> element via Radix Label. Clicking the label moves focus to the associated form control. The htmlFor prop is used to associate the label with its corresponding input, textarea, or other form control.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Label itself is not focusable; focus moves to the associated control"
+    }
+  ],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Labels are not focusable elements. When clicked, focus is delegated to the associated form control via the htmlFor attribute.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The label text is announced as the accessible name of the associated control"
+    ],
+    "notes": "Radix Label prevents text selection when double-clicking, improving usability without affecting screen reader behavior.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for label text)",
+    "ui": "N/A — label has no UI chrome"
+  },
+  "motion": {
+    "reducedMotion": "No animations by default"
+  },
+  "consumerResponsibilities": [
+    "Always set the htmlFor prop to match the id of the associated form control",
+    "Ensure the label text clearly describes the purpose of the form control",
+    "When using with disabled controls, apply the appropriate disabled styling"
+  ]
+}

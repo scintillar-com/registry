@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "FileUpload",
+    "description": "A drag-and-drop file upload area with click-to-browse fallback.",
+    "props": [
+      {
+        "name": "accept",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Accepted file types (e.g. \"image/*\", \".pdf\")."
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Allow multiple file selection."
+      },
+      {
+        "name": "maxSize",
+        "type": "number",
+        "required": false,
+        "defaultValue": null,
+        "description": "Maximum file size in bytes."
+      },
+      {
+        "name": "onFilesChange",
+        "type": "(files: File[]) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when files are selected or dropped."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Whether the upload area is disabled."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<{ dropText: string; anyFileType: string; acceptedPrefix: string; maxSizePrefix: string; }>",
+        "required": false,
+        "defaultValue": null,
+        "description": "Override internal labels for localization."
+      }
+    ]
+  }
+]

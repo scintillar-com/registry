@@ -1,0 +1,44 @@
+{
+  "component": "AccountDeletionForm",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "form",
+  "role": "form",
+  "delegatesTo": null,
+  "description": "A destructive form section for permanently deleting an account. Requires the user to type the account identifier to confirm deletion. Uses a ConfirmDialog for final confirmation with focus trapping.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Navigates between the confirmation input and action buttons"
+    },
+    {
+      "key": "Enter",
+      "action": "Submits the form or activates the focused button"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus follows natural tab order in the form. When the ConfirmDialog opens, focus is trapped inside the dialog until it is dismissed or confirmed.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The confirmation input is announced with its associated label",
+      "The delete button is announced as destructive",
+      "The ConfirmDialog announces its title and description when opened"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for all text)",
+    "ui": "Meets WCAG AA (>3:1 for borders and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Ensure the accountIdentifier prop matches the value the user must type",
+    "Ensure onDelete communicates the result clearly",
+    "The destructive nature of the action should be visually and semantically clear"
+  ]
+}

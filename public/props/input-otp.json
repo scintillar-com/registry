@@ -1,0 +1,38 @@
+[
+  {
+    "displayName": "InputOTP",
+    "description": "One-time password input that manages a row of individual character slots.",
+    "props": [
+      {
+        "name": "containerClassName",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "InputOTPGroup",
+    "description": "Visual grouping wrapper for a set of adjacent OTP slots.",
+    "props": []
+  },
+  {
+    "displayName": "InputOTPSlot",
+    "description": "Single character cell within an OTP input displaying its value and caret.",
+    "props": [
+      {
+        "name": "index",
+        "type": "number",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "InputOTPSeparator",
+    "description": "Dash separator placed between OTP slot groups.",
+    "props": []
+  }
+]

@@ -1,0 +1,108 @@
+[
+  {
+    "displayName": "ContextMenu",
+    "description": "Root component that manages the open/closed state of the context menu.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuTrigger",
+    "description": "Area that opens the context menu on right-click.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuContent",
+    "description": "Floating panel that displays the context menu items.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuItem",
+    "description": "Selectable item within the context menu.",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ContextMenuCheckboxItem",
+    "description": "Menu item with a checkbox indicator for toggling options.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuRadioItem",
+    "description": "Menu item with a radio indicator for single-selection groups.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuLabel",
+    "description": "Non-interactive label used to title a section of menu items.",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ContextMenuSeparator",
+    "description": "Visual divider between groups of menu items.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuShortcut",
+    "description": "Inline hint displaying a keyboard shortcut for a menu item.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuGroup",
+    "description": "Groups related context menu items together.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuPortal",
+    "description": "Portal that renders context menu content outside the DOM hierarchy.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuSub",
+    "description": "Root component for a nested submenu within the context menu.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuSubContent",
+    "description": "Floating panel that displays the submenu items.",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuSubTrigger",
+    "description": "Menu item that opens a nested submenu when hovered or clicked.",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ContextMenuRadioGroup",
+    "description": "Groups radio items so that only one can be selected at a time.",
+    "props": []
+  }
+]

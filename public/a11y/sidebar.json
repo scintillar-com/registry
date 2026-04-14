@@ -1,0 +1,59 @@
+{
+  "component": "Sidebar",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "aside",
+  "role": "complementary",
+  "delegatesTo": null,
+  "description": "A navigation sidebar rendered as a landmark element with aria-label. Contains collapsible sections for grouping navigation items. Supports a Ctrl+B keyboard shortcut to toggle visibility. On mobile, the sidebar renders as an overlay with a backdrop.\n",
+  "keyboard": [
+    {
+      "key": "Ctrl+B",
+      "action": "Toggles the sidebar open or closed"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus through navigation links and collapsible triggers"
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the focused link or toggles a collapsible section"
+    },
+    {
+      "key": "Space",
+      "action": "Toggles a collapsible section trigger"
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the sidebar on mobile when open as an overlay"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus is not trapped in the sidebar on desktop — users can Tab freely between sidebar and main content. On mobile, when the sidebar opens as an overlay, focus moves into the sidebar. On close, focus returns to the element that triggered the sidebar.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The sidebar is announced as a navigation landmark via aria-label",
+      "Collapsible sections announce their expanded/collapsed state via aria-expanded",
+      "Navigation links are announced with their labels",
+      "On mobile, the overlay is announced as a modal dialog"
+    ],
+    "notes": "The aria-label on the sidebar landmark should describe its purpose (e.g., \"Main navigation\", \"Application sidebar\") to distinguish it from other landmarks on the page.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA — sidebar text uses sidebar-foreground on sidebar background",
+    "ui": "Meets WCAG AA — active link indicator and focus rings meet 3:1 contrast ratio"
+  },
+  "motion": {
+    "reducedMotion": "Slide and collapse animations respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide a descriptive aria-label for the sidebar landmark",
+    "Ensure the Ctrl+B shortcut does not conflict with browser or OS shortcuts",
+    "Provide a visible toggle button as an alternative to the keyboard shortcut",
+    "On mobile, ensure the backdrop prevents interaction with content behind the sidebar",
+    "Use collapsible sections to keep navigation manageable for keyboard users"
+  ]
+}

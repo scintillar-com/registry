@@ -1,0 +1,56 @@
+[
+  {
+    "displayName": "AuthLogin",
+    "description": "A login page block with two layout variants: centered card or split-panel.\nIncludes email, password, remember-me, forgot-password, and register link.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Enter your credentials to access your account"
+      },
+      {
+        "name": "logo",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onForgotPassword",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onRegister",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSubmit",
+        "type": "(data: { email: string; password: string; remember: boolean; }) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Sign in"
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "centered"
+      }
+    ]
+  }
+]

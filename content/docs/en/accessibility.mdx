@@ -1,0 +1,148 @@
+---
+title: Accessibility
+description: Accessibility standards and guidelines for the Scintillar UI component library.
+order: 7
+---
+
+# Accessibility
+
+This document defines the accessibility standards upheld by the Scintillar UI registry. It serves as a reference for contributors, consumers, and AI agents working with our components.
+
+## Standards
+
+We target **WCAG 2.1 Level AA** compliance and follow **WAI-ARIA 1.2** authoring practices for all interactive components.
+
+### What AA means in practice
+
+- Text contrast ratio of at least **4.5:1** against its background
+- UI element contrast ratio of at least **3:1** (borders, icons, focus rings)
+- All functionality available via **keyboard alone**
+- Focus is **visible** on every interactive element
+- No information conveyed by **color alone**
+- Animations respect **prefers-reduced-motion**
+
+## Keyboard
+
+Every interactive component must be operable with a keyboard. The expected patterns:
+
+| Element type | Expected keys |
+|---|---|
+| Buttons, links, toggles | `Enter`, `Space` to activate |
+| Dialogs, popovers, menus | `Escape` to close |
+| Tabs, radio groups | `Arrow` keys to navigate, `Enter`/`Space` to select |
+| Sliders | `Arrow` keys to adjust value, `Shift+Arrow` for larger steps |
+| Lists, menus | `Arrow Up/Down` to navigate, `Home`/`End` to jump |
+| Modals | `Tab`/`Shift+Tab` trapped within the modal |
+
+### Focus management rules
+
+1. **Focus visible**: Every focusable element shows a visible focus ring (`focus-visible:ring`).
+2. **Focus order**: Tab order follows visual layout. No `tabIndex` values greater than 0.
+3. **Focus trap**: Modals and dialogs trap focus. Escape releases the trap and returns focus to the trigger.
+4. **Focus restoration**: When a popover, dialog, or menu closes, focus returns to the element that opened it.
+
+## ARIA
+
+### When we use ARIA
+
+- Components built on **Radix UI** inherit full ARIA compliance automatically (Dialog, Select, DropdownMenu, Tabs, etc.).
+- **Custom interactive components** (ColorPicker, DataTable, FormulaEditor) add ARIA attributes manually: `role`, `aria-label`, `aria-valuenow`, `aria-expanded`, `aria-live`.
+- **Static display components** (Badge, Card, Skeleton) do not need ARIA roles — they use semantic HTML.
+
+### Rules
+
+1. **No ARIA is better than bad ARIA.** Only add roles and attributes when the semantic HTML element does not convey the right meaning.
+2. **Every interactive element has an accessible name.** Either via visible text content, `aria-label`, or `aria-labelledby`.
+3. **Icon-only buttons always have `aria-label`.** The icon is not an accessible name.
+4. **Dynamic content uses `aria-live`.** Search results, loading states, and locale changes announce to screen readers via live regions.
+5. **Decorative elements use `aria-hidden="true"`.** Dots backgrounds, separator lines, and skeleton loaders should not be announced.
+
+## Color and contrast
+
+### Token requirements
+
+| Token pair | Minimum ratio | Standard |
+|---|---|---|
+| `foreground` on `background` | 4.5:1 | WCAG AA text |
+| `muted-foreground` on `background` | 4.5:1 | WCAG AA text |
+| `muted-foreground` on `muted` | 4.5:1 | WCAG AA text |
+| `primary-foreground` on `primary` | 4.5:1 | WCAG AA text |
+| `border` on `background` | 3:1 | WCAG AA UI |
+| `ring` on `background` | 3:1 | WCAG AA UI |
+
+### Color independence
+
+Never rely on color alone to convey information. Always pair with:
+- Text labels (e.g., "Error" not just red)
+- Icons (e.g., checkmark for success)
+- Patterns or borders (e.g., dashed border for empty state)
+
+### High contrast mode
+
+We support Windows High Contrast Mode via the `forced-colors` media query. Borders and buttons are styled to remain visible when the OS overrides colors.
+
+## Motion
+
+All animations and transitions respect `prefers-reduced-motion`:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+Components with motion:
+- **Homepage demo**: scrolling columns stop
+- **Sidebar**: slide transition disabled
+- **Preview fullscreen**: expand/collapse becomes instant
+- **Props panel**: slide animation disabled
+- **Collapsible sections**: instant open/close
+
+## Touch
+
+Mobile touch targets must be at least **44×44px** (WCAG 2.5.5). Our `icon-xs` buttons (24px visual) use `min-h-11 min-w-11` on mobile to meet this requirement.
+
+## Screen readers
+
+### Testing targets
+
+- **NVDA** on Windows + Firefox
+- **VoiceOver** on macOS + Safari
+- **TalkBack** on Android + Chrome
+
+### Announcement patterns
+
+| Event | Announcement method |
+|---|---|
+| Dialog opens | Focus moves to dialog, title announced via `aria-labelledby` |
+| Search results load | `aria-live="polite"` on results list |
+| Language changes | Live region announces "Language changed to..." |
+| Toast appears | Sonner uses `aria-live="polite"` (or `"assertive"` for errors) |
+| Sort changes | Column header button announces new state |
+
+## Consumer responsibilities
+
+When using our components, consumers must:
+
+1. **Associate inputs with labels.** Use `<Label htmlFor="id">` or `aria-label`.
+2. **Provide accessible names for icon buttons.** Always pass `aria-label`.
+3. **Link error messages to inputs.** Use `aria-describedby` pointing to the error element.
+4. **Use semantic headings.** Maintain heading hierarchy (`h1` → `h2` → `h3`).
+5. **Test with a screen reader.** At least one flow per page should be verified with NVDA or VoiceOver.
+6. **Don't override focus styles.** Our focus rings are designed for visibility — removing them breaks keyboard accessibility.
+
+## For AI agents
+
+When generating or modifying components in this registry:
+
+1. **Always include `aria-label` on icon-only buttons.** Use a concise description of the action.
+2. **Use semantic HTML first.** `<button>` over `<div onClick>`. `<nav>` over `<div role="navigation">`.
+3. **Every `onClick` handler needs keyboard equivalence.** If a `<div>` has `onClick`, it needs `role="button"`, `tabIndex={0}`, and `onKeyDown` for Enter/Space.
+4. **Modals must trap focus.** Use our `Dialog` component or Radix primitives — never a plain `<div>` overlay.
+5. **Dynamic content needs `aria-live`.** Loading states, search results, and status messages.
+6. **Test the keyboard flow.** Tab through the component. Can you reach everything? Can you activate everything? Can you escape everything?
+7. **Run `pnpm healthcheck`** after changes. A11y coverage should stay at 100%.
+8. **Add a YAML file** in `content/a11y/` for any new component, following the existing schema.

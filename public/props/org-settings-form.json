@@ -1,0 +1,78 @@
+[
+  {
+    "displayName": "OrgSettingsForm",
+    "description": "General organization settings form section with name, slug, description, logo, and website.",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Organization display name."
+      },
+      {
+        "name": "slug",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Organization slug/identifier."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Organization description/bio."
+      },
+      {
+        "name": "logoUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Organization logo URL."
+      },
+      {
+        "name": "initials",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Organization initials for avatar fallback."
+      },
+      {
+        "name": "website",
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "Website URL."
+      },
+      {
+        "name": "onSave",
+        "type": "(data: { name: string; slug: string; description: string; website: string; }) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the form is saved."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when cancelled."
+      },
+      {
+        "name": "onLogoChange",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the logo is changed."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

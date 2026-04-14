@@ -1,0 +1,30 @@
+[
+  {
+    "displayName": "Tabs",
+    "description": "Root component that manages tab state and layout direction.",
+    "props": []
+  },
+  {
+    "displayName": "TabsList",
+    "description": "Container for tab triggers that controls their visual grouping.",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "TabsTrigger",
+    "description": "A button that activates its associated tab panel when clicked.",
+    "props": []
+  },
+  {
+    "displayName": "TabsContent",
+    "description": "Panel that displays content associated with the currently active tab.",
+    "props": []
+  }
+]

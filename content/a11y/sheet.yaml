@@ -1,0 +1,49 @@
+component: Sheet
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: dialog
+delegatesTo: Radix UI Dialog
+description: >
+  A slide-in panel built on Radix UI Dialog. Behaves identically to a modal
+  dialog for accessibility purposes — focus is trapped, Escape closes, and
+  aria-modal is set. The side prop (top, right, bottom, left) controls visual
+  positioning but has no effect on accessibility semantics.
+
+keyboard:
+  - key: Escape
+    action: Closes the sheet
+  - key: Tab
+    action: Cycles focus through focusable elements inside the sheet
+  - key: Shift+Tab
+    action: Cycles focus backwards through the sheet
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is automatically moved to the first focusable element when the sheet
+    opens. On close, focus returns to the trigger element. Focus is trapped —
+    Tab/Shift+Tab cycle within the sheet boundary.
+
+screenReader:
+  announcements:
+    - Sheet title is announced via aria-labelledby
+    - Sheet description is announced via aria-describedby
+    - The sheet is announced as a modal dialog (aria-modal="true")
+  notes: >
+    The overlay prevents interaction with elements behind the sheet.
+    Screen readers will not navigate outside the sheet while it is open.
+
+contrast:
+  text: "Meets WCAG AA — sheet uses card-foreground on card background"
+  ui: "Close button meets 3:1 contrast ratio"
+
+motion:
+  reducedMotion: Slide and fade animations respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Always include a SheetTitle for screen reader context
+  - Include SheetDescription for additional context when needed
+  - Ensure the trigger element clearly indicates it opens a sheet
+  - The side prop is purely visual — do not rely on it for accessibility cues

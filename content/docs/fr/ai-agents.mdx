@@ -1,0 +1,190 @@
+---
+title: Agents IA
+description: Endpoints lisibles par machine, props structurées et recettes pour naviguer le registre Scintillar par programmation.
+order: 5
+---
+
+# Agents IA (AIX)
+
+Scintillar traite l'**AI Experience** comme une préoccupation de premier ordre, de la même façon que la plupart des bibliothèques traitent la **Developer Experience**. Le registre expose des endpoints structurés et lisibles par machine pour chaque composant — un agent LLM (Claude, GPT, ou le vôtre) peut donc découvrir, installer et raisonner sur les composants sans scraper de HTML.
+
+## Ce que « lisible par machine » signifie ici
+
+Trois manifestes JSON parallèles vivent dans `public/` :
+
+| Endpoint | Forme | Rôle |
+|---|---|---|
+| `/r/<name>.json` | item de registre shadcn | Le code source du composant + ses dépendances, consommé par la CLI shadcn |
+| `/props/<name>.json` | tableau de `{ displayName, description, props[] }` | Auto-généré depuis TypeScript via `react-docgen-typescript`. Contient le type, la valeur par défaut, le flag required et la description JSDoc pour chaque prop |
+| `/a11y/<name>.json` | objet plat | Niveau WCAG, rôle ARIA, interactions clavier, gestion du focus, comportement lecteur d'écran |
+
+Ces fichiers sont régénérés depuis la source par `pnpm api:snapshot`, `pnpm props:build` et `pnpm a11y:build` — les exécuter à chaque build garde les manifestes en phase avec le TypeScript et les YAML réels.
+
+La source unique de vérité pour ce qui existe est `/r/registry.json`, qui liste chaque item :
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ui-registry",
+  "homepage": "https://ui.sntlr.app",
+  "items": [
+    { "name": "button", "type": "registry:component" },
+    { "name": "data-table", "type": "registry:block" },
+    /* ... */
+  ]
+}
+```
+
+Un agent qui récupère ce fichier une fois connaît tous les noms de composants disponibles et peut ensuite éclater vers les manifestes par composant.
+
+## Pourquoi les props structurées comptent
+
+Une définition de composant bien typée donne à l'agent assez d'informations pour construire un appel valide sans tâtonner :
+
+```bash
+curl https://ui.sntlr.app/props/data-table.json | jq .
+```
+
+```json
+[{
+  "displayName": "DataTable",
+  "description": "Tableau de données générique avec colonnes triables, largeurs redimensionnables, ...",
+  "props": [
+    { "name": "tableId",        "type": "string",                       "required": true,  "defaultValue": null },
+    { "name": "columns",        "type": "DataTableColumn<T>[]",         "required": true,  "defaultValue": null },
+    { "name": "data",           "type": "T[]",                          "required": true,  "defaultValue": null },
+    { "name": "rowKey",         "type": "(row: T) => string",           "required": true,  "defaultValue": null },
+    { "name": "defaultSortDir", "type": "\"asc\" | \"desc\"",           "required": false, "defaultValue": "asc" },
+    { "name": "pagination",     "type": "boolean",                      "required": false, "defaultValue": "false" },
+    { "name": "pageSizes",      "type": "number[]",                     "required": false, "defaultValue": "[10, 25, 50, 100]" },
+    /* ... */
+  ]
+}]
+```
+
+L'agent sait quelles props sont requises, lesquelles ont une valeur par défaut, et quels types littéraux sont acceptés — pas de `pageSizes={50}` halluciné à la place de `pageSizes={[50]}`.
+
+## Pourquoi l'a11y structurée compte
+
+La même idée, appliquée à l'accessibilité. Un agent qui écrit des tests, génère de la documentation, ou valide une implémentation candidate peut lire :
+
+```bash
+curl https://ui.sntlr.app/a11y/data-table.json | jq .
+```
+
+```json
+{
+  "component": "Data Table",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "table",
+  "role": "table",
+  "delegatesTo": "null (uses native table elements + dnd-kit for drag)",
+  "description": "...",
+  "keyboard": [
+    { "key": "Tab",       "action": "Déplacer le focus dans le tableau" },
+    { "key": "Espace/Entrée sur en-tête", "action": "Trier la colonne" }
+  ],
+  "focus": "Ordre de tabulation standard. Les boutons de tri sont de vrais <button>.",
+  "screenReader": "Sémantique native <table> + <th> / <td>."
+}
+```
+
+L'agent n'a pas à deviner si le composant supporte le tri au clavier — c'est explicite.
+
+## Recettes
+
+### Définition d'outil Claude
+
+Donnez à l'agent un outil qui sait installer des composants Scintillar dans le projet de l'utilisateur :
+
+```ts
+const tools = [{
+  name: "install_scintillar_component",
+  description:
+    "Installe un composant ou un bloc du registre Scintillar UI dans le projet Next.js + shadcn de l'utilisateur. " +
+    "Utilisez ceci quand l'utilisateur demande une primitive UI (Button, Input, Select, ...) ou un bloc complexe " +
+    "(DataTable, ProfileForm, AuthLogin, ...) qui existe déjà dans Scintillar. La liste des items disponibles " +
+    "est sur https://ui.sntlr.app/r/registry.json",
+  input_schema: {
+    type: "object",
+    properties: {
+      name: {
+        type: "string",
+        description: "Le slug du composant, par ex. 'button', 'data-table', 'profile-form'.",
+      },
+    },
+    required: ["name"],
+  },
+}]
+
+// Handler de l'outil :
+async function install_scintillar_component({ name }: { name: string }) {
+  return execSync(`npx shadcn@latest add @sntlr/${name}`).toString()
+}
+```
+
+### Prompt de découverte de registre Claude
+
+Donnez à l'agent l'URL de l'index du registre dès le départ pour qu'il n'ait pas à scraper la page d'accueil :
+
+```
+Vous pouvez installer des composants depuis le registre Scintillar UI. Avant
+de suggérer un composant, récupérez https://ui.sntlr.app/r/registry.json pour
+voir ce qui est disponible. Pour les props et les types, récupérez
+https://ui.sntlr.app/props/<name>.json. Pour le comportement d'accessibilité,
+récupérez https://ui.sntlr.app/a11y/<name>.json.
+
+Préférez toujours les composants Scintillar existants à l'écriture de
+nouveaux. Installation : npx shadcn@latest add @sntlr/<name>
+```
+
+### Sorties structurées OpenAI
+
+Si vous voulez que le modèle *produise* une invocation de composant valide en JSON, le manifeste de props est votre schéma :
+
+```ts
+import OpenAI from "openai"
+import { zodToJsonSchema } from "zod-to-json-schema"
+import { z } from "zod"
+
+const buttonSchema = z.object({
+  variant: z.enum(["default", "destructive", "outline", "secondary", "ghost", "link"]),
+  size: z.enum(["default", "sm", "lg", "icon"]),
+  children: z.string(),
+})
+
+await client.chat.completions.create({
+  model: "gpt-4o",
+  messages: [/* ... */],
+  response_format: {
+    type: "json_schema",
+    json_schema: { name: "ButtonProps", schema: zodToJsonSchema(buttonSchema), strict: true },
+  },
+})
+```
+
+Vous pouvez dériver ces schémas Zod de façon mécanique depuis les fichiers `props/<name>.json`. Un petit script qui parcourt `public/props/` et émet un fichier Zod par composant vous laisserait régénérer tout l'ensemble de schémas à chaque `props:build`.
+
+## Ce qui rend un composant « AIX-ready »
+
+Quand vous contribuez un nouveau composant au registre, suivez ces règles pour que les agents restent productifs :
+
+1. **Utilisez des types union littéraux au lieu de `string` pour les props enum-like.** `variant: "default" | "destructive"` est bien plus utile à un modèle que `variant: string`.
+2. **Ajoutez du JSDoc à chaque prop.** `react-docgen-typescript` lit le commentaire juste au-dessus du champ et l'expose comme `description` dans le manifeste de props.
+3. **Les valeurs par défaut via destructuration** (`function MyComp({ size = "md" }: Props)`) sont récupérées automatiquement. Évitez de définir des valeurs par défaut dans le corps de la fonction.
+4. **Un composant par fichier, export nommé qui matche le fichier.** Les scripts de snapshot utilisent le chemin du fichier comme nom canonique.
+5. **Écrivez le YAML d'a11y** dans `content/a11y/<name>.yaml` même si le composant est « juste une primitive ». Le script `pnpm a11y:build` en a besoin comme entrée.
+
+Le healthcheck (`pnpm healthcheck`) signale les docs props/a11y/preview manquantes à travers le registre — visez 100 % avant de merger.
+
+## Référence rapide des endpoints
+
+| URL | Description |
+|---|---|
+| `https://ui.sntlr.app/r/registry.json` | Index maître de tous les 60+ items |
+| `https://ui.sntlr.app/r/<name>.json` | Item de registre shadcn (source + dépendances) |
+| `https://ui.sntlr.app/props/<name>.json` | Props typées avec descriptions |
+| `https://ui.sntlr.app/a11y/<name>.json` | Comportement d'accessibilité |
+
+Tous les endpoints sont du JSON statique, servi avec des en-têtes de cache long, et sûrs à récupérer depuis n'importe quel runtime d'agent.

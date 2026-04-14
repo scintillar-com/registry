@@ -1,0 +1,76 @@
+[
+  {
+    "displayName": "Pagination",
+    "description": "Navigation wrapper for a set of pagination controls.",
+    "props": []
+  },
+  {
+    "displayName": "PaginationContent",
+    "description": "Horizontal list container for pagination items.",
+    "props": []
+  },
+  {
+    "displayName": "PaginationLink",
+    "description": "Styled anchor link for navigating to a specific page.",
+    "props": [
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "icon"
+      }
+    ]
+  },
+  {
+    "displayName": "PaginationItem",
+    "description": "List item wrapper for a single pagination link or ellipsis.",
+    "props": []
+  },
+  {
+    "displayName": "PaginationPrevious",
+    "description": "Link with a left chevron icon for navigating to the previous page.",
+    "props": [
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "PaginationNext",
+    "description": "Link with a right chevron icon for navigating to the next page.",
+    "props": [
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "PaginationEllipsis",
+    "description": "Ellipsis indicator representing skipped page numbers.",
+    "props": []
+  }
+]

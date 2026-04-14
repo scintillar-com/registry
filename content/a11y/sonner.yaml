@@ -1,0 +1,51 @@
+component: Sonner
+wcag: AA
+standard: WAI-ARIA 1.2
+element: li
+role: status
+delegatesTo: Sonner (toast library)
+description: >
+  Toast notifications rendered by the Sonner library. Uses aria-live regions
+  to announce messages to screen readers. Non-urgent toasts use
+  aria-live="polite" while error or critical toasts use aria-live="assertive".
+  Toasts auto-dismiss after a timeout.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to action buttons within the toast if present
+  - key: Escape
+    action: Dismisses the toast
+  - key: Enter
+    action: Activates the focused action button within the toast
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Toasts do not steal focus on appearance. Focus can be moved to the toast
+    if it contains interactive elements (action buttons, close button).
+    Focus is not trapped — Tab moves focus out of the toast.
+
+screenReader:
+  announcements:
+    - Toast message is announced via aria-live region when it appears
+    - Non-urgent toasts (success, info) use aria-live="polite" and wait for current speech
+    - Error and critical toasts use aria-live="assertive" and interrupt current speech
+    - Action buttons within the toast are announced as interactive elements
+  notes: >
+    Auto-dismiss timing should be generous enough for screen reader users to
+    perceive and act on the message. Consider providing a way to pause
+    auto-dismiss on hover or focus.
+
+contrast:
+  text: "Meets WCAG AA — toast text uses appropriate foreground on toast background"
+  ui: "Meets WCAG AA — close button and action buttons meet 3:1 contrast ratio"
+
+motion:
+  reducedMotion: Slide and fade animations respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Use appropriate toast types (success, error, info) to set correct aria-live politeness
+  - Ensure auto-dismiss duration is long enough for users to read the message
+  - Provide a close button for toasts that contain actions
+  - Do not use toasts for critical information that requires user acknowledgment — use a dialog instead

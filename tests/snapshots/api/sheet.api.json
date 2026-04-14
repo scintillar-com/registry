@@ -1,0 +1,55 @@
+[
+  {
+    "displayName": "Sheet",
+    "description": "Root component that manages the open/closed state of the sheet.",
+    "props": []
+  },
+  {
+    "displayName": "SheetTrigger",
+    "description": "Button or element that opens the sheet when clicked.",
+    "props": []
+  },
+  {
+    "displayName": "SheetClose",
+    "description": "Button that closes the sheet when clicked.",
+    "props": []
+  },
+  {
+    "displayName": "SheetContent",
+    "description": "Container for the sheet's main content, rendered as a sliding panel.",
+    "props": [
+      {
+        "name": "showCloseButton",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      {
+        "name": "side",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "right"
+      }
+    ]
+  },
+  {
+    "displayName": "SheetHeader",
+    "description": "Layout container for the sheet's title and description.",
+    "props": []
+  },
+  {
+    "displayName": "SheetFooter",
+    "description": "Layout container for the sheet's action buttons, placed at the bottom.",
+    "props": []
+  },
+  {
+    "displayName": "SheetTitle",
+    "description": "Accessible title rendered at the top of the sheet.",
+    "props": []
+  },
+  {
+    "displayName": "SheetDescription",
+    "description": "Accessible description providing additional context for the sheet.",
+    "props": []
+  }
+]

@@ -1,0 +1,195 @@
+[
+  {
+    "displayName": "ColorPicker",
+    "description": "Full-featured color picker with support for solid colors and gradients.\nProvides an HSB saturation/brightness area, hue slider, opacity slider,\nand numeric inputs for multiple color formats (hex, RGB, HSL, CMYK).",
+    "props": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Current hex color value (e.g. \"#6366f1\")."
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100",
+        "description": "Current opacity (0–100)."
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null,
+        "description": "Initial gradient configuration. Only used when enableGradient is true."
+      },
+      {
+        "name": "onSave",
+        "type": "(hex: string, opacity: number, gradient?: GradientValue) => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Called when the user saves a color selection."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Called when the user cancels editing."
+      },
+      {
+        "name": "format",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "hex",
+        "description": "Color format for display (hex, rgb, hsl, cmyk)."
+      },
+      {
+        "name": "enableGradient",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Enable gradient mode tabs (linear, radial, angular)."
+      },
+      {
+        "name": "cancelLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Cancel",
+        "description": "Label for the cancel button."
+      },
+      {
+        "name": "saveLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Save",
+        "description": "Label for the save button."
+      }
+    ]
+  },
+  {
+    "displayName": "ColorSwatch",
+    "description": "Displays a color preview swatch with support for solid colors, opacity, and gradients.",
+    "props": [
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Hex color value (e.g. \"#6366f1\")."
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100",
+        "description": "Opacity percentage (0–100). Shows a split preview when < 100."
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional gradient configuration. Overrides hex when type is not \"solid\"."
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "required": false,
+        "defaultValue": "size-6",
+        "description": "Tailwind size class for the swatch (e.g. \"size-6\", \"size-10\")."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  },
+  {
+    "displayName": "ColorValue",
+    "description": "Displays a color swatch alongside a formatted color code label.",
+    "props": [
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Hex color value."
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100",
+        "description": "Opacity percentage (0–100)."
+      },
+      {
+        "name": "format",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "hex",
+        "description": "Color format for the displayed label."
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional gradient configuration."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  },
+  {
+    "displayName": "gradientToCss",
+    "description": "",
+    "props": [
+      {
+        "name": "type",
+        "type": "enum",
+        "required": true,
+        "defaultValue": null,
+        "description": "Gradient type."
+      },
+      {
+        "name": "angle",
+        "type": "number",
+        "required": true,
+        "defaultValue": null,
+        "description": "Angle in degrees for linear/angular gradients."
+      },
+      {
+        "name": "stops",
+        "type": "GradientStop[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Array of color stops."
+      }
+    ]
+  },
+  {
+    "displayName": "GradientType",
+    "description": "The type of gradient fill.",
+    "props": []
+  },
+  {
+    "displayName": "GradientStop",
+    "description": "A single color stop in a gradient.",
+    "props": []
+  },
+  {
+    "displayName": "GradientValue",
+    "description": "Full gradient configuration.",
+    "props": []
+  }
+]

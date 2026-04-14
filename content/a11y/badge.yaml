@@ -1,0 +1,40 @@
+component: Badge
+wcag: AA
+standard: WAI-ARIA 1.2
+element: span
+role: null
+delegatesTo: Radix Slot (optional via asChild)
+description: >
+  Renders a styled <span> element for displaying short status text, labels, or
+  counts. It is a static, non-interactive component with no built-in ARIA role.
+  When used to convey meaningful status, consumers must add appropriate ARIA
+  attributes.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    Badge is not focusable by default as it is a static display element.
+    If wrapped in an interactive element, focus is managed by the parent.
+
+screenReader:
+  announcements:
+    - The text content of the badge is read as part of the normal document flow
+  notes: >
+    Because the badge is a plain span, screen readers treat it as inline text.
+    If the badge conveys dynamic status information, consumers should use
+    aria-label or aria-live regions to ensure updates are announced.
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for all variants)"
+  ui: "Meets WCAG AA (>3:1 for border and background)"
+
+motion:
+  reducedMotion: No animations by default
+
+consumerResponsibilities:
+  - Use aria-label if the badge conveys status that is not clear from surrounding context
+  - When badge indicates a count (e.g. notifications), ensure it is associated with its parent via aria-describedby
+  - Do not rely on color alone to convey meaning — include text content

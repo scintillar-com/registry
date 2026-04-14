@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "OrgRolesForm",
+    "description": "Organization role and permission management form with an RBAC permission matrix.",
+    "props": [
+      {
+        "name": "roles",
+        "type": "Role[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Available roles."
+      },
+      {
+        "name": "permissions",
+        "type": "Permission[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Available permissions."
+      },
+      {
+        "name": "onRolesChange",
+        "type": "(roles: Role[]) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when roles are updated."
+      },
+      {
+        "name": "onCreateRole",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when a new role is created."
+      },
+      {
+        "name": "onDeleteRole",
+        "type": "(roleId: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when a role is deleted."
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Compact mode: displays a dense permission matrix (roles as columns, permissions as rows)\ninstead of the expandable per-role view. Fits in tight containers."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

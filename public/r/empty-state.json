@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state",
+  "title": "Empty State",
+  "description": "A placeholder shown when a section has no content.",
+  "files": [
+    {
+      "path": "components/ui/empty-state.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\n\n/** A placeholder shown when a section has no content. Displays an icon, title, and optional description. */\nfunction EmptyState({\n  /** Additional CSS classes. */\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-state\"\n      className={cn(\n        \"flex flex-col items-center justify-center rounded-lg border border-dashed border-border py-10 px-6 text-center\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/** Icon container for the empty state. */\nfunction EmptyStateIcon({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"empty-state-icon\"\n      className={cn(\n        \"mb-3 flex items-center justify-center rounded-full bg-muted p-3 text-muted-foreground [&_svg]:size-6\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/** Title text for the empty state. */\nfunction EmptyStateTitle({\n  className,\n  ...props\n}: React.ComponentProps<\"h3\">) {\n  return (\n    <h3\n      data-slot=\"empty-state-title\"\n      className={cn(\"text-sm font-semibold text-foreground mb-1\", className)}\n      {...props}\n    />\n  )\n}\n\n/** Description text for the empty state. */\nfunction EmptyStateDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"p\">) {\n  return (\n    <p\n      data-slot=\"empty-state-description\"\n      className={cn(\"text-sm text-muted-foreground max-w-sm\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { EmptyState, EmptyStateIcon, EmptyStateTitle, EmptyStateDescription }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

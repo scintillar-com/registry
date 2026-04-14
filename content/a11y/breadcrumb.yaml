@@ -1,0 +1,46 @@
+component: Breadcrumb
+wcag: AA
+standard: WAI-ARIA 1.2
+element: nav
+role: navigation
+delegatesTo: null
+description: >
+  A breadcrumb navigation rendered as a <nav> element with aria-label="Breadcrumb"
+  containing an ordered list (<ol>) of links. The current page uses
+  aria-current="page" to indicate the user's location in the hierarchy.
+
+keyboard:
+  - key: Tab
+    action: Moves focus between breadcrumb links
+  - key: Enter
+    action: Activates the focused breadcrumb link
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Each breadcrumb link receives standard focus styling. The current page
+    item may or may not be a link depending on implementation.
+
+screenReader:
+  announcements:
+    - The nav element is announced as "Breadcrumb navigation"
+    - Each link is announced with its label
+    - The current page is announced with aria-current="page"
+    - List semantics (ol/li) provide item count and position
+  notes: >
+    Separator characters between items are decorative and should be hidden
+    from screen readers using aria-hidden="true".
+
+contrast:
+  text: "Meets WCAG AA — links use foreground colors with sufficient contrast"
+  ui: "Meets WCAG AA (>3:1 for focus rings)"
+
+motion:
+  reducedMotion: No animations used
+
+consumerResponsibilities:
+  - Always set aria-current="page" on the current/last breadcrumb item
+  - Ensure separator characters are hidden from screen readers with aria-hidden
+  - Use meaningful labels for each breadcrumb link
+  - Keep the breadcrumb trail concise and logical

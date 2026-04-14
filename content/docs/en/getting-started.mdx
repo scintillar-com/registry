@@ -1,0 +1,105 @@
+---
+title: Getting Started
+description: Learn how to install and use components from the Scintillar registry.
+order: 1
+---
+
+# Getting Started
+
+The Scintillar UI registry provides 60+ reusable components and blocks that you can install directly into your project using the shadcn CLI.
+
+## Prerequisites
+
+Make sure your project is set up with:
+
+- **React 19** or later
+- **Tailwind CSS v4**
+- **shadcn** initialized in your project
+
+If you haven't initialized shadcn yet, run:
+
+```bash
+npx shadcn@latest init
+```
+
+## Configure the Registry
+
+Add the Scintillar registry to your project's `components.json`:
+
+```json
+{
+  "registries": {
+    "@sntlr": "https://ui.sntlr.app/r/{name}.json"
+  }
+}
+```
+
+## Installing Components
+
+Once configured, install any component with:
+
+```bash
+npx shadcn@latest add @sntlr/button
+```
+
+This will install the component and all of its dependencies into your project.
+
+### Components vs Blocks
+
+- **Components** are UI primitives (Button, Input, Select, ColorPicker, etc.) — installed into `components/ui/`
+- **Blocks** are complex compositions (DataTable, FormSection, AuthLogin, etc.) — installed into your project with all their dependencies
+
+```bash
+# Install a primitive
+npx shadcn@latest add @sntlr/password-input
+
+# Install a block
+npx shadcn@latest add @sntlr/auth-login
+```
+
+## Project Structure
+
+Components are installed into your project's `components` directory:
+
+```
+components/
+  ui/
+    button.tsx
+    password-input.tsx
+    color-picker.tsx
+    ...
+```
+
+## Development
+
+### Running the registry locally
+
+```bash
+pnpm install
+pnpm dev
+```
+
+### Testing
+
+```bash
+pnpm test              # Unit tests (Vitest)
+pnpm test:e2e          # E2E tests (Playwright)
+pnpm test:a11y         # Accessibility audit
+pnpm healthcheck       # Overall health dashboard
+```
+
+### Adding a new component
+
+1. Create the component in `components/ui/` (or `registry/new-york/blocks/` for blocks)
+2. Add JSDoc to all exported functions
+3. Register in `registry.json`
+4. Create a preview in `components/previews/`
+5. Create an accessibility doc in `content/a11y/`
+6. Write unit tests in `tests/unit/`
+7. Run `pnpm healthcheck`
+
+## Next Steps
+
+- Browse the [Examples](/docs/examples) to see components in action
+- Read the [Accessibility](/docs/accessibility) standards
+- Check out individual [Components](/components/button) for detailed usage

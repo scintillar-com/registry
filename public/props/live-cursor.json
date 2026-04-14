@@ -1,0 +1,64 @@
+[
+  {
+    "displayName": "LiveCursor",
+    "description": "A colored pointer cursor with a user-name label or avatar, used to show collaborator cursor positions on a canvas or page.",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Display name shown below the cursor (or as fallback when no avatar is provided)."
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Color for the cursor and label (any CSS color)."
+      },
+      {
+        "name": "x",
+        "type": "number",
+        "required": true,
+        "defaultValue": null,
+        "description": "X position in pixels."
+      },
+      {
+        "name": "y",
+        "type": "number",
+        "required": true,
+        "defaultValue": null,
+        "description": "Y position in pixels."
+      },
+      {
+        "name": "display",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "name",
+        "description": "What to render next to the pointer.\n- `\"name\"` (default): a small colored label with the user's name\n- `\"avatar\"`: a circular avatar image (requires `avatarUrl`)"
+      },
+      {
+        "name": "avatarUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional avatar image URL. Used when `display=\"avatar\"`."
+      },
+      {
+        "name": "absolute",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Use absolute positioning instead of fixed. Useful inside relative containers."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes on the container."
+      }
+    ]
+  }
+]

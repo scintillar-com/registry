@@ -1,0 +1,53 @@
+component: OrgMembersForm
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: form
+delegatesTo: null
+description: >
+  A form section with an email invite input and a member list. The invite area
+  contains an email input, a role selector (Select), and an invite button. The
+  member list displays each member with a role selector and an actions dropdown.
+
+keyboard:
+  - key: Tab
+    action: Moves focus between the invite email input, role select, invite button, and member row controls
+  - key: Enter
+    action: Submits the invite when the email input or invite button is focused; activates dropdown menu items
+  - key: Space
+    action: Opens the role Select dropdown; activates buttons and menu items
+  - key: Escape
+    action: Closes the role Select dropdown or the actions dropdown menu
+  - key: ArrowDown
+    action: Navigates options within the role Select or actions dropdown menu
+  - key: ArrowUp
+    action: Navigates options within the role Select or actions dropdown menu
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus follows tab order through the invite form, then through each member
+    row's role selector and actions button. Focus ring is visible on all
+    interactive elements.
+
+screenReader:
+  announcements:
+    - Invite input announces its placeholder and type
+    - Role selectors announce the current role value
+    - Member names and emails are announced in each row
+    - The "You" badge is announced for the current user
+    - Dropdown menu items announce their labels
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for member names, emails, and labels)"
+  ui: "Meets WCAG AA (>3:1 for borders, select triggers, and focus rings)"
+
+motion:
+  reducedMotion: All transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide a visible confirmation (e.g., toast) after inviting or removing a member
+  - Ensure the current user cannot remove themselves or change their own role
+  - Add aria-label to the invite email input if a visible label is not provided

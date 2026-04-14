@@ -1,0 +1,26 @@
+[
+  {
+    "displayName": "AuthorizedDevices",
+    "description": "A device management section showing all authorized devices.\nDisplays device name, browser/OS, location, last active time,\nand allows revoking non-current devices.\nUses FormSection for consistent layout.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "devices",
+        "type": "AuthorizedDevice[]",
+        "required": false,
+        "defaultValue": "[]"
+      },
+      {
+        "name": "onRevoke",
+        "type": "(deviceId: string) => void",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  }
+]

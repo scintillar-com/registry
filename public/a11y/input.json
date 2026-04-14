@@ -1,0 +1,46 @@
+{
+  "component": "Input",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "input",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Renders a native <input> element with styled focus-visible ring. All standard input semantics and keyboard interactions are handled by the browser. Consumers must associate the input with a visible label for accessibility.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to/from the input"
+    },
+    {
+      "key": "Any character",
+      "action": "Types into the input field"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus ring uses a visible outline via focus-visible pseudo-class. Disabled inputs remove pointer events and reduce opacity.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The associated label is announced as the accessible name",
+      "Placeholder text is announced as a fallback if no label is present",
+      "Input type (text, email, password, etc.) is announced"
+    ],
+    "notes": "Placeholder text alone is not a sufficient accessible name. Always pair with a label element or aria-label.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for input text on background)",
+    "ui": "Meets WCAG AA (>3:1 for border and focus ring)"
+  },
+  "motion": {
+    "reducedMotion": "No animations by default"
+  },
+  "consumerResponsibilities": [
+    "Always associate the input with a <label> element using htmlFor or wrap the input inside a <label>",
+    "If a visible label is not possible, provide aria-label or aria-labelledby",
+    "Use aria-describedby to link helper text or error messages",
+    "Set aria-invalid=\"true\" and aria-errormessage when the input is in an error state",
+    "Provide autocomplete attributes where appropriate for user convenience"
+  ]
+}

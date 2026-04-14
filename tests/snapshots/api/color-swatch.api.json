@@ -1,0 +1,98 @@
+[
+  {
+    "displayName": "gradientToCss",
+    "description": "",
+    "props": [
+      {
+        "name": "angle",
+        "type": "number",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "stops",
+        "type": "GradientStop[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "type",
+        "type": "enum",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "ColorSwatch",
+    "description": "Displays a color preview swatch with support for solid colors, opacity, and gradients.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100"
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "required": false,
+        "defaultValue": "size-6"
+      }
+    ]
+  },
+  {
+    "displayName": "ColorValue",
+    "description": "Displays a color swatch alongside a formatted color code label.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "format",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "hex"
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100"
+      }
+    ]
+  }
+]

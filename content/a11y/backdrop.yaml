@@ -1,0 +1,37 @@
+component: Backdrop
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: none (presentational overlay)
+delegatesTo: null
+description: >
+  A fixed overlay that dims content behind modals, drawers, and floating panels.
+  Clicking the backdrop typically closes the associated panel. Purely visual —
+  not announced by screen readers.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    The backdrop is not focusable. Focus management is handled by the
+    component that uses the backdrop (Dialog, Sheet, etc.).
+
+screenReader:
+  announcements:
+    - The backdrop itself is not announced
+    - The associated modal/panel handles all screen reader announcements
+  notes: null
+
+contrast:
+  text: "N/A — no text content"
+  ui: "bg-black/60 provides sufficient visual separation"
+
+motion:
+  reducedMotion: Fade transition respects prefers-reduced-motion (150ms)
+
+consumerResponsibilities:
+  - Always pair with a keyboard-dismissible panel (Escape key)
+  - Ensure the onClick handler closes the associated panel
+  - Use belowHeader prop when the header should remain accessible

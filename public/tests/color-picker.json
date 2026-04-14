@@ -1,0 +1,36 @@
+{
+  "component": "color-picker",
+  "hasUnitTests": false,
+  "hasInteractionTests": true,
+  "hasVisualTests": false,
+  "hasA11yTests": true,
+  "hasPerformanceTests": true,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/e2e/interaction/color-picker.spec.ts",
+      "type": "interaction",
+      "tests": [
+        "clicking edit opens the picker with sliders",
+        "arrow keys adjust slider values"
+      ]
+    },
+    {
+      "file": "tests/e2e/a11y/components.spec.ts",
+      "type": "a11y",
+      "tests": [
+        "color-picker has no a11y violations"
+      ]
+    },
+    {
+      "file": "tests/e2e/performance/mount-time.spec.ts",
+      "type": "performance",
+      "tests": [
+        "color-picker mounts under threshold"
+      ]
+    }
+  ],
+  "totalTests": 4
+}

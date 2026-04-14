@@ -1,0 +1,64 @@
+[
+  {
+    "displayName": "AuthLogin",
+    "description": "A login page block with two layout variants: centered card or split-panel.\nIncludes email, password, remember-me, forgot-password, and register link.",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "centered",
+        "description": "Layout variant. \"centered\" places the form in a centered card; \"split\" uses a two-column layout with a branded panel."
+      },
+      {
+        "name": "onSubmit",
+        "type": "(data: { email: string; password: string; remember: boolean; }) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user submits the login form."
+      },
+      {
+        "name": "onForgotPassword",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user clicks the forgot password link."
+      },
+      {
+        "name": "onRegister",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user clicks the register link."
+      },
+      {
+        "name": "logo",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Logo element rendered above the form title."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Sign in",
+        "description": "Form title."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Enter your credentials to access your account",
+        "description": "Form description below the title."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes for the root element."
+      }
+    ]
+  }
+]

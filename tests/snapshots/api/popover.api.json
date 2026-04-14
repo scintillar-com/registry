@@ -1,0 +1,37 @@
+[
+  {
+    "displayName": "Popover",
+    "description": "Root component that manages the open/closed state of the popover.",
+    "props": []
+  },
+  {
+    "displayName": "PopoverTrigger",
+    "description": "Button or element that toggles the popover when clicked.",
+    "props": []
+  },
+  {
+    "displayName": "PopoverContent",
+    "description": "Floating panel that displays the popover's content next to the trigger.",
+    "props": []
+  },
+  {
+    "displayName": "PopoverAnchor",
+    "description": "Optional anchor element used to position the popover relative to a custom reference.",
+    "props": []
+  },
+  {
+    "displayName": "PopoverHeader",
+    "description": "Layout container for the popover's title and description.",
+    "props": []
+  },
+  {
+    "displayName": "PopoverTitle",
+    "description": "Title rendered inside the popover header.",
+    "props": []
+  },
+  {
+    "displayName": "PopoverDescription",
+    "description": "Description text rendered inside the popover header.",
+    "props": []
+  }
+]

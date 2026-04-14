@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "user-status",
+  "title": "User Status",
+  "description": "User avatar with name, subtitle, and presence indicator.",
+  "registryDependencies": [
+    "avatar",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/ui/user-status.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Avatar, AvatarFallback, AvatarImage } from \"./avatar\"\n\n/** User presence status. */\nexport type StatusType = \"online\" | \"offline\" | \"busy\" | \"away\"\n\nconst statusColors: Record<StatusType, string> = {\n  online: \"bg-green-500\",\n  offline: \"bg-muted-foreground/40\",\n  busy: \"bg-destructive\",\n  away: \"bg-amber-500\",\n}\n\nconst statusLabels: Record<StatusType, string> = {\n  online: \"Online\",\n  offline: \"Offline\",\n  busy: \"Busy\",\n  away: \"Away\",\n}\n\nexport interface UserStatusProps {\n  /** User display name. */\n  name: string\n  /** Subtitle (e.g., role, email, team). */\n  subtitle?: string\n  /** Avatar image URL. */\n  avatarUrl?: string\n  /** Avatar fallback initials. */\n  initials?: string\n  /** Presence status. */\n  status?: StatusType\n  /** Avatar size. */\n  size?: \"sm\" | \"default\" | \"lg\"\n  /** Additional CSS classes. */\n  className?: string\n}\n\n/** Displays a user avatar with name, subtitle, and presence status indicator. */\nexport function UserStatus({\n  name,\n  subtitle,\n  avatarUrl,\n  initials,\n  status,\n  size = \"default\",\n  className,\n}: UserStatusProps) {\n  const avatarSize = size === \"lg\" ? \"lg\" : size === \"sm\" ? \"sm\" : \"default\"\n\n  return (\n    <div className={cn(\"flex items-center gap-3\", className)}>\n      <div className=\"relative\">\n        <Avatar size={avatarSize}>\n          {avatarUrl && <AvatarImage src={avatarUrl} alt={name} />}\n          <AvatarFallback>\n            {initials ?? name.split(\" \").map((w) => w[0]).join(\"\").slice(0, 2).toUpperCase()}\n          </AvatarFallback>\n        </Avatar>\n        {status && (\n          <span\n            className={cn(\n              \"absolute bottom-0 right-0 rounded-full border-2 border-background\",\n              statusColors[status],\n              size === \"sm\" ? \"size-2\" : size === \"lg\" ? \"size-3.5\" : \"size-2.5\"\n            )}\n            aria-label={statusLabels[status]}\n          />\n        )}\n      </div>\n      <div className=\"min-w-0\">\n        <p\n          className={cn(\n            \"font-medium truncate\",\n            size === \"sm\" ? \"text-xs\" : size === \"lg\" ? \"text-base\" : \"text-sm\"\n          )}\n        >\n          {name}\n        </p>\n        {subtitle && (\n          <p\n            className={cn(\n              \"text-muted-foreground truncate\",\n              size === \"sm\" ? \"text-[10px]\" : size === \"lg\" ? \"text-sm\" : \"text-xs\"\n            )}\n          >\n            {subtitle}\n          </p>\n        )}\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "UserStatus",
+    "description": "Displays a user avatar with name, subtitle, and presence status indicator.",
+    "props": [
+      {
+        "name": "avatarUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "initials",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      },
+      {
+        "name": "status",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "component": "auth-register",
+  "hasUnitTests": false,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": true,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/e2e/a11y/components.spec.ts",
+      "type": "a11y",
+      "tests": [
+        "auth-register has no a11y violations"
+      ]
+    }
+  ],
+  "totalTests": 1
+}

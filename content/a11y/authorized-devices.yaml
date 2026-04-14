@@ -1,0 +1,42 @@
+component: AuthorizedDevices
+wcag: AA
+standard: WAI-ARIA 1.2
+element: section
+role: region
+delegatesTo: null
+description: >
+  A list of authorized devices with details such as browser, OS, location,
+  and last active time. Each non-current device has a revoke button.
+
+keyboard:
+  - key: Tab
+    action: Navigates between revoke buttons across device entries
+  - key: Enter
+    action: Activates the focused revoke button
+  - key: Space
+    action: Activates the focused revoke button
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus follows natural tab order through the revoke buttons. The current
+    device entry does not have a revoke button and is skipped in tab order.
+
+screenReader:
+  announcements:
+    - Each device entry announces its name, browser, OS, and location
+    - The revoke button is announced with a label identifying the device
+    - The current device is indicated as the active session
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for all text)"
+  ui: "Meets WCAG AA (>3:1 for borders and focus rings)"
+
+motion:
+  reducedMotion: All transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Ensure onRevoke communicates the result (success or failure) to the user
+  - Revoke buttons should include context about which device is being revoked

@@ -1,0 +1,68 @@
+component: Calendar
+wcag: AA
+standard: WAI-ARIA 1.2
+element: table
+role: grid
+delegatesTo: react-day-picker
+description: >
+  A date picker calendar built on react-day-picker. Renders a full grid with
+  table, thead, and tbody elements. react-day-picker provides complete ARIA
+  compliance including role="grid" on the table, role="gridcell" on each day,
+  and automatic aria-selected management for selected dates.
+
+keyboard:
+  - key: ArrowLeft
+    action: Moves focus to the previous day
+  - key: ArrowRight
+    action: Moves focus to the next day
+  - key: ArrowUp
+    action: Moves focus to the same day in the previous week
+  - key: ArrowDown
+    action: Moves focus to the same day in the next week
+  - key: Home
+    action: Moves focus to the first day of the current week
+  - key: End
+    action: Moves focus to the last day of the current week
+  - key: PageUp
+    action: Moves focus to the same day in the previous month
+  - key: PageDown
+    action: Moves focus to the same day in the next month
+  - key: Enter
+    action: Selects the focused date
+  - key: Space
+    action: Selects the focused date
+  - key: Tab
+    action: Moves focus to the next focusable element (navigation buttons or out of calendar)
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus is managed within the calendar grid using roving tabindex. Only one
+    day cell is in the tab order at a time. Arrow keys move focus between days.
+    Navigation buttons (previous/next month) are separately focusable.
+
+screenReader:
+  announcements:
+    - Each day announces its full date (e.g. "Tuesday, April 7, 2026")
+    - Selected dates are announced via aria-selected="true"
+    - Disabled or out-of-range dates are announced as disabled
+    - Month and year are announced when navigating between months
+  notes: >
+    react-day-picker manages all grid ARIA attributes automatically. The
+    calendar uses a table structure with proper row and cell roles for
+    full screen reader grid navigation support.
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for day numbers and navigation text)"
+  ui: "Meets WCAG AA (>3:1 for selected-day indicator, today indicator, and focus ring)"
+
+motion:
+  reducedMotion: Month transition animations respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide an accessible label for the calendar using aria-label or aria-labelledby
+  - When used in a date picker, associate the calendar with its trigger input via aria-describedby
+  - Ensure disabled dates have a clear reason communicated to all users
+  - When using date ranges, ensure the selected range is communicated (e.g. "April 7 to April 14")
+  - Format date announcements in the user's locale for clarity

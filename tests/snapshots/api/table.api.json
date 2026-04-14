@@ -1,0 +1,42 @@
+[
+  {
+    "displayName": "Table",
+    "description": "A responsive HTML table wrapper with horizontal scroll support.",
+    "props": []
+  },
+  {
+    "displayName": "TableHeader",
+    "description": "Table header section. Rows inside receive a bottom border.",
+    "props": []
+  },
+  {
+    "displayName": "TableBody",
+    "description": "Table body section.",
+    "props": []
+  },
+  {
+    "displayName": "TableFooter",
+    "description": "Table footer section with a muted background.",
+    "props": []
+  },
+  {
+    "displayName": "TableHead",
+    "description": "A table header cell with medium font weight.",
+    "props": []
+  },
+  {
+    "displayName": "TableRow",
+    "description": "A table row with hover and selection state styling.",
+    "props": []
+  },
+  {
+    "displayName": "TableCell",
+    "description": "A table data cell.",
+    "props": []
+  },
+  {
+    "displayName": "TableCaption",
+    "description": "A table caption rendered below the table.",
+    "props": []
+  }
+]

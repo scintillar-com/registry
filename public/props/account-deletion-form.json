@@ -1,0 +1,29 @@
+[
+  {
+    "displayName": "AccountDeletionForm",
+    "description": "An account deletion form section with a destructive confirmation dialog.\nThe user must type their account identifier to confirm the irreversible action.\nUses FormSection with destructive styling and ConfirmDialog with input-match.",
+    "props": [
+      {
+        "name": "onDelete",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user confirms account deletion."
+      },
+      {
+        "name": "accountIdentifier",
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "The identifier the user must type to confirm deletion (e.g., their email or username)."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

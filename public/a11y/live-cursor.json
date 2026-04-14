@@ -1,0 +1,33 @@
+{
+  "component": "LiveCursor",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "A decorative element that displays a colored pointer cursor with a user name label. Marked aria-hidden=\"true\" since it is purely visual and not interactive. Used to show collaborator cursor positions on a canvas or page.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "This component is not focusable. It uses pointer-events-none and is hidden from the accessibility tree via aria-hidden=\"true\".\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "This component is hidden from screen readers via aria-hidden=\"true\""
+    ],
+    "notes": "Collaborator presence should be communicated through a separate accessible mechanism (e.g. a participant list) rather than through cursor positions.\n"
+  },
+  "contrast": {
+    "text": "The name label uses white text on a colored background -- ensure the chosen color meets WCAG AA (>4.5:1)",
+    "ui": "The cursor SVG uses the provided color with a white stroke outline"
+  },
+  "motion": {
+    "reducedMotion": "The position transition respects prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide an alternative accessible mechanism to communicate collaborator presence (e.g. a user list)",
+    "Choose colors with sufficient contrast against white text for the name label",
+    "Ensure each collaborator has a distinct color for visual differentiation"
+  ]
+}

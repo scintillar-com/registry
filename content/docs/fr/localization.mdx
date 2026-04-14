@@ -1,0 +1,158 @@
+---
+title: Localisation
+description: Le provider i18n de Scintillar, le pattern labels sur les blocs et la documentation MDX par locale.
+order: 3
+---
+
+# Localisation
+
+Le registre est entièrement localisé en anglais et en français. Chaque bloc (`DataTable`, `ProfileForm`, `SearchFilterBar`, etc.) accepte une prop `labels` qui vous permet de surcharger ses chaînes internes sans forker la source.
+
+## Le provider i18n
+
+Le provider vit dans `lib/i18n.tsx`. Il expose trois choses :
+
+- `<I18nProvider>` — encapsule votre application, garde la locale courante en state
+- `useTranslations()` — retourne une fonction `t(key)`
+- `useLocale()` — retourne `{ locale, setLocale }` pour les toggles
+
+```tsx
+// app/layout.tsx
+import { I18nProvider } from "@/lib/i18n"
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <I18nProvider>{children}</I18nProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+Le provider initialise son state à la locale par défaut (`"en"`) **à la fois** côté serveur et au premier rendu client — c'est important parce que lire `localStorage` dans un initialiseur `useState` provoquerait un mismatch d'hydratation et forcerait React à rebuild tout le sous-arbre concerné (ce qui relancerait toutes les animations CSS). La locale persistée est restaurée dans un `useLayoutEffect` qui s'exécute *avant le premier paint*, donc les utilisateurs francophones ne voient jamais de flash de contenu en anglais.
+
+## Ajouter une clé de traduction
+
+Les traductions vivent dans l'objet `translations` en haut de `lib/i18n.tsx`. Ajoutez la même clé sous les blocs `en` et `fr` — TypeScript fera échouer le build si une clé manque d'un côté.
+
+```ts
+const translations = {
+  en: {
+    "header.search": "Search...",
+    "myFeature.title": "Hello, world",
+    /* ... */
+  },
+  fr: {
+    "header.search": "Rechercher...",
+    "myFeature.title": "Bonjour, monde",
+    /* ... */
+  },
+} as const
+```
+
+## Lire les traductions dans un composant
+
+```tsx
+"use client"
+import { useTranslations } from "@/lib/i18n"
+
+export function MyButton() {
+  const t = useTranslations()
+  return <button>{t("myFeature.title")}</button>
+}
+```
+
+Pour les composants serveur ou les endroits où un hook serait gênant, utilisez le wrapper `<TranslatedText k="…" />` :
+
+```tsx
+import { TranslatedText } from "@/components/translated-text"
+;<h1><TranslatedText k="myFeature.title" /></h1>
+```
+
+## Le pattern `labels` sur les blocs
+
+Chaque bloc qui contient du texte visible expose une prop `labels?: Partial<...Labels>`. Les valeurs par défaut sont des chaînes anglaises raisonnables, donc les consommateurs non modifiés n'ont rien à faire — mais si votre projet utilise i18n, vous pouvez passer au bloc un objet labels entièrement localisé.
+
+### SearchFilterBar
+
+```tsx
+<SearchFilterBar
+  query={query}
+  onQueryChange={setQuery}
+  filters={filters}
+  activeFilters={activeFilters}
+  onFiltersChange={setActiveFilters}
+  placeholder={t("invoices.searchPlaceholder")}
+  labels={{
+    addFilter: t("filterBar.addFilter"),
+    allFiltersActive: t("filterBar.allFiltersActive"),
+    clearAll: t("filterBar.clearAll"),
+    clearSearchAria: t("filterBar.clearSearchAria"),
+    filtersAria: t("filterBar.filtersAria"),
+    removeFilterAria: (label) => t("filterBar.removeFilterAria", { label }),
+    selectFilterPlaceholder: (label) => t("filterBar.selectFilterPlaceholder", { label }),
+  }}
+/>
+```
+
+Notez que `removeFilterAria` et `selectFilterPlaceholder` sont des fonctions — elles reçoivent le label par filtre pour que la chaîne résultante soit interpolée, pas concaténée.
+
+### DataTable
+
+```tsx
+<DataTable
+  /* ... */
+  labels={{
+    columns: t("table.columns"),
+    rowsPerPage: t("table.rowsPerPage"),
+    rowCount: (n) => t("table.rowCount", { count: n }),
+    pageRange: (start, end, total) => t("table.pageRange", { start, end, total }),
+  }}
+/>
+```
+
+Le callback `pageRange` vous permet de produire des séparateurs locale-aware (`1–25 of 60` → `1–25 sur 60`).
+
+### ProfileForm
+
+```tsx
+<ProfileForm
+  name={name}
+  email={email}
+  bio={bio}
+  showAvatar
+  labels={{
+    title: t("profile.title"),
+    description: t("profile.description"),
+    cancel: t("profile.cancel"),
+    save: t("profile.save"),
+    nameLabel: t("profile.nameLabel"),
+    namePlaceholder: t("profile.namePlaceholder"),
+    /* ... */
+  }}
+/>
+```
+
+## Documentation MDX par locale
+
+Les pages de documentation vivent sous `content/docs/`. Pour ajouter une variante française, déposez un fichier voisin avec `.fr.mdx` à côté du fichier anglais :
+
+```
+content/docs/
+  getting-started.mdx       # Anglais (par défaut)
+  getting-started.fr.mdx    # Français
+```
+
+Le loader dans `lib/docs.ts` détecte automatiquement le suffixe de locale et retombe sur l'anglais si une traduction n'est pas disponible. Le `title` du frontmatter est également lu depuis le fichier localisé, donc le titre de la sidebar/topbar se met à jour par locale.
+
+## Ajouter une nouvelle locale
+
+Ajouter `de` (allemand) prend trois étapes :
+
+1. Ajoutez `"de"` au type `Locale` dans `lib/i18n.tsx`
+2. Ajoutez un bloc `de: { ... }` à l'objet `translations` avec toutes les clés traduites
+3. Mettez à jour le composant `LocaleToggle` pour inclure la nouvelle option
+
+Le `<LocaleToggle />` est dans le header desktop et la modale de paramètres mobile — il persiste le choix dans `localStorage` sous la clé `"locale"`, que le provider restaure ensuite à la prochaine visite.

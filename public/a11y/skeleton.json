@@ -1,0 +1,35 @@
+{
+  "component": "Skeleton",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "A loading placeholder that mimics the shape of content while it is being loaded. It is a purely visual element with no semantic meaning. Skeletons should be hidden from assistive technology and paired with a live region that announces the loading state.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Skeleton is not focusable as it is a static placeholder element.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Skeleton itself should not be announced — it should have aria-hidden=\"true\"",
+      "A surrounding container or live region should announce the loading state"
+    ],
+    "notes": "Screen readers should be informed that content is loading via an aria-live=\"polite\" region or role=\"status\" container, not by the skeleton element itself.\n"
+  },
+  "contrast": {
+    "text": "N/A — skeleton contains no text",
+    "ui": "Skeleton uses a muted background with subtle pulse animation for visual distinction"
+  },
+  "motion": {
+    "reducedMotion": "Pulse animation should respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Add aria-hidden=\"true\" to skeleton elements to hide them from screen readers",
+    "Provide an aria-live=\"polite\" region or element with role=\"status\" to announce loading state",
+    "Include accessible loading text (e.g. \"Loading...\") for screen reader users",
+    "Once content has loaded, replace the skeleton and update the live region"
+  ]
+}

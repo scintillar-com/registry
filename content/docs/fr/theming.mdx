@@ -1,0 +1,115 @@
+---
+title: Thème
+description: Personnalisez les couleurs, le mode sombre et les jetons de design du registre Scintillar.
+order: 2
+---
+
+# Thème
+
+Scintillar utilise Tailwind CSS v4 + variables CSS pour le thème, le même système que shadcn/ui. Chaque couleur, rayon, police et ombre utilisé par les composants pointe vers une variable CSS — vous pouvez donc rebrander tout le registre en éditant un seul fichier.
+
+## Le fichier de jetons
+
+Tous les jetons de design vivent dans `app/globals.css`. Deux sélecteurs définissent les palettes claire et sombre :
+
+```css
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.426 0.094 161.619);
+  --primary-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --radius: 0.625rem;
+  /* ...etc */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.796 0.125 168.082);
+  /* ...etc */
+}
+```
+
+Le bloc `@theme inline` en haut du fichier mappe chaque variable CSS sur un utilitaire Tailwind (par ex. `--color-primary` → `bg-primary`, `text-primary`, `border-primary`). Vous n'avez pas besoin de toucher à ce bloc — ajouter ou modifier une variable `--*` suffit.
+
+## Personnaliser la couleur primaire
+
+Changez la couleur de marque en éditant les deux déclarations `--primary` (l'une dans `:root`, l'autre dans `.dark`). Utilisez les valeurs [oklch](https://oklch.com) pour une uniformité perceptuelle :
+
+```css
+:root {
+  --primary: oklch(0.55 0.19 263);  /* indigo */
+}
+.dark {
+  --primary: oklch(0.72 0.18 263);
+}
+```
+
+La bordure de la carte hero, le soulignement de l'onglet de section actif, les animations de flash des lignes du data-table, le graphique bento, les curseurs en direct — chaque accent teinté de primaire sur la page d'accueil se met à jour immédiatement, aucun rebuild n'est nécessaire en mode dev.
+
+## Mode sombre
+
+Le mode sombre est branché via [next-themes](https://github.com/pacanukeyin/next-themes). Le provider vit dans `components/theme-provider.tsx` :
+
+```tsx
+<NextThemesProvider
+  attribute="class"
+  defaultTheme="system"
+  enableSystem
+  disableTransitionOnChange
+>
+  {children}
+</NextThemesProvider>
+```
+
+`disableTransitionOnChange` est important — sans cela, chaque transition CSS se déclenche quand l'utilisateur change de thème, causant un flicker plein écran. Le `<ThemeToggle />` du header appelle `setTheme("dark" | "light" | "system")` depuis le hook `useTheme()`.
+
+## Ajouter un jeton de couleur personnalisé
+
+Pour ajouter un nouveau jeton (par exemple, une couleur « warning »), ajoutez-le à la fois dans `:root` et `.dark`, puis exposez-le sous `@theme inline` :
+
+```css
+@theme inline {
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+}
+
+:root {
+  --warning: oklch(0.78 0.18 75);
+  --warning-foreground: oklch(0.145 0 0);
+}
+.dark {
+  --warning: oklch(0.85 0.16 75);
+  --warning-foreground: oklch(0.145 0 0);
+}
+```
+
+Vous pouvez maintenant utiliser `bg-warning text-warning-foreground` partout.
+
+## Polices
+
+Les polices sont chargées avec `next/font/google` dans `app/layout.tsx` :
+
+```tsx
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
+
+const spaceGrotesk = Space_Grotesk({ variable: "--font-sans", subsets: ["latin"] })
+const spaceMono = JetBrains_Mono({ variable: "--font-mono", weight: ["400", "700"], subsets: ["latin"] })
+```
+
+Les variables `--font-sans` et `--font-mono` sont ensuite reprises par `@theme inline` (`--default-font-family` / `--default-mono-font-family`) et appliquées via les utilitaires Tailwind `font-sans` / `font-mono`. Pour échanger les polices, remplacez les imports — chaque consommateur `font-sans`/`font-mono` suit automatiquement.
+
+## Surcharges au niveau du bloc
+
+Tous les blocs complexes (`DataTable`, `ProfileForm`, `OrgRolesForm`, etc.) acceptent une prop `className` qui est fusionnée sur le conteneur racine, plus un booléen `compact` qui bascule sur des espacements plus serrés. La carte bento de la page d'accueil utilise les deux :
+
+```tsx
+<ProfileForm
+  compact
+  className="h-full bg-card/85 backdrop-blur-sm rounded-xl border-border/60"
+  /* ... */
+/>
+```
+
+Si vous avez besoin d'un contrôle plus fin (par exemple, échanger un dégradé d'arrière-plan sur une carte), partez des classes de carte ci-dessus et superposez vos propres utilitaires `bg-*` / `border-*`.

@@ -1,0 +1,22 @@
+[
+  {
+    "displayName": "Tooltip",
+    "description": "Root component that manages the open/closed state of a single tooltip.",
+    "props": []
+  },
+  {
+    "displayName": "TooltipTrigger",
+    "description": "Element that shows the tooltip on hover or focus.",
+    "props": []
+  },
+  {
+    "displayName": "TooltipContent",
+    "description": "Floating panel that displays the tooltip text next to the trigger.",
+    "props": []
+  },
+  {
+    "displayName": "TooltipProvider",
+    "description": "Provider that wraps the app or a section to configure shared tooltip behavior.",
+    "props": []
+  }
+]

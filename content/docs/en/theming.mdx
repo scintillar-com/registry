@@ -1,0 +1,115 @@
+---
+title: Theming
+description: Customize colors, dark mode, and design tokens for the Scintillar registry.
+order: 2
+---
+
+# Theming
+
+Scintillar uses Tailwind CSS v4 + CSS variables for theming, the same system as shadcn/ui. Every color, radius, font, and shadow used by the components resolves to a CSS variable, so you can rebrand the entire registry by editing one file.
+
+## The token file
+
+All design tokens live in `app/globals.css`. Two selectors define the light and dark palettes:
+
+```css
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.426 0.094 161.619);
+  --primary-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --radius: 0.625rem;
+  /* ...more */
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --primary: oklch(0.796 0.125 168.082);
+  /* ...more */
+}
+```
+
+The `@theme inline` block at the top of the file maps every CSS variable to a Tailwind utility (e.g. `--color-primary` → `bg-primary`, `text-primary`, `border-primary`). You don't need to edit that block — adding or changing a `--*` variable is enough.
+
+## Customizing the primary color
+
+Change the brand color by editing the two `--primary` declarations (one in `:root`, one in `.dark`). Use [oklch](https://oklch.com) values for perceptual uniformity:
+
+```css
+:root {
+  --primary: oklch(0.55 0.19 263);  /* indigo */
+}
+.dark {
+  --primary: oklch(0.72 0.18 263);
+}
+```
+
+The hero card border, the active section tab underline, the data-table row-flash animations, the bento chart, the live cursors — every primary-tinted accent on the homepage updates immediately, no rebuild needed in dev mode.
+
+## Dark mode
+
+Dark mode is wired via [next-themes](https://github.com/pacanukeyin/next-themes). The provider lives at `components/theme-provider.tsx`:
+
+```tsx
+<NextThemesProvider
+  attribute="class"
+  defaultTheme="system"
+  enableSystem
+  disableTransitionOnChange
+>
+  {children}
+</NextThemesProvider>
+```
+
+`disableTransitionOnChange` is important — without it, every CSS transition fires when the user toggles themes, causing a full-page flicker. The header's [`<ThemeToggle />`](https://github.com/scintillar-com/ui-registry/blob/main/components/theme-toggle.tsx) calls `setTheme("dark" | "light" | "system")` from the `useTheme()` hook.
+
+## Adding a custom color token
+
+To add a new token (say, a "warning" color), add it to both `:root` and `.dark`, then expose it under `@theme inline`:
+
+```css
+@theme inline {
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+}
+
+:root {
+  --warning: oklch(0.78 0.18 75);
+  --warning-foreground: oklch(0.145 0 0);
+}
+.dark {
+  --warning: oklch(0.85 0.16 75);
+  --warning-foreground: oklch(0.145 0 0);
+}
+```
+
+You can now use `bg-warning text-warning-foreground` anywhere.
+
+## Fonts
+
+Fonts are loaded with `next/font/google` in `app/layout.tsx`:
+
+```tsx
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google"
+
+const spaceGrotesk = Space_Grotesk({ variable: "--font-sans", subsets: ["latin"] })
+const spaceMono = JetBrains_Mono({ variable: "--font-mono", weight: ["400", "700"], subsets: ["latin"] })
+```
+
+The variables `--font-sans` and `--font-mono` are then picked up by `@theme inline` (`--default-font-family` / `--default-mono-font-family`) and applied via Tailwind's `font-sans` / `font-mono` utilities. To swap fonts, replace the imports — every `font-sans`/`font-mono` consumer follows automatically.
+
+## Block-level overrides
+
+All complex blocks (`DataTable`, `ProfileForm`, `OrgRolesForm`, etc.) accept a `className` prop that's merged onto the root container, plus a `compact` boolean that swaps in tighter padding/spacing. The bento card on the homepage uses both:
+
+```tsx
+<ProfileForm
+  compact
+  className="h-full bg-card/85 backdrop-blur-sm rounded-xl border-border/60"
+  /* ... */
+/>
+```
+
+If you need finer control (e.g. swap a background gradient on a card), start from the card classes above and layer your own `bg-*` / `border-*` utilities on top.

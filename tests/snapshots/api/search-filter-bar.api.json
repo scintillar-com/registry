@@ -1,0 +1,68 @@
+[
+  {
+    "displayName": "SearchFilterBar",
+    "description": "A search bar with a filter button that opens a popover for adding filters.\nActive filters are shown as dismissible badges below the search input.\nEach badge can be edited inline via a select dropdown.",
+    "props": [
+      {
+        "name": "activeFilters",
+        "type": "ActiveFilter[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "debounceMs",
+        "type": "number",
+        "required": false,
+        "defaultValue": "300"
+      },
+      {
+        "name": "filters",
+        "type": "FilterDef[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "labels",
+        "type": "Partial<SearchFilterBarLabels>",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "minChars",
+        "type": "number",
+        "required": false,
+        "defaultValue": "3"
+      },
+      {
+        "name": "onFiltersChange",
+        "type": "(filters: ActiveFilter[]) => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onQueryChange",
+        "type": "(query: string) => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Search..."
+      },
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

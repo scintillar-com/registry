@@ -1,0 +1,39 @@
+[
+  {
+    "displayName": "Avatar",
+    "description": "A circular avatar container that displays an image or fallback content.",
+    "props": [
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      }
+    ]
+  },
+  {
+    "displayName": "AvatarImage",
+    "description": "The image displayed inside an Avatar.",
+    "props": []
+  },
+  {
+    "displayName": "AvatarFallback",
+    "description": "Fallback content shown when the avatar image fails to load.",
+    "props": []
+  },
+  {
+    "displayName": "AvatarBadge",
+    "description": "A small badge indicator positioned at the bottom-right of an Avatar.",
+    "props": []
+  },
+  {
+    "displayName": "AvatarGroup",
+    "description": "A container that stacks multiple Avatars with overlapping layout.",
+    "props": []
+  },
+  {
+    "displayName": "AvatarGroupCount",
+    "description": "Displays a count of remaining avatars not shown in an AvatarGroup.",
+    "props": []
+  }
+]

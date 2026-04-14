@@ -1,0 +1,54 @@
+component: Color Picker
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: composite (multiple sliders)
+delegatesTo: null
+description: >
+  A custom color picker with saturation/brightness canvas, hue slider, opacity
+  slider, and optional gradient controls. Each interactive surface is
+  keyboard-accessible with arrow key support.
+
+keyboard:
+  - key: Arrow Left/Right
+    action: "Adjusts the horizontal value (saturation, hue, opacity, stop position)"
+  - key: Arrow Up/Down
+    action: "Adjusts the vertical value (brightness on canvas, or same as left/right on 1D sliders)"
+  - key: Shift + Arrow
+    action: "Adjusts in larger steps (5x for canvas/opacity, 15° for angle)"
+  - key: Tab
+    action: Moves focus between the canvas, hue slider, opacity slider, inputs, and buttons
+  - key: Enter
+    action: Activates save/cancel buttons and format mode tabs
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Each slider surface (canvas, hue, opacity, angle dial, gradient stop bar)
+    is focusable with tabIndex=0 and shows a focus-visible ring. Format mode
+    tabs and action buttons use standard button focus styles.
+
+screenReader:
+  announcements:
+    - Each slider has role="slider" with aria-label describing the control
+    - Hue slider announces current value via aria-valuenow (0-360)
+    - Opacity slider announces percentage via aria-valuenow (0-100)
+    - Canvas announces saturation and brightness via aria-valuetext
+    - Angle dial announces degrees via aria-valuenow (0-360)
+  notes: >
+    The color picker is a complex widget. Screen reader users can navigate
+    between sliders with Tab and adjust values with arrow keys. Numeric
+    inputs provide an alternative for precise value entry.
+
+contrast:
+  text: "Format labels and value displays meet WCAG AA"
+  ui: "Slider thumbs use white borders with shadow for visibility on all hue backgrounds"
+
+motion:
+  reducedMotion: No animations — all interactions are immediate
+
+consumerResponsibilities:
+  - Provide context about what color is being edited (e.g. "Background color")
+  - Consider providing a text input alternative for users who cannot use the visual picker
+  - When used in a form, associate the color value with a label

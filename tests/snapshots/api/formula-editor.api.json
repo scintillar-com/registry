@@ -1,0 +1,68 @@
+[
+  {
+    "displayName": "FormulaEditor",
+    "description": "Interactive formula editor with syntax highlighting, inline validation,\nautocomplete for functions and field references, and keyboard navigation.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "fieldNames",
+        "type": "string[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "fieldTypes",
+        "type": "Record<string, string>",
+        "required": false,
+        "defaultValue": "{}"
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onBlur",
+        "type": "() => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onChange",
+        "type": "(val: string) => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "FormulaDisplay",
+    "description": "Read-only formula display with syntax highlighting",
+    "props": [
+      {
+        "name": "fieldNames",
+        "type": "string[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "formula",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

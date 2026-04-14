@@ -1,0 +1,68 @@
+[
+  {
+    "displayName": "OrgSettingsForm",
+    "description": "General organization settings form section with name, slug, description, logo, and website.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": ""
+      },
+      {
+        "name": "initials",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "logoUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onLogoChange",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSave",
+        "type": "(data: { name: string; slug: string; description: string; website: string; }) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "slug",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "website",
+        "type": "string",
+        "required": false,
+        "defaultValue": ""
+      }
+    ]
+  }
+]

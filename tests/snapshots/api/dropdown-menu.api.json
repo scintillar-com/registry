@@ -1,0 +1,104 @@
+[
+  {
+    "displayName": "DropdownMenu",
+    "description": "Root component that manages the open/closed state of the dropdown menu.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuPortal",
+    "description": "Portal that renders dropdown menu content outside the DOM hierarchy.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuTrigger",
+    "description": "Button or element that opens the dropdown menu when clicked.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuContent",
+    "description": "Floating panel that displays the dropdown menu items.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuGroup",
+    "description": "Groups related menu items together.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuLabel",
+    "description": "Non-interactive label used to title a section of menu items.",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "DropdownMenuItem",
+    "description": "Selectable item within the dropdown menu.",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      }
+    ]
+  },
+  {
+    "displayName": "DropdownMenuCheckboxItem",
+    "description": "Menu item with a checkbox indicator for toggling options.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuRadioGroup",
+    "description": "Groups radio items so that only one can be selected at a time.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuRadioItem",
+    "description": "Menu item with a radio indicator for single-selection groups.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuSeparator",
+    "description": "Visual divider between groups of menu items.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuShortcut",
+    "description": "Inline hint displaying a keyboard shortcut for a menu item.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuSub",
+    "description": "Root component for a nested submenu within the dropdown.",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuSubTrigger",
+    "description": "Menu item that opens a nested submenu when hovered or clicked.",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "DropdownMenuSubContent",
+    "description": "Floating panel that displays the submenu items.",
+    "props": []
+  }
+]

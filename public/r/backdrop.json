@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "backdrop",
+  "title": "Backdrop",
+  "description": "A fixed overlay that dims content behind modals, drawers, and floating panels.",
+  "files": [
+    {
+      "path": "components/ui/backdrop.tsx",
+      "content": "\"use client\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** A fixed overlay backdrop for modals, drawers, and floating panels. */\nfunction Backdrop({\n  /** Additional CSS classes. */\n  className,\n  /** Whether the backdrop starts below the header (top: 3.5rem). */\n  belowHeader = false,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  /** Whether the backdrop starts below the header. */\n  belowHeader?: boolean\n}) {\n  return (\n    <div\n      data-slot=\"backdrop\"\n      className={cn(\n        \"fixed inset-x-0 bottom-0 z-50 bg-black/40 dark:bg-black/60 transition-opacity duration-150 motion-reduce:transition-none\",\n        belowHeader ? \"top-14\" : \"top-0\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Backdrop }\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

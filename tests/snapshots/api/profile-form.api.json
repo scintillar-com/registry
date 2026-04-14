@@ -1,0 +1,74 @@
+[
+  {
+    "displayName": "ProfileForm",
+    "description": "A profile form section for editing user display name, bio, and optional avatar.\nEmail is shown as readonly. Uses FormSection for consistent layout.",
+    "props": [
+      {
+        "name": "avatarUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "bio",
+        "type": "string",
+        "required": false,
+        "defaultValue": ""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "required": false,
+        "defaultValue": ""
+      },
+      {
+        "name": "labels",
+        "type": "Partial<ProfileFormLabels>",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "defaultValue": ""
+      },
+      {
+        "name": "onAvatarChange",
+        "type": "(file: File) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSave",
+        "type": "(data: { name: string; bio: string; }) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "showAvatar",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      }
+    ]
+  }
+]

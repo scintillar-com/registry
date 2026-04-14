@@ -1,0 +1,173 @@
+[
+  {
+    "displayName": "ColorPicker",
+    "description": "Full-featured color picker with support for solid colors and gradients.\nProvides an HSB saturation/brightness area, hue slider, opacity slider,\nand numeric inputs for multiple color formats (hex, RGB, HSL, CMYK).",
+    "props": [
+      {
+        "name": "cancelLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Cancel"
+      },
+      {
+        "name": "enableGradient",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "format",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "hex"
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "onSave",
+        "type": "(hex: string, opacity: number, gradient?: GradientValue) => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100"
+      },
+      {
+        "name": "saveLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Save"
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "ColorSwatch",
+    "description": "Displays a color preview swatch with support for solid colors, opacity, and gradients.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100"
+      },
+      {
+        "name": "size",
+        "type": "string",
+        "required": false,
+        "defaultValue": "size-6"
+      }
+    ]
+  },
+  {
+    "displayName": "ColorValue",
+    "description": "Displays a color swatch alongside a formatted color code label.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "format",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "hex"
+      },
+      {
+        "name": "gradient",
+        "type": "GradientValue",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "hex",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "opacity",
+        "type": "number",
+        "required": false,
+        "defaultValue": "100"
+      }
+    ]
+  },
+  {
+    "displayName": "gradientToCss",
+    "description": "",
+    "props": [
+      {
+        "name": "angle",
+        "type": "number",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "stops",
+        "type": "GradientStop[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "type",
+        "type": "enum",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  },
+  {
+    "displayName": "GradientType",
+    "description": "The type of gradient fill.",
+    "props": []
+  },
+  {
+    "displayName": "GradientStop",
+    "description": "A single color stop in a gradient.",
+    "props": []
+  },
+  {
+    "displayName": "GradientValue",
+    "description": "Full gradient configuration.",
+    "props": []
+  }
+]

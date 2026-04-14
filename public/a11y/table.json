@@ -1,0 +1,45 @@
+{
+  "component": "Table",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "table",
+  "role": "table",
+  "delegatesTo": null,
+  "description": "Renders native HTML table elements (<table>, <thead>, <tbody>, <tr>, <th>, <td>). Semantic table structure provides built-in screen reader support without additional ARIA attributes. Screen readers can navigate cells by row and column.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the next focusable element within or after the table"
+    },
+    {
+      "key": "Arrow keys",
+      "action": "Screen readers use arrow keys to navigate between cells (virtual cursor mode)"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Tables themselves are not focusable. Focus applies to interactive elements within table cells (links, buttons, inputs). Standard focus styling is applied to these interactive elements.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Table headers (<th>) are announced when navigating to cells in their row or column",
+      "Row and column count are announced when entering the table",
+      "Cell position (row/column) is announced during navigation"
+    ],
+    "notes": "Screen readers provide rich table navigation in virtual cursor mode. Column headers should use <th scope=\"col\"> and row headers should use <th scope=\"row\"> for accurate announcements.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA — table text uses foreground on background",
+    "ui": "Meets WCAG AA — row borders meet 3:1 contrast ratio"
+  },
+  "motion": {
+    "reducedMotion": "No animations used"
+  },
+  "consumerResponsibilities": [
+    "Always include <thead> with <th> elements for column headers",
+    "Use scope=\"col\" on column headers and scope=\"row\" on row headers",
+    "Provide a <caption> or aria-label for the table when the purpose is not obvious from context",
+    "Do not use tables for layout — only for tabular data"
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "displayName": "Collapsible",
+    "description": "Root component that manages the open/closed state of collapsible content.",
+    "props": []
+  },
+  {
+    "displayName": "CollapsibleTrigger",
+    "description": "Button that toggles the collapsible content open or closed.",
+    "props": []
+  },
+  {
+    "displayName": "CollapsibleContent",
+    "description": "Container for the content that is shown or hidden when the collapsible is toggled.",
+    "props": []
+  }
+]

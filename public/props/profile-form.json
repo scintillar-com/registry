@@ -1,0 +1,85 @@
+[
+  {
+    "displayName": "ProfileForm",
+    "description": "A profile form section for editing user display name, bio, and optional avatar.\nEmail is shown as readonly. Uses FormSection for consistent layout.",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "User display name."
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "User email address (displayed as readonly)."
+      },
+      {
+        "name": "bio",
+        "type": "string",
+        "required": false,
+        "defaultValue": "",
+        "description": "User bio / about text."
+      },
+      {
+        "name": "onSave",
+        "type": "(data: { name: string; bio: string; }) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user saves the form."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user cancels editing."
+      },
+      {
+        "name": "showAvatar",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Whether to show the avatar upload area."
+      },
+      {
+        "name": "avatarUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Current avatar image URL."
+      },
+      {
+        "name": "onAvatarChange",
+        "type": "(file: File) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user selects a new avatar file."
+      },
+      {
+        "name": "compact",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Compact mode: smaller avatar, reduced spacing, fewer textarea rows."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<ProfileFormLabels>",
+        "required": false,
+        "defaultValue": null,
+        "description": "Override internal labels for localization."
+      }
+    ]
+  }
+]

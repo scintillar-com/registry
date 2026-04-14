@@ -1,0 +1,105 @@
+---
+title: Premiers pas
+description: Apprenez comment installer et utiliser les composants du registre Scintillar.
+order: 1
+---
+
+# Premiers pas
+
+Le registre Scintillar UI fournit plus de 60 composants et blocs réutilisables que vous pouvez installer directement dans votre projet à l'aide de la CLI shadcn.
+
+## Prérequis
+
+Assurez-vous que votre projet est configuré avec :
+
+- **React 19** ou version ultérieure
+- **Tailwind CSS v4**
+- **shadcn** initialisé dans votre projet
+
+Si vous n'avez pas encore initialisé shadcn, exécutez :
+
+```bash
+npx shadcn@latest init
+```
+
+## Configurer le registre
+
+Ajoutez le registre Scintillar au fichier `components.json` de votre projet :
+
+```json
+{
+  "registries": {
+    "@sntlr": "https://ui.sntlr.app/r/{name}.json"
+  }
+}
+```
+
+## Installer des composants
+
+Une fois la configuration effectuée, installez n'importe quel composant avec :
+
+```bash
+npx shadcn@latest add @sntlr/button
+```
+
+Cela installera le composant ainsi que toutes ses dépendances dans votre projet.
+
+### Composants vs Blocs
+
+- Les **Composants** sont des primitives UI (Button, Input, Select, ColorPicker, etc.) — installés dans `components/ui/`
+- Les **Blocs** sont des compositions complexes (DataTable, FormSection, AuthLogin, etc.) — installés avec toutes leurs dépendances
+
+```bash
+# Installer une primitive
+npx shadcn@latest add @sntlr/password-input
+
+# Installer un bloc
+npx shadcn@latest add @sntlr/auth-login
+```
+
+## Structure du projet
+
+Les composants sont installés dans le répertoire `components` de votre projet :
+
+```
+components/
+  ui/
+    button.tsx
+    password-input.tsx
+    color-picker.tsx
+    ...
+```
+
+## Développement
+
+### Lancer le registre localement
+
+```bash
+pnpm install
+pnpm dev
+```
+
+### Tests
+
+```bash
+pnpm test              # Tests unitaires (Vitest)
+pnpm test:e2e          # Tests E2E (Playwright)
+pnpm test:a11y         # Audit d'accessibilité
+pnpm healthcheck       # Tableau de bord de santé
+```
+
+### Ajouter un nouveau composant
+
+1. Créez le composant dans `components/ui/` (ou `registry/new-york/blocks/` pour les blocs)
+2. Ajoutez des commentaires JSDoc à toutes les fonctions exportées
+3. Enregistrez dans `registry.json`
+4. Créez un aperçu dans `components/previews/`
+5. Créez une documentation d'accessibilité dans `content/a11y/`
+6. Écrivez des tests unitaires dans `tests/unit/`
+7. Exécutez `pnpm healthcheck`
+
+## Prochaines étapes
+
+- Parcourez les [Exemples](/docs/examples) pour voir les composants en action
+- Lisez les standards d'[Accessibilité](/docs/accessibility)
+- Consultez les [Composants](/components/button) individuels pour une utilisation détaillée

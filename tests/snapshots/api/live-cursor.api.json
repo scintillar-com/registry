@@ -1,0 +1,56 @@
+[
+  {
+    "displayName": "LiveCursor",
+    "description": "A colored pointer cursor with a user-name label or avatar, used to show collaborator cursor positions on a canvas or page.",
+    "props": [
+      {
+        "name": "absolute",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "avatarUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "display",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "name"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "x",
+        "type": "number",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "y",
+        "type": "number",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

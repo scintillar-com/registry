@@ -1,0 +1,48 @@
+{
+  "component": "Popover",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "dialog",
+  "delegatesTo": "Radix UI Popover",
+  "description": "A non-modal floating panel anchored to a trigger element. Built on Radix UI Popover which provides role=\"dialog\" and manages focus. Unlike Dialog, focus is not trapped by default — users can Tab out of the popover.\n",
+  "keyboard": [
+    {
+      "key": "Escape",
+      "action": "Closes the popover and returns focus to the trigger"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus through focusable elements; may move focus out of the popover"
+    },
+    {
+      "key": "Shift+Tab",
+      "action": "Moves focus backwards; may move focus out of the popover"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus moves to the popover content when it opens. On close, focus returns to the trigger element. Focus is not trapped — Tab can move focus outside the popover, which will close it.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Popover content is announced when focus moves into it",
+      "The trigger is associated with the popover via aria-haspopup and aria-expanded"
+    ],
+    "notes": "Because the popover is non-modal, screen readers can still access content behind the popover. Use aria-label or aria-labelledby on the popover content to provide context.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA — popover uses popover-foreground on popover background",
+    "ui": "Meets WCAG AA (>3:1 for borders and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "Open/close animations respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Ensure the trigger clearly indicates it opens a popover",
+    "Provide an aria-label or aria-labelledby on the popover content for context",
+    "Consider whether focus trapping is needed for complex popover content",
+    "Avoid placing critical actions inside popovers that users might miss"
+  ]
+}

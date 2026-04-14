@@ -1,0 +1,68 @@
+[
+  {
+    "displayName": "ConfirmDialog",
+    "description": "A confirmation dialog for dangerous or irreversible actions.\nSupports simple confirmation or input-match confirmation where the user\nmust type a specific value (e.g., project name) to proceed.",
+    "props": [
+      {
+        "name": "cancelLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Cancel"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "confirmHint",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "confirmLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Confirm"
+      },
+      {
+        "name": "confirmValue",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "destructive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true"
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onConfirm",
+        "type": "() => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      }
+    ]
+  }
+]

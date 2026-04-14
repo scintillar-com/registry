@@ -1,0 +1,20 @@
+[
+  {
+    "displayName": "Calendar",
+    "description": "A date picker calendar built on react-day-picker. Supports single, multiple, and range selection modes.",
+    "props": [
+      {
+        "name": "buttonVariant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "ghost",
+        "description": "Button variant used for navigation and day buttons."
+      }
+    ]
+  },
+  {
+    "displayName": "CalendarDayButton",
+    "description": "",
+    "props": []
+  }
+]

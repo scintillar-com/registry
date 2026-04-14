@@ -1,0 +1,43 @@
+[
+  {
+    "displayName": "LiveCaret",
+    "description": "A colored text caret with a user-name label or avatar, used to show collaborator cursor positions in a text editor.",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Display name shown in the label or used as avatar alt text."
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Color for the caret and label (any CSS color)."
+      },
+      {
+        "name": "display",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "name",
+        "description": "What to render above the caret.\n- `\"name\"` (default): a small colored label with the user's name\n- `\"avatar\"`: a circular avatar image (requires `avatarUrl`)"
+      },
+      {
+        "name": "avatarUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional avatar image URL. Used when `display=\"avatar\"`."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

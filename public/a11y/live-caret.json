@@ -1,0 +1,33 @@
+{
+  "component": "LiveCaret",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "span",
+  "role": null,
+  "delegatesTo": null,
+  "description": "A decorative/informational inline element that displays a colored text caret with a user name label. Not interactive -- used to indicate collaborator cursor positions in a text editor.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "This component is not focusable. It is purely informational and does not receive keyboard focus.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The component has aria-label \"{name}'s cursor\" so screen readers can announce which collaborator is present"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "The name label uses white text on a colored background -- ensure the chosen color meets WCAG AA (>4.5:1)",
+    "ui": "The caret uses the provided color against the editor background"
+  },
+  "motion": {
+    "reducedMotion": "The caret pulse animation respects prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Use alongside a text editor to indicate collaborator positions",
+    "Choose colors with sufficient contrast against white text for the name label",
+    "Ensure each collaborator has a distinct color for visual differentiation"
+  ]
+}

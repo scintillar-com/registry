@@ -1,0 +1,158 @@
+---
+title: Localization
+description: Wire Scintillar's i18n provider, the labels prop pattern on blocks, and locale-aware MDX docs.
+order: 3
+---
+
+# Localization
+
+The registry ships fully localized in English and French. Every block (`DataTable`, `ProfileForm`, `SearchFilterBar`, etc.) carries a `labels` prop that lets you override its internal strings without forking the source.
+
+## The i18n provider
+
+The provider lives at `lib/i18n.tsx`. It exposes three things:
+
+- `<I18nProvider>` — wraps your app, holds the current locale in state
+- `useTranslations()` — returns a `t(key)` function
+- `useLocale()` — returns `{ locale, setLocale }` for toggles
+
+```tsx
+// app/layout.tsx
+import { I18nProvider } from "@/lib/i18n"
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <body>
+        <I18nProvider>{children}</I18nProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+The provider initializes its state to the default locale (`"en"`) on **both** server and first client render — this matters because reading from `localStorage` in a `useState` initializer would cause a hydration mismatch and force React to discard the entire mismatched subtree (which restarts every CSS animation). The persisted locale is restored in a `useLayoutEffect` that runs synchronously *before the first paint*, so French users never see a flash of English content.
+
+## Adding a translation key
+
+Translations live in the `translations` object at the top of `lib/i18n.tsx`. Add the same key under both `en` and `fr` blocks — TypeScript will fail the build if a key is missing on one side.
+
+```ts
+const translations = {
+  en: {
+    "header.search": "Search...",
+    "myFeature.title": "Hello, world",
+    /* ... */
+  },
+  fr: {
+    "header.search": "Rechercher...",
+    "myFeature.title": "Bonjour, monde",
+    /* ... */
+  },
+} as const
+```
+
+## Reading translations in a component
+
+```tsx
+"use client"
+import { useTranslations } from "@/lib/i18n"
+
+export function MyButton() {
+  const t = useTranslations()
+  return <button>{t("myFeature.title")}</button>
+}
+```
+
+For server components or places where a hook would be awkward, use the `<TranslatedText k="…" />` wrapper:
+
+```tsx
+import { TranslatedText } from "@/components/translated-text"
+;<h1><TranslatedText k="myFeature.title" /></h1>
+```
+
+## The `labels` prop pattern on blocks
+
+Every block that contains user-facing text exposes a `labels?: Partial<...Labels>` prop. The defaults are sensible English strings, so unmodified consumers don't need to do anything — but if your project uses i18n, you can hand the block a fully-localized labels object.
+
+### SearchFilterBar
+
+```tsx
+<SearchFilterBar
+  query={query}
+  onQueryChange={setQuery}
+  filters={filters}
+  activeFilters={activeFilters}
+  onFiltersChange={setActiveFilters}
+  placeholder={t("invoices.searchPlaceholder")}
+  labels={{
+    addFilter: t("filterBar.addFilter"),
+    allFiltersActive: t("filterBar.allFiltersActive"),
+    clearAll: t("filterBar.clearAll"),
+    clearSearchAria: t("filterBar.clearSearchAria"),
+    filtersAria: t("filterBar.filtersAria"),
+    removeFilterAria: (label) => t("filterBar.removeFilterAria", { label }),
+    selectFilterPlaceholder: (label) => t("filterBar.selectFilterPlaceholder", { label }),
+  }}
+/>
+```
+
+Notice that `removeFilterAria` and `selectFilterPlaceholder` are functions — they receive the per-filter label so the resulting string is interpolated, not concatenated.
+
+### DataTable
+
+```tsx
+<DataTable
+  /* ... */
+  labels={{
+    columns: t("table.columns"),
+    rowsPerPage: t("table.rowsPerPage"),
+    rowCount: (n) => t("table.rowCount", { count: n }),
+    pageRange: (start, end, total) => t("table.pageRange", { start, end, total }),
+  }}
+/>
+```
+
+The `pageRange` callback lets you produce locale-aware separators (`1–25 of 60` → `1–25 sur 60`).
+
+### ProfileForm
+
+```tsx
+<ProfileForm
+  name={name}
+  email={email}
+  bio={bio}
+  showAvatar
+  labels={{
+    title: t("profile.title"),
+    description: t("profile.description"),
+    cancel: t("profile.cancel"),
+    save: t("profile.save"),
+    nameLabel: t("profile.nameLabel"),
+    namePlaceholder: t("profile.namePlaceholder"),
+    /* ... */
+  }}
+/>
+```
+
+## Locale-aware MDX docs
+
+Documentation pages live under `content/docs/`. To add a French variant, drop a sibling file with `.fr.mdx` next to the English file:
+
+```
+content/docs/
+  getting-started.mdx       # English (default)
+  getting-started.fr.mdx    # French
+```
+
+The loader in `lib/docs.ts` auto-detects the locale suffix and falls back to English when a translation isn't available. The frontmatter `title` is also read from the localized file, so the sidebar/topbar title updates per locale.
+
+## Adding a new locale
+
+Adding `de` (German) takes three steps:
+
+1. Add `"de"` to the `Locale` type in `lib/i18n.tsx`
+2. Add a `de: { ... }` block to the `translations` object with every key translated
+3. Update the `LocaleToggle` component to include the new option
+
+The `<LocaleToggle />` sits in the desktop header and the mobile settings modal — it persists the choice to `localStorage` under the key `"locale"`, which the provider then restores on the next visit.

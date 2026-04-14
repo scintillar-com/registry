@@ -1,0 +1,13 @@
+{
+  "component": "org-settings-form",
+  "hasUnitTests": false,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [],
+  "totalTests": 0
+}

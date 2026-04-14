@@ -1,0 +1,78 @@
+{
+  "component": "DropdownMenu",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "menu",
+  "delegatesTo": "Radix UI DropdownMenu",
+  "description": "A dropdown menu triggered by a button. Built on Radix UI DropdownMenu which provides the full WAI-ARIA menu pattern including role=\"menu\" on the container and role=\"menuitem\" on items. Supports submenus, checkbox items, and radio groups.\n",
+  "keyboard": [
+    {
+      "key": "Enter",
+      "action": "Opens the menu when focused on trigger; activates the focused menu item"
+    },
+    {
+      "key": "Space",
+      "action": "Opens the menu when focused on trigger; activates the focused menu item"
+    },
+    {
+      "key": "ArrowDown",
+      "action": "Opens the menu when focused on trigger; moves focus to the next item"
+    },
+    {
+      "key": "ArrowUp",
+      "action": "Moves focus to the previous item"
+    },
+    {
+      "key": "ArrowRight",
+      "action": "Opens a submenu when focused on a submenu trigger"
+    },
+    {
+      "key": "ArrowLeft",
+      "action": "Closes a submenu and returns focus to the parent menu"
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the menu and returns focus to the trigger"
+    },
+    {
+      "key": "Home",
+      "action": "Moves focus to the first item"
+    },
+    {
+      "key": "End",
+      "action": "Moves focus to the last item"
+    },
+    {
+      "key": "Type-ahead",
+      "action": "Focuses the next item matching typed characters"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": true,
+    "notes": "Focus moves to the first menu item when the menu opens. Arrow keys move focus between items. On close, focus returns to the trigger element. Focus is trapped within the menu while it is open.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Trigger is announced with aria-haspopup=\"menu\" and aria-expanded",
+      "Menu items are announced with their role (menuitem, menuitemcheckbox, menuitemradio)",
+      "Checked state is announced for checkbox and radio items",
+      "Disabled items are announced as dimmed/unavailable"
+    ],
+    "notes": "Submenus are announced when the submenu trigger receives focus. Separator elements use role=\"separator\" and are announced as group dividers.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA — menu uses popover-foreground on popover background",
+    "ui": "Focus indicator and item highlight meet 3:1 contrast ratio"
+  },
+  "motion": {
+    "reducedMotion": "Open/close animations respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide clear labels for the trigger button",
+    "Use DropdownMenuLabel to group related items",
+    "Ensure disabled items have a clear reason communicated to the user",
+    "Avoid deeply nested submenus for usability"
+  ]
+}

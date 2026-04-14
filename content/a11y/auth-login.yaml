@@ -1,0 +1,41 @@
+component: AuthLogin
+wcag: AA
+standard: WAI-ARIA 1.2
+element: form
+role: form
+delegatesTo: null
+description: >
+  A login form block with email and password inputs. Supports centered and
+  split layout variants. All form semantics are handled by native elements.
+
+keyboard:
+  - key: Tab
+    action: Navigates between form fields, links, and the submit button
+  - key: Enter
+    action: Submits the form when a field or the submit button is focused
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus follows natural tab order through inputs and buttons. Focus ring
+    uses standard ring styling.
+
+screenReader:
+  announcements:
+    - Each input is announced with its associated label
+    - The submit button is announced as its visible text
+    - Validation errors are announced when fields are invalid
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for all text)"
+  ui: "Meets WCAG AA (>3:1 for borders and focus rings)"
+
+motion:
+  reducedMotion: All transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide meaningful title and description props for context
+  - Ensure onSubmit handles form data and communicates success or failure
+  - Provide accessible error messaging for failed login attempts

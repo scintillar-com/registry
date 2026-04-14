@@ -1,0 +1,39 @@
+{
+  "component": "Kbd",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "kbd",
+  "role": "none (semantic HTML)",
+  "delegatesTo": null,
+  "description": "Renders a native <kbd> element styled as an inline badge. Used to display keyboard shortcuts and key references. The <kbd> element is semantic HTML that screen readers recognize as keyboard input.\n",
+  "keyboard": [
+    {
+      "key": "N/A",
+      "action": "Kbd is a static display element — it is not interactive"
+    }
+  ],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Kbd is not focusable (pointer-events-none). It is a purely visual indicator used inside other interactive elements or documentation.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Screen readers announce <kbd> content as keyboard input",
+      "KbdGroup is announced as a sequence of keys"
+    ],
+    "notes": "The semantic <kbd> element tells assistive technology that the content represents keyboard input, which may be announced differently than regular text depending on the screen reader.\n"
+  },
+  "contrast": {
+    "text": "muted-foreground on muted background meets WCAG AA (>4.5:1)",
+    "ui": "N/A — no interactive UI elements"
+  },
+  "motion": {
+    "reducedMotion": "No animations"
+  },
+  "consumerResponsibilities": [
+    "Use Kbd for displaying shortcuts, not for interactive key capture",
+    "Use KbdGroup to show key combinations (e.g., Ctrl+C)",
+    "Pair keyboard shortcuts with descriptive text for context"
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ui-registry",
+  "homepage": "https://ui.sntlr.app",
+  "items": [
+    {
+      "name": "accordion",
+      "type": "registry:component",
+      "title": "Accordion",
+      "description": "A vertically stacked set of interactive headings that reveal associated content.",
+      "files": [
+        { "path": "components/ui/accordion.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:component",
+      "title": "Alert",
+      "description": "Displays a callout for important information with optional icon and title.",
+      "files": [
+        { "path": "components/ui/alert.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "backdrop",
+      "type": "registry:component",
+      "title": "Backdrop",
+      "description": "A fixed overlay that dims content behind modals, drawers, and floating panels.",
+      "files": [
+        { "path": "components/ui/backdrop.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:component",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "files": [
+        { "path": "components/ui/avatar.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:component",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "files": [
+        { "path": "components/ui/badge.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:component",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "files": [
+        { "path": "components/ui/breadcrumb.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:component",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "files": [
+        { "path": "components/ui/button.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:component",
+      "title": "Calendar",
+      "description": "A date field component that allows users to enter and edit date.",
+      "dependencies": ["react-day-picker"],
+      "registryDependencies": ["button"],
+      "files": [
+        { "path": "components/ui/calendar.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:component",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "files": [
+        { "path": "components/ui/card.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:component",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "files": [
+        { "path": "components/ui/checkbox.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:component",
+      "title": "Command",
+      "description": "A command palette with search, keyboard navigation, and grouping.",
+      "registryDependencies": ["dialog"],
+      "files": [
+        { "path": "components/ui/command.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:component",
+      "title": "Collapsible",
+      "description": "An interactive component which expands/collapses a panel.",
+      "files": [
+        { "path": "components/ui/collapsible.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:component",
+      "title": "Context Menu",
+      "description": "Displays a menu to the user triggered by a right-click.",
+      "files": [
+        { "path": "components/ui/context-menu.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:component",
+      "title": "Dialog",
+      "description": "A window overlaid on the primary content.",
+      "registryDependencies": ["button"],
+      "files": [
+        { "path": "components/ui/dialog.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:component",
+      "title": "Empty State",
+      "description": "A placeholder shown when a section has no content.",
+      "files": [
+        { "path": "components/ui/empty-state.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:component",
+      "title": "File Upload",
+      "description": "A drag-and-drop file upload area with validation and file list.",
+      "registryDependencies": ["button", "input"],
+      "files": [
+        { "path": "components/ui/file-upload.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:component",
+      "title": "Dropdown Menu",
+      "description": "Displays a menu to the user triggered by a button.",
+      "files": [
+        { "path": "components/ui/dropdown-menu.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:component",
+      "title": "Input",
+      "description": "Displays a form input field.",
+      "files": [
+        { "path": "components/ui/input.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:component",
+      "title": "Input OTP",
+      "description": "A one-time password input with configurable length and grouping.",
+      "dependencies": ["input-otp"],
+      "files": [
+        { "path": "components/ui/input-otp.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:component",
+      "title": "Kbd",
+      "description": "Displays a keyboard shortcut or key in a styled inline badge.",
+      "files": [
+        { "path": "components/ui/kbd.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:component",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "files": [
+        { "path": "components/ui/label.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "live-caret",
+      "type": "registry:component",
+      "title": "Live Caret",
+      "description": "A colored text caret with user name label for collaborative editing.",
+      "files": [
+        { "path": "components/ui/live-caret.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "live-cursor",
+      "type": "registry:component",
+      "title": "Live Cursor",
+      "description": "A colored pointer cursor with user name label for collaborative presence.",
+      "files": [
+        { "path": "components/ui/live-cursor.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "password-input",
+      "type": "registry:component",
+      "title": "Password Input",
+      "description": "A password input with visibility toggle and strength indicator.",
+      "registryDependencies": ["button", "input"],
+      "files": [
+        { "path": "components/ui/password-input.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:component",
+      "title": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "files": [
+        { "path": "components/ui/popover.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:component",
+      "title": "Pagination",
+      "description": "Navigation controls for paginated content with previous, next, and page links.",
+      "registryDependencies": ["button"],
+      "files": [
+        { "path": "components/ui/pagination.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:component",
+      "title": "Radio Group",
+      "description": "A set of checkable buttons where only one can be checked at a time.",
+      "files": [
+        { "path": "components/ui/radio-group.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:component",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "files": [
+        { "path": "components/ui/select.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:component",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "files": [
+        { "path": "components/ui/separator.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:component",
+      "title": "Sheet",
+      "description": "Extends the Dialog component to display content that complements the main content.",
+      "files": [
+        { "path": "components/ui/sheet.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "split-button",
+      "type": "registry:component",
+      "title": "Split Button",
+      "description": "A button with a dropdown menu for secondary actions.",
+      "registryDependencies": ["button", "dropdown-menu"],
+      "files": [
+        { "path": "components/ui/split-button.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:component",
+      "title": "Sidebar",
+      "description": "A composable, themeable and customizable sidebar component.",
+      "registryDependencies": ["button", "input", "separator", "sheet", "skeleton", "tooltip"],
+      "files": [
+        { "path": "components/ui/sidebar.tsx", "type": "registry:component" },
+        { "path": "hooks/use-mobile.ts", "type": "registry:hook" }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:component",
+      "title": "Skeleton",
+      "description": "Used to show a placeholder while content is loading.",
+      "files": [
+        { "path": "components/ui/skeleton.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "social-links",
+      "type": "registry:component",
+      "title": "Social Links",
+      "description": "Social media link buttons with platform icons.",
+      "files": [
+        { "path": "components/ui/social-links.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:component",
+      "title": "Sonner",
+      "description": "An opinionated toast component for React.",
+      "dependencies": ["sonner", "next-themes"],
+      "files": [
+        { "path": "components/ui/sonner.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:component",
+      "title": "Table",
+      "description": "A responsive table component.",
+      "files": [
+        { "path": "components/ui/table.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:component",
+      "title": "Tabs",
+      "description": "A set of layered sections of content displayed one at a time.",
+      "files": [
+        { "path": "components/ui/tabs.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:component",
+      "title": "Textarea",
+      "description": "Displays a form textarea field.",
+      "files": [
+        { "path": "components/ui/textarea.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:component",
+      "title": "Toggle",
+      "description": "A two-state button that can be either on or off.",
+      "files": [
+        { "path": "components/ui/toggle.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:component",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element on hover.",
+      "files": [
+        { "path": "components/ui/tooltip.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "user-status",
+      "type": "registry:component",
+      "title": "User Status",
+      "description": "User avatar with name, subtitle, and presence indicator.",
+      "registryDependencies": ["avatar", "button"],
+      "files": [
+        { "path": "components/ui/user-status.tsx", "type": "registry:component" }
+      ]
+    },
+    {
+      "name": "color-swatch",
+      "type": "registry:component",
+      "title": "Color Swatch",
+      "description": "A color swatch with opacity and gradient support, plus a formatted color value display.",
+      "files": [
+        { "path": "components/ui/color-swatch.tsx", "type": "registry:component" },
+        { "path": "lib/color-utils.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "color-picker",
+      "type": "registry:component",
+      "title": "Color Picker",
+      "description": "A color picker with solid, gradient, and opacity support.",
+      "registryDependencies": ["button", "color-swatch"],
+      "files": [
+        { "path": "components/ui/color-picker.tsx", "type": "registry:component" },
+        { "path": "lib/color-utils.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "account-deletion-form",
+      "type": "registry:block",
+      "title": "Account Deletion Form",
+      "description": "Danger zone form section for account deletion with confirmation.",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/account-deletion-form/account-deletion-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:block",
+      "title": "Data Table",
+      "description": "A feature-rich data table with sorting, pagination, column management, and aggregation.",
+      "dependencies": ["@dnd-kit/core", "@dnd-kit/sortable", "@dnd-kit/utilities"],
+      "registryDependencies": ["skeleton"],
+      "files": [
+        { "path": "registry/new-york/blocks/data-table/data-table.tsx", "type": "registry:component" },
+        { "path": "lib/use-column-widths.tsx", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "auth-login",
+      "type": "registry:block",
+      "title": "Auth Login",
+      "description": "Login page block with centered and split-screen variants.",
+      "registryDependencies": ["button", "card", "checkbox", "input", "label"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/auth-login/auth-login.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "auth-register",
+      "type": "registry:block",
+      "title": "Auth Register",
+      "description": "Registration page block with centered and split-screen variants.",
+      "registryDependencies": ["button", "card", "checkbox", "input", "label", "password-input"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/auth-register/auth-register.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "authorized-devices",
+      "type": "registry:block",
+      "title": "Authorized Devices",
+      "description": "Device management form section showing authorized sessions.",
+      "files": [
+        {
+          "path": "registry/new-york/blocks/authorized-devices/authorized-devices.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "confirm-dialog",
+      "type": "registry:block",
+      "title": "Confirm Dialog",
+      "description": "A confirmation dialog for dangerous actions, with optional input-match verification.",
+      "registryDependencies": ["button", "dialog", "input", "label"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/confirm-dialog/confirm-dialog.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "email-update-form",
+      "type": "registry:block",
+      "title": "Email Update Form",
+      "description": "Email update form section with password confirmation.",
+      "files": [
+        {
+          "path": "registry/new-york/blocks/email-update-form/email-update-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "form-section",
+      "type": "registry:block",
+      "title": "Form Section",
+      "description": "A standardized card container for form sections with title, description, and footer.",
+      "registryDependencies": ["card", "separator"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/form-section/form-section.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "mfa-form",
+      "type": "registry:block",
+      "title": "MFA Form",
+      "description": "MFA configuration form section.",
+      "files": [
+        {
+          "path": "registry/new-york/blocks/mfa-form/mfa-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "org-members-form",
+      "type": "registry:block",
+      "title": "Org Members Form",
+      "description": "Organization member management with invite, role assignment, and removal.",
+      "registryDependencies": ["avatar", "badge", "button", "dropdown-menu", "input", "select"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/org-members-form/org-members-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "org-roles-form",
+      "type": "registry:block",
+      "title": "Org Roles Form",
+      "description": "Role and permission management with RBAC permission matrix.",
+      "registryDependencies": ["badge", "button", "checkbox", "input", "label", "separator", "table"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/org-roles-form/org-roles-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "org-settings-form",
+      "type": "registry:block",
+      "title": "Org Settings Form",
+      "description": "General organization settings form with name, slug, description, logo, and website.",
+      "registryDependencies": ["avatar", "button", "input", "label", "textarea"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/org-settings-form/org-settings-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-reset-form",
+      "type": "registry:block",
+      "title": "Password Reset Form",
+      "description": "Password change form section.",
+      "registryDependencies": ["password-input"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/password-reset-form/password-reset-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-form",
+      "type": "registry:block",
+      "title": "Profile Form",
+      "description": "Profile information form section with optional avatar upload.",
+      "files": [
+        {
+          "path": "registry/new-york/blocks/profile-form/profile-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "search-filter-bar",
+      "type": "registry:block",
+      "title": "Search Filter Bar",
+      "description": "A search input with filterable badges and a filter popover.",
+      "registryDependencies": ["badge", "button", "input", "popover", "select"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/search-filter-bar/search-filter-bar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "app-switcher",
+      "type": "registry:block",
+      "title": "App Switcher",
+      "description": "A multi-organization, multi-project workspace switcher with search.",
+      "registryDependencies": ["button", "command", "popover", "avatar"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/app-switcher/app-switcher.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "formula-editor",
+      "type": "registry:block",
+      "title": "Formula Editor",
+      "description": "An interactive formula editor with syntax highlighting, autocomplete, validation, and type checking.",
+      "files": [
+        {
+          "path": "registry/new-york/blocks/formula-editor/formula-editor.tsx",
+          "type": "registry:component"
+        },
+        { "path": "lib/formula.ts", "type": "registry:lib" }
+      ]
+    },
+    {
+      "name": "hello-world",
+      "type": "registry:component",
+      "title": "Hello World",
+      "description": "A simple hello world component.",
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "example-form",
+      "type": "registry:component",
+      "title": "Example Form",
+      "description": "A contact form with validation.",
+      "dependencies": ["zod"],
+      "registryDependencies": ["button", "input", "label", "textarea", "card"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/example-form/example-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

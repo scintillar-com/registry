@@ -1,0 +1,54 @@
+component: Tabs
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: tablist / tab / tabpanel
+delegatesTo: Radix UI Tabs
+description: >
+  A tabbed interface component built on Radix UI Tabs. Supports horizontal
+  and vertical orientations with full keyboard navigation following the
+  WAI-ARIA Tabs pattern.
+
+keyboard:
+  - key: Arrow Left/Right
+    action: "Moves focus between tabs (horizontal orientation)"
+  - key: Arrow Up/Down
+    action: "Moves focus between tabs (vertical orientation)"
+  - key: Home
+    action: Moves focus to the first tab
+  - key: End
+    action: Moves focus to the last tab
+  - key: Enter/Space
+    action: Activates the focused tab
+  - key: Tab
+    action: Moves focus into/out of the tab panel content
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Tab triggers receive focus via arrow keys (roving tabindex). Only the
+    active tab is in the Tab order — pressing Tab moves into the tab panel.
+    Focus-visible ring shown on the active trigger.
+
+screenReader:
+  announcements:
+    - Each trigger announces its label and "tab" role
+    - The tablist announces its role and orientation
+    - Tab panels are associated with their triggers via aria-labelledby
+    - Active state is announced via aria-selected
+  notes: >
+    Radix automatically manages aria-selected, aria-controls, and
+    aria-labelledby associations between triggers and panels.
+
+contrast:
+  text: "Active and inactive tab text meet WCAG AA"
+  ui: "Active indicator (underline in line variant) meets 3:1"
+
+motion:
+  reducedMotion: No transition animations on tab switch
+
+consumerResponsibilities:
+  - Use descriptive tab labels that make sense out of visual context
+  - Ensure tab panel content is meaningful when tab label is announced
+  - For the line variant, the underline indicator conveys active state visually — screen readers use aria-selected

@@ -1,0 +1,59 @@
+[
+  {
+    "displayName": "Select",
+    "description": "Root component that manages the state of the select dropdown.",
+    "props": []
+  },
+  {
+    "displayName": "SelectContent",
+    "description": "Dropdown panel that renders the list of select options inside a portal.",
+    "props": []
+  },
+  {
+    "displayName": "SelectGroup",
+    "description": "Groups related select items together under an optional label.",
+    "props": []
+  },
+  {
+    "displayName": "SelectItem",
+    "description": "A selectable option within the select dropdown, displaying a check icon when active.",
+    "props": []
+  },
+  {
+    "displayName": "SelectLabel",
+    "description": "Renders a non-interactive label for a group of select items.",
+    "props": []
+  },
+  {
+    "displayName": "SelectScrollDownButton",
+    "description": "Button shown at the bottom of the dropdown to scroll down when content overflows.",
+    "props": []
+  },
+  {
+    "displayName": "SelectScrollUpButton",
+    "description": "Button shown at the top of the dropdown to scroll up when content overflows.",
+    "props": []
+  },
+  {
+    "displayName": "SelectSeparator",
+    "description": "A visual divider between groups of select items.",
+    "props": []
+  },
+  {
+    "displayName": "SelectTrigger",
+    "description": "Button that toggles the select dropdown open or closed.",
+    "props": [
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      }
+    ]
+  },
+  {
+    "displayName": "SelectValue",
+    "description": "Displays the currently selected value or a placeholder when no value is selected.",
+    "props": []
+  }
+]

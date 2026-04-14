@@ -1,0 +1,44 @@
+component: Pagination
+wcag: AA
+standard: WAI-ARIA 1.2
+element: nav
+role: navigation
+delegatesTo: null
+description: >
+  Renders a nav element with aria-label="pagination". Page links are
+  keyboard-focusable and the active page is marked with aria-current="page".
+  Previous/next controls are standard links or buttons.
+
+keyboard:
+  - key: Tab
+    action: Moves focus between pagination links and controls
+  - key: Enter
+    action: Activates the focused page link or navigation control
+  - key: Space
+    action: Activates the focused page link when rendered as a button
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus ring appears on each focusable pagination link. Disabled
+    previous/next controls are removed from the tab order.
+
+screenReader:
+  announcements:
+    - The nav landmark is announced with its "pagination" label
+    - The active page is announced via aria-current="page"
+    - Previous and next links announce their labels
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for page numbers and navigation labels)"
+  ui: "Meets WCAG AA (>3:1 for active page indicator, borders, and focus rings)"
+
+motion:
+  reducedMotion: No animations by default
+
+consumerResponsibilities:
+  - Ensure aria-current="page" is set on the active page link
+  - Provide aria-label on the nav element if multiple pagination instances exist on a page
+  - Disable or hide previous/next controls at the boundaries rather than allowing no-op clicks

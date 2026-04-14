@@ -1,0 +1,239 @@
+[
+  {
+    "displayName": "DataTable",
+    "description": "Generic data table with sortable columns, resizable widths, pagination,\ncolumn visibility toggling, drag-and-drop column reordering, aggregate\nfooter rows, saved views, and row actions.",
+    "props": [
+      {
+        "name": "tableId",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Unique table ID for persisting column widths."
+      },
+      {
+        "name": "columns",
+        "type": "DataTableColumn<T>[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Column definitions."
+      },
+      {
+        "name": "data",
+        "type": "T[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Data rows."
+      },
+      {
+        "name": "rowKey",
+        "type": "(row: T) => string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Extract a unique key from each row."
+      },
+      {
+        "name": "defaultSortKey",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Default sort column ID."
+      },
+      {
+        "name": "defaultSortDir",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "asc",
+        "description": "Default sort direction."
+      },
+      {
+        "name": "defaultHiddenColumns",
+        "type": "string[]",
+        "required": false,
+        "defaultValue": null,
+        "description": "Column IDs hidden by default (before any user/view override)."
+      },
+      {
+        "name": "defaultColumnOrder",
+        "type": "string[]",
+        "required": false,
+        "defaultValue": null,
+        "description": "Column order by default (before any user/view override). Array of column IDs."
+      },
+      {
+        "name": "columnPicker",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Enable column visibility toggling."
+      },
+      {
+        "name": "columnReorder",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Enable column drag-reorder (requires views)."
+      },
+      {
+        "name": "pagination",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Enable pagination. Default page sizes: [10, 25, 50, 100]."
+      },
+      {
+        "name": "pageSizes",
+        "type": "number[]",
+        "required": false,
+        "defaultValue": "[10, 25, 50, 100]",
+        "description": "Custom page size options."
+      },
+      {
+        "name": "defaultPageSize",
+        "type": "number",
+        "required": false,
+        "defaultValue": "25",
+        "description": "Default page size."
+      },
+      {
+        "name": "aggregates",
+        "type": "DataTableAggregate<T>[]",
+        "required": false,
+        "defaultValue": null,
+        "description": "Aggregate definitions for footer row."
+      },
+      {
+        "name": "rowActions",
+        "type": "(row: T) => ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Render row-level action buttons (e.g., delete)."
+      },
+      {
+        "name": "toolbar",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Toolbar content rendered before the column picker."
+      },
+      {
+        "name": "emptyMessage",
+        "type": "string",
+        "required": false,
+        "defaultValue": "No results found.",
+        "description": "Empty state message."
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Render loading skeleton."
+      },
+      {
+        "name": "skeletonRows",
+        "type": "number",
+        "required": false,
+        "defaultValue": "8",
+        "description": "Number of skeleton rows to show."
+      },
+      {
+        "name": "onRowClick",
+        "type": "(row: T) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Row click handler."
+      },
+      {
+        "name": "rowClassName",
+        "type": "string | ((row: T) => string)",
+        "required": false,
+        "defaultValue": null,
+        "description": "Row class name."
+      },
+      {
+        "name": "views",
+        "type": "DataTableView[]",
+        "required": false,
+        "defaultValue": null,
+        "description": "If provided, enables view tabs."
+      },
+      {
+        "name": "activeViewId",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Active view ID."
+      },
+      {
+        "name": "onViewChange",
+        "type": "(viewId: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the active view changes."
+      },
+      {
+        "name": "onViewAdd",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user requests to add a new view."
+      },
+      {
+        "name": "onViewDelete",
+        "type": "(viewId: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user requests to delete a view."
+      },
+      {
+        "name": "onViewRename",
+        "type": "(viewId: string, name: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user renames a view."
+      },
+      {
+        "name": "onViewContextMenu",
+        "type": "(viewId: string, position: { x: number; y: number; }) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Callback for right-click on a view tab (e.g., to show a context menu)."
+      },
+      {
+        "name": "tabActions",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Content rendered at the right end of the view tab bar (e.g., \"New\" button)."
+      },
+      {
+        "name": "onColumnVisibilityChange",
+        "type": "(columnId: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when a column's visibility is toggled."
+      },
+      {
+        "name": "onColumnReorder",
+        "type": "(newOrder: string[]) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when columns are reordered via drag-and-drop."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes for the root container. Use `h-full` to fill parent."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<DataTableLabels>",
+        "required": false,
+        "defaultValue": null,
+        "description": "Override internal labels for localization."
+      }
+    ]
+  }
+]

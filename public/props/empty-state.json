@@ -1,0 +1,22 @@
+[
+  {
+    "displayName": "EmptyState",
+    "description": "A placeholder shown when a section has no content. Displays an icon, title, and optional description.",
+    "props": []
+  },
+  {
+    "displayName": "EmptyStateIcon",
+    "description": "Icon container for the empty state.",
+    "props": []
+  },
+  {
+    "displayName": "EmptyStateTitle",
+    "description": "Title text for the empty state.",
+    "props": []
+  },
+  {
+    "displayName": "EmptyStateDescription",
+    "description": "Description text for the empty state.",
+    "props": []
+  }
+]

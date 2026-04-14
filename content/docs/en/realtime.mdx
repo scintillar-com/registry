@@ -1,0 +1,222 @@
+---
+title: Realtime collaboration
+description: Wire LiveCursor and LiveCaret to a real backend, broadcast presence on data tables, and design for multi-user UIs.
+order: 4
+---
+
+# Realtime collaboration
+
+Scintillar ships two primitives — `LiveCursor` and `LiveCaret` — and a set of patterns for showing remote-user presence on rich UIs (data tables, text editors, canvases). The components are transport-agnostic: you provide positions and identities, they handle the rendering.
+
+## The two primitives
+
+### `<LiveCursor />` — pointer cursors on a canvas
+
+```tsx
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+<div className="relative h-screen">
+  <LiveCursor
+    name="Alice"
+    color="#10b981"
+    x={120}
+    y={240}
+    display="avatar"        // or "name" (default)
+    avatarUrl="https://..."  // required for display="avatar"
+    absolute                 // position relative to nearest .relative parent
+  />
+</div>
+```
+
+The component is `pointer-events-none` and `aria-hidden` — it never intercepts mouse events, so the underlying canvas/document remains fully interactive. Position is applied via `transform: translate(...)` so the GPU handles each frame.
+
+### `<LiveCaret />` — collaborator carets in text
+
+```tsx
+import { LiveCaret } from "@/components/ui/live-caret"
+
+<p>
+  Hello, world. <LiveCaret name="Edith" color="var(--color-primary)" display="name" />
+</p>
+```
+
+The caret is a 1em-tall colored bar with a label (or avatar) anchored above it. Drop it inline at the position where the remote user's cursor is in the document model.
+
+## Display modes (name vs avatar)
+
+Both components accept `display: "name" | "avatar"`. When `"avatar"`, you must provide `avatarUrl`. The avatar is wrapped in a square `aspect-square overflow-hidden rounded-full` container with a colored ring matching the user's color, so SVG avatars (e.g. dicebear) can't render oval.
+
+A `DisplayModeToggle` button group is a handy way to swap modes across multiple cursors/carets at once — render one toggle and thread its state through every `<LiveCursor />` / `<LiveCaret />` on the page.
+
+## Wiring to a real backend
+
+The components don't ship with transport — you choose. Three common providers:
+
+### Liveblocks
+
+```tsx
+"use client"
+import { useOthers, useUpdateMyPresence } from "@liveblocks/react/suspense"
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+function Canvas() {
+  const others = useOthers()
+  const updateMyPresence = useUpdateMyPresence()
+
+  return (
+    <div
+      className="relative h-screen"
+      onPointerMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        updateMyPresence({ cursor: { x: e.clientX - rect.left, y: e.clientY - rect.top } })
+      }}
+    >
+      {others.map(({ connectionId, presence, info }) =>
+        presence.cursor ? (
+          <LiveCursor
+            key={connectionId}
+            name={info.name}
+            color={info.color}
+            x={presence.cursor.x}
+            y={presence.cursor.y}
+            display="avatar"
+            avatarUrl={info.avatarUrl}
+            absolute
+          />
+        ) : null
+      )}
+    </div>
+  )
+}
+```
+
+### Yjs + y-websocket
+
+```tsx
+import * as Y from "yjs"
+import { WebsocketProvider } from "y-websocket"
+import { useEffect, useState } from "react"
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+const doc = new Y.Doc()
+const provider = new WebsocketProvider("wss://your.server", "room-name", doc)
+
+function Canvas() {
+  const [peers, setPeers] = useState<Array<{ id: number; cursor: { x: number; y: number }; user: any }>>([])
+
+  useEffect(() => {
+    const sync = () => {
+      const states = Array.from(provider.awareness.getStates().entries())
+      setPeers(
+        states
+          .filter(([id]) => id !== provider.awareness.clientID)
+          .map(([id, s]) => ({ id, cursor: s.cursor, user: s.user }))
+          .filter((p) => p.cursor)
+      )
+    }
+    provider.awareness.on("change", sync)
+    return () => provider.awareness.off("change", sync)
+  }, [])
+
+  return (
+    <div
+      className="relative h-screen"
+      onPointerMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect()
+        provider.awareness.setLocalStateField("cursor", {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        })
+      }}
+    >
+      {peers.map((p) => (
+        <LiveCursor key={p.id} name={p.user.name} color={p.user.color} x={p.cursor.x} y={p.cursor.y} absolute />
+      ))}
+    </div>
+  )
+}
+```
+
+### Supabase Realtime
+
+```tsx
+import { createClient } from "@supabase/supabase-js"
+import { LiveCursor } from "@/components/ui/live-cursor"
+
+const supabase = createClient(/* ... */)
+const channel = supabase.channel("room:design", { config: { presence: { key: userId } } })
+
+channel
+  .on("presence", { event: "sync" }, () => {
+    const state = channel.presenceState()
+    /* render LiveCursor for each peer */
+  })
+  .subscribe(async (status) => {
+    if (status === "SUBSCRIBED") await channel.track({ cursor: { x: 0, y: 0 }, user: { name, color } })
+  })
+
+// On pointer move:
+channel.track({ cursor: { x, y }, user: { name, color } })
+```
+
+## Throttling broadcasts
+
+`pointermove` fires at the display's refresh rate — 60–120 Hz. Broadcasting every event saturates the wire and the recipient. Throttle to ~30 Hz with `requestAnimationFrame`:
+
+```ts
+let scheduled = false
+let lastEvent: PointerEvent | null = null
+
+function onPointerMove(e: PointerEvent) {
+  lastEvent = e
+  if (scheduled) return
+  scheduled = true
+  requestAnimationFrame(() => {
+    scheduled = false
+    if (!lastEvent) return
+    broadcast({ x: lastEvent.clientX, y: lastEvent.clientY })
+    lastEvent = null
+  })
+}
+```
+
+An even tighter pattern: update the local cursor's `transform` directly via a ref inside a single `requestAnimationFrame` loop (alongside remote agents), so the local cursor doesn't trigger any React re-renders at all.
+
+## Row-level presence on a DataTable
+
+You can show "who's editing what" on tabular UIs without inventing a new component — overlay an avatar inside the rightmost cell using the `cell` renderer. The `BentoDataTableCard` on the homepage does exactly this:
+
+```tsx
+{
+  id: "amount",
+  header: t("amount"),
+  cell: (row) => {
+    const presenceUrl = presences[row.id]
+    return (
+      <div className="relative flex items-center h-full pr-7">
+        <span className="font-mono">${row.amount}</span>
+        {presenceUrl && (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute right-0 top-1/2 size-5 aspect-square overflow-hidden rounded-full border-2 border-primary shadow-md bg-background z-20"
+          >
+            <img src={presenceUrl} alt="" width={20} height={20} className="block size-full object-cover" />
+          </span>
+        )}
+      </div>
+    )
+  },
+  defaultWidth: 110,
+}
+```
+
+The cell wrapper is `h-full` so the absolute avatar centers vertically against the row height (not just the dollar-amount text). The reserved `pr-7` keeps the value text from colliding with the avatar.
+
+Pair this with a Liveblocks/Yjs/Supabase channel where each peer broadcasts `{ rowId, avatarUrl }` when they enter "edit mode" on a row, and clear it when they leave.
+
+## Best practices
+
+- **Always include a stable `color` per user.** Picking from a fixed palette of 8–16 colors hashed by user-id makes it easy to recognize the same person across sessions
+- **Don't broadcast the local user's own cursor.** Either filter out your own connection on receive, or render the local cursor with a separate `playerCursorRef` (the BentoCursors demo's pattern) so it never round-trips through the wire
+- **Use `pointer-events-none` and `aria-hidden` on every remote presence indicator.** They're decorative — the underlying content stays interactive and screen readers stay clean
+- **Drop presence after ~30s of inactivity.** Otherwise stale users pile up

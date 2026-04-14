@@ -1,0 +1,53 @@
+component: Data Table
+wcag: AA
+standard: WAI-ARIA 1.2
+element: table
+role: table
+delegatesTo: null (uses native table elements + dnd-kit for drag)
+description: >
+  A feature-rich data table with sorting, pagination, column management,
+  aggregation, and views. Uses native HTML table elements for screen reader
+  compatibility. Sort headers are proper buttons. Column reorder uses
+  dnd-kit with keyboard support.
+
+keyboard:
+  - key: Enter/Space
+    action: "Activates sort on column headers, toggles column visibility, selects pagination/aggregation options"
+  - key: Escape
+    action: Closes MiniSelect dropdowns and column picker
+  - key: Tab
+    action: "Moves focus through: view tabs → toolbar → column headers → row actions → pagination"
+  - key: Arrow keys
+    action: "dnd-kit handles arrow key reorder when column picker is in drag mode"
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Sortable column headers are <button> elements inside <th> cells, making
+    them keyboard-focusable. View tab rename uses an <input> with
+    Enter to confirm and Escape to cancel.
+
+screenReader:
+  announcements:
+    - Table structure is announced via native <table>, <thead>, <tbody>, <th>, <td>
+    - Sort direction is visually indicated but not yet announced via aria-sort
+    - Row count is shown in the aggregation footer
+    - Empty state message is rendered as table cell content
+  notes: >
+    For best screen reader experience, ensure column headers are descriptive.
+    The rowKey prop should produce stable, unique keys for live region updates.
+
+contrast:
+  text: "Header text uses muted-foreground, meeting WCAG AA on both light and dark"
+  ui: "Row hover uses muted/20 which maintains readability"
+
+motion:
+  reducedMotion: Column resize and drag animations respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide descriptive column headers via the header property
+  - Use aria-label on the table container if multiple tables exist on a page
+  - For row actions, use icon buttons with aria-label describing the action
+  - Consider adding aria-sort to th elements for sort state announcement
+  - Ensure rowKey produces unique values for stable DOM identity

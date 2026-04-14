@@ -1,0 +1,44 @@
+{
+  "component": "file-upload",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": true,
+  "hasA11yTests": true,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/file-upload.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders drop zone with correct text",
+        "shows ",
+        "shows accepted types in description when accept is provided",
+        "shows formatted max size in description",
+        "shows KB for small maxSize",
+        "selects a file via the hidden input",
+        "removes a file when the remove button is clicked",
+        "rejects a file exceeding maxSize",
+        "allows multiple files when multiple is true",
+        "only keeps last file when multiple is false"
+      ]
+    },
+    {
+      "file": "tests/e2e/visual/components.spec.ts",
+      "type": "visual",
+      "tests": [
+        "file-upload matches snapshot"
+      ]
+    },
+    {
+      "file": "tests/e2e/a11y/components.spec.ts",
+      "type": "a11y",
+      "tests": [
+        "file-upload has no a11y violations"
+      ]
+    }
+  ],
+  "totalTests": 12
+}

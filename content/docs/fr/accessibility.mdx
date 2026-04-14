@@ -1,0 +1,148 @@
+---
+title: Accessibilite
+description: Normes et directives d'accessibilite pour la bibliotheque de composants Scintillar UI.
+order: 7
+---
+
+# Accessibilite
+
+Ce document definit les normes d'accessibilite respectees par le registre Scintillar UI. Il sert de reference pour les contributeurs, les utilisateurs et les agents IA travaillant avec nos composants.
+
+## Normes
+
+Nous visons la conformite **WCAG 2.1 niveau AA** et suivons les pratiques de creation **WAI-ARIA 1.2** pour tous les composants interactifs.
+
+### Ce que le niveau AA signifie en pratique
+
+- Ratio de contraste du texte d'au moins **4.5:1** par rapport a son arriere-plan
+- Ratio de contraste des elements d'interface d'au moins **3:1** (bordures, icones, anneaux de focus)
+- Toutes les fonctionnalites accessibles au **clavier seul**
+- Le focus est **visible** sur chaque element interactif
+- Aucune information transmise par la **couleur seule**
+- Les animations respectent **prefers-reduced-motion**
+
+## Clavier
+
+Chaque composant interactif doit etre utilisable au clavier. Les patrons attendus :
+
+| Type d'element | Touches attendues |
+|---|---|
+| Boutons, liens, bascules | `Enter`, `Space` pour activer |
+| Dialog, popovers, menus | `Escape` pour fermer |
+| Onglets, groupes de boutons radio | Touches `Fleche` pour naviguer, `Enter`/`Space` pour selectionner |
+| Curseurs | Touches `Fleche` pour ajuster la valeur, `Shift+Fleche` pour des pas plus grands |
+| Listes, menus | `Fleche Haut/Bas` pour naviguer, `Home`/`End` pour sauter |
+| Modales | `Tab`/`Shift+Tab` confine a l'interieur de la modale |
+
+### Regles de gestion du focus
+
+1. **Focus visible** : Chaque element focalisable affiche un anneau de focus visible (`focus-visible:ring`).
+2. **Ordre du focus** : L'ordre de tabulation suit la disposition visuelle. Aucune valeur de `tabIndex` superieure a 0.
+3. **Piege de focus** : Les modales et les Dialog emprisonnent le focus. Escape libere le piege et renvoie le focus au declencheur.
+4. **Restauration du focus** : Lorsqu'un popover, une Dialog ou un menu se ferme, le focus revient a l'element qui l'a ouvert.
+
+## ARIA
+
+### Quand nous utilisons ARIA
+
+- Les composants construits sur **Radix UI** heritent automatiquement de la conformite ARIA complete (Dialog, Select, DropdownMenu, Tabs, etc.).
+- Les **composants interactifs personnalises** (ColorPicker, DataTable, FormulaEditor) ajoutent manuellement les attributs ARIA : `role`, `aria-label`, `aria-valuenow`, `aria-expanded`, `aria-live`.
+- Les **composants d'affichage statique** (Badge, Card, Skeleton) n'ont pas besoin de roles ARIA — ils utilisent du HTML semantique.
+
+### Regles
+
+1. **Pas d'ARIA vaut mieux qu'un mauvais ARIA.** N'ajoutez des roles et des attributs que lorsque l'element HTML semantique ne transmet pas la bonne signification.
+2. **Chaque element interactif a un nom accessible.** Soit via le contenu textuel visible, `aria-label`, ou `aria-labelledby`.
+3. **Les boutons contenant uniquement une icone ont toujours un `aria-label`.** L'icone n'est pas un nom accessible.
+4. **Le contenu dynamique utilise `aria-live`.** Les resultats de recherche, les etats de chargement et les changements de langue sont annonces aux lecteurs d'ecran via des regions live.
+5. **Les elements decoratifs utilisent `aria-hidden="true"`.** Les arriere-plans a motifs, les lignes de separation et les loaders squelettes ne doivent pas etre annonces.
+
+## Couleur et contraste
+
+### Exigences des jetons
+
+| Paire de jetons | Ratio minimum | Norme |
+|---|---|---|
+| `foreground` sur `background` | 4.5:1 | WCAG AA texte |
+| `muted-foreground` sur `background` | 4.5:1 | WCAG AA texte |
+| `muted-foreground` sur `muted` | 4.5:1 | WCAG AA texte |
+| `primary-foreground` sur `primary` | 4.5:1 | WCAG AA texte |
+| `border` sur `background` | 3:1 | WCAG AA UI |
+| `ring` sur `background` | 3:1 | WCAG AA UI |
+
+### Independance des couleurs
+
+Ne vous fiez jamais a la couleur seule pour transmettre une information. Associez-la toujours a :
+- Des etiquettes textuelles (par ex., "Erreur" et non simplement du rouge)
+- Des icones (par ex., coche pour le succes)
+- Des motifs ou des bordures (par ex., bordure en pointilles pour un etat vide)
+
+### Mode contraste eleve
+
+Nous prenons en charge le mode contraste eleve de Windows via la media query `forced-colors`. Les bordures et les boutons sont styles pour rester visibles lorsque le systeme d'exploitation remplace les couleurs.
+
+## Mouvement
+
+Toutes les animations et transitions respectent `prefers-reduced-motion` :
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+Composants avec du mouvement :
+- **Demo de la page d'accueil** : les colonnes defilantes s'arretent
+- **Barre laterale** : la transition de glissement est desactivee
+- **Apercu plein ecran** : l'agrandissement/reduction devient instantane
+- **Panneau de proprietes** : l'animation de glissement est desactivee
+- **Sections repliables** : ouverture/fermeture instantanee
+
+## Tactile
+
+Les zones tactiles mobiles doivent mesurer au moins **44x44px** (WCAG 2.5.5). Nos boutons `icon-xs` (24px visuellement) utilisent `min-h-11 min-w-11` sur mobile pour respecter cette exigence.
+
+## Lecteurs d'ecran
+
+### Cibles de test
+
+- **NVDA** sur Windows + Firefox
+- **VoiceOver** sur macOS + Safari
+- **TalkBack** sur Android + Chrome
+
+### Patrons d'annonce
+
+| Evenement | Methode d'annonce |
+|---|---|
+| Ouverture d'une Dialog | Le focus se deplace vers la Dialog, le titre est annonce via `aria-labelledby` |
+| Chargement des resultats de recherche | `aria-live="polite"` sur la liste des resultats |
+| Changement de langue | La region live annonce "Langue changee en..." |
+| Apparition d'un toast | Sonner utilise `aria-live="polite"` (ou `"assertive"` pour les erreurs) |
+| Changement de tri | Le bouton de l'en-tete de colonne annonce le nouvel etat |
+
+## Responsabilites des utilisateurs
+
+Lors de l'utilisation de nos composants, les utilisateurs doivent :
+
+1. **Associer les champs de saisie a des etiquettes.** Utilisez `<Label htmlFor="id">` ou `aria-label`.
+2. **Fournir des noms accessibles pour les boutons a icone.** Passez toujours `aria-label`.
+3. **Lier les messages d'erreur aux champs de saisie.** Utilisez `aria-describedby` pointant vers l'element d'erreur.
+4. **Utiliser des titres semantiques.** Maintenez la hierarchie des titres (`h1` → `h2` → `h3`).
+5. **Tester avec un lecteur d'ecran.** Au moins un parcours par page devrait etre verifie avec NVDA ou VoiceOver.
+6. **Ne pas remplacer les styles de focus.** Nos anneaux de focus sont concus pour la visibilite — les supprimer nuit a l'accessibilite au clavier.
+
+## Pour les agents IA
+
+Lors de la generation ou de la modification de composants dans ce registre :
+
+1. **Incluez toujours `aria-label` sur les boutons a icone seule.** Utilisez une description concise de l'action.
+2. **Utilisez d'abord le HTML semantique.** `<button>` plutot que `<div onClick>`. `<nav>` plutot que `<div role="navigation">`.
+3. **Chaque gestionnaire `onClick` necessite un equivalent clavier.** Si un `<div>` a un `onClick`, il a besoin de `role="button"`, `tabIndex={0}`, et `onKeyDown` pour Enter/Space.
+4. **Les modales doivent pieger le focus.** Utilisez notre composant `Dialog` ou les primitives Radix — jamais un simple `<div>` en superposition.
+5. **Le contenu dynamique necessite `aria-live`.** Etats de chargement, resultats de recherche et messages de statut.
+6. **Testez le parcours clavier.** Naviguez au Tab a travers le composant. Pouvez-vous tout atteindre ? Tout activer ? Tout quitter ?
+7. **Executez `pnpm healthcheck`** apres les modifications. La couverture a11y doit rester a 100%.
+8. **Ajoutez un fichier YAML** dans `content/a11y/` pour tout nouveau composant, en suivant le schema existant.

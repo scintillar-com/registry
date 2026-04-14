@@ -1,0 +1,44 @@
+{
+  "component": "Tooltip",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "tooltip",
+  "delegatesTo": "Radix UI Tooltip",
+  "description": "A display-only overlay triggered by hover or keyboard focus on the trigger element. Built on Radix UI Tooltip which provides role=\"tooltip\" and links the content to the trigger via aria-describedby. Tooltip content is not keyboard-interactive.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the trigger element, which opens the tooltip"
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the tooltip if open"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The tooltip appears when the trigger receives keyboard focus and disappears when focus leaves. The tooltip content itself is not focusable and does not participate in the tab order.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Tooltip content is announced as a description of the trigger via aria-describedby",
+      "The role=\"tooltip\" identifies the element as supplementary information"
+    ],
+    "notes": "Tooltip content should be concise and supplementary. It should not contain essential information that the user cannot access by other means.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA — tooltip uses popover-foreground on popover background",
+    "ui": "Meets WCAG AA (>3:1 for borders)"
+  },
+  "motion": {
+    "reducedMotion": "Fade animations respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Do not place essential information only in tooltips",
+    "Keep tooltip content short and descriptive",
+    "Ensure tooltips do not obscure other interactive elements",
+    "Avoid interactive content (links, buttons) inside tooltips"
+  ]
+}

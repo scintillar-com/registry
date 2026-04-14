@@ -1,0 +1,15 @@
+[
+  {
+    "displayName": "Backdrop",
+    "description": "A fixed overlay backdrop for modals, drawers, and floating panels.",
+    "props": [
+      {
+        "name": "belowHeader",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Whether the backdrop starts below the header."
+      }
+    ]
+  }
+]

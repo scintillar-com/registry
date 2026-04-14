@@ -1,0 +1,12 @@
+[
+  {
+    "displayName": "Kbd",
+    "description": "Displays a keyboard shortcut or key in a styled inline badge.",
+    "props": []
+  },
+  {
+    "displayName": "KbdGroup",
+    "description": "Groups multiple Kbd elements with a separator, representing a key combination.",
+    "props": []
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "SplitButton",
+    "description": "A button with a dropdown menu for secondary actions. The primary action is the main click, with alternatives in the dropdown.",
+    "props": [
+      {
+        "name": "actions",
+        "type": "SplitButtonAction[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onClick",
+        "type": "() => void",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default"
+      }
+    ]
+  }
+]

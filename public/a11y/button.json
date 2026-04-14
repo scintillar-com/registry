@@ -1,0 +1,47 @@
+{
+  "component": "Button",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": "button",
+  "delegatesTo": null,
+  "description": "Renders a native <button> element. All standard button semantics and keyboard interactions are handled by the browser.\n",
+  "keyboard": [
+    {
+      "key": "Enter",
+      "action": "Activates the button"
+    },
+    {
+      "key": "Space",
+      "action": "Activates the button"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus to/from the button"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus ring uses a 3px ring with ring-ring/50 color. Disabled buttons remove pointer events and reduce opacity.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The button label is announced as its accessible name",
+      "Variant and size do not affect announcements"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for all variants)",
+    "ui": "Meets WCAG AA (>3:1 for borders and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "When using icon-only buttons, always provide an aria-label",
+    "When using asChild, ensure the child element is semantically appropriate",
+    "Disabled buttons should include a tooltip or adjacent text explaining why"
+  ]
+}

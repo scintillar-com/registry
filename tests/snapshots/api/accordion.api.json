@@ -1,0 +1,22 @@
+[
+  {
+    "displayName": "Accordion",
+    "description": "Root container for a set of collapsible accordion sections.",
+    "props": []
+  },
+  {
+    "displayName": "AccordionItem",
+    "description": "A single collapsible section within an accordion.",
+    "props": []
+  },
+  {
+    "displayName": "AccordionTrigger",
+    "description": "Clickable header that toggles the visibility of its associated accordion content.",
+    "props": []
+  },
+  {
+    "displayName": "AccordionContent",
+    "description": "Animated collapsible content area revealed when its accordion item is expanded.",
+    "props": []
+  }
+]

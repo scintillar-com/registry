@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "AuthRegister",
+    "description": "A registration page block with two layout variants: centered card or split-panel.\nIncludes name, email, password with strength indicator, confirm password, and terms checkbox.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Enter your details to get started"
+      },
+      {
+        "name": "logo",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onLogin",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onSubmit",
+        "type": "(data: { name: string; email: string; password: string; confirmPassword: string; terms: boolean; }) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Create an account"
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "centered"
+      }
+    ]
+  }
+]

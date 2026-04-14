@@ -1,0 +1,46 @@
+component: SearchFilterBar
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: search
+delegatesTo: null
+description: >
+  A composite component combining a search input, a filter button that opens a
+  popover, and dismissible filter badges. Allows users to search and apply
+  structured filters to a data set.
+
+keyboard:
+  - key: Tab
+    action: Navigates between the search input, filter button, and active filter badges
+  - key: Enter
+    action: Activates the filter button or confirms a filter selection
+  - key: Space
+    action: Opens the filter popover when the filter button is focused
+  - key: Escape
+    action: Closes the filter popover if open
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus flows naturally between the search input, filter button, and filter
+    badges. The filter popover does not trap focus but will close on Escape.
+
+screenReader:
+  announcements:
+    - The search input placeholder is announced as the accessible description
+    - Filter badges announce the filter label and selected value
+    - Adding or removing a filter triggers a live region update
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for input text, filter labels, and badge text)"
+  ui: "Meets WCAG AA (>3:1 for input borders, badges, and button outlines)"
+
+motion:
+  reducedMotion: Popover transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide meaningful and distinct labels for each filter definition
+  - Ensure filter option labels are descriptive enough for screen reader users
+  - Provide a descriptive placeholder for the search input relevant to the data being searched

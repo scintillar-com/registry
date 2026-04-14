@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "AuthRegister",
+    "description": "A registration page block with two layout variants: centered card or split-panel.\nIncludes name, email, password with strength indicator, confirm password, and terms checkbox.",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "centered",
+        "description": "Layout variant. \"centered\" places the form in a centered card; \"split\" uses a two-column layout with a branded panel."
+      },
+      {
+        "name": "onSubmit",
+        "type": "(data: { name: string; email: string; password: string; confirmPassword: string; terms: boolean; }) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user submits the registration form."
+      },
+      {
+        "name": "onLogin",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user clicks the login link."
+      },
+      {
+        "name": "logo",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Logo element rendered above the form title."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Create an account",
+        "description": "Form title."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Enter your details to get started",
+        "description": "Form description below the title."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes for the root element."
+      }
+    ]
+  }
+]

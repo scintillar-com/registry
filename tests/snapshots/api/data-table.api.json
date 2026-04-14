@@ -1,0 +1,206 @@
+[
+  {
+    "displayName": "DataTable",
+    "description": "Generic data table with sortable columns, resizable widths, pagination,\ncolumn visibility toggling, drag-and-drop column reordering, aggregate\nfooter rows, saved views, and row actions.",
+    "props": [
+      {
+        "name": "activeViewId",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "aggregates",
+        "type": "DataTableAggregate<T>[]",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "columnPicker",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "columnReorder",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "columns",
+        "type": "DataTableColumn<T>[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "data",
+        "type": "T[]",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultColumnOrder",
+        "type": "string[]",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultHiddenColumns",
+        "type": "string[]",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "defaultPageSize",
+        "type": "number",
+        "required": false,
+        "defaultValue": "25"
+      },
+      {
+        "name": "defaultSortDir",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "asc"
+      },
+      {
+        "name": "defaultSortKey",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "emptyMessage",
+        "type": "string",
+        "required": false,
+        "defaultValue": "No results found."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<DataTableLabels>",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "onColumnReorder",
+        "type": "(newOrder: string[]) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onColumnVisibilityChange",
+        "type": "(columnId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onRowClick",
+        "type": "(row: T) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onViewAdd",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onViewChange",
+        "type": "(viewId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onViewContextMenu",
+        "type": "(viewId: string, position: { x: number; y: number; }) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onViewDelete",
+        "type": "(viewId: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onViewRename",
+        "type": "(viewId: string, name: string) => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "pageSizes",
+        "type": "number[]",
+        "required": false,
+        "defaultValue": "[10, 25, 50, 100]"
+      },
+      {
+        "name": "pagination",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "rowActions",
+        "type": "(row: T) => ReactNode",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "rowClassName",
+        "type": "string | ((row: T) => string)",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "rowKey",
+        "type": "(row: T) => string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "skeletonRows",
+        "type": "number",
+        "required": false,
+        "defaultValue": "8"
+      },
+      {
+        "name": "tabActions",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "tableId",
+        "type": "string",
+        "required": true,
+        "defaultValue": null
+      },
+      {
+        "name": "toolbar",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "views",
+        "type": "DataTableView[]",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  }
+]

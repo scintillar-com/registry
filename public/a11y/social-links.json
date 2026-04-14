@@ -1,0 +1,42 @@
+{
+  "component": "Social Links",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "nav",
+  "role": "navigation",
+  "delegatesTo": null,
+  "description": "Renders a list of social media links as anchor elements. Each link includes an aria-label with the platform name for screen reader accessibility.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus between social link items"
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the focused link and navigates to the URL"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Each link displays a visible focus ring. Links follow standard anchor focus behavior.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Each link announces its aria-label containing the platform name",
+      "When labels are shown, the visible text is used as the accessible name"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for link labels)",
+    "ui": "Meets WCAG AA (>3:1 for icon buttons and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide valid URLs for each social link",
+    "When using icon-only mode (showLabels=false), ensure each link has an appropriate aria-label"
+  ]
+}

@@ -1,0 +1,37 @@
+component: FormSection
+wcag: AA
+standard: WAI-ARIA 1.2
+element: section
+role: group
+delegatesTo: null
+description: >
+  A semantic card container for grouping related form fields with a title,
+  description, and optional footer. Renders as a Card with no interactive
+  behavior of its own.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    FormSection itself is not focusable. Focus management is delegated to the
+    form controls rendered inside the children and footer slots.
+
+screenReader:
+  announcements:
+    - The section title is rendered as a heading and announced as part of the page structure
+    - The description is announced as supplementary text
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for title and description text)"
+  ui: "Meets WCAG AA (>3:1 for card border and destructive accent)"
+
+motion:
+  reducedMotion: No animations are used
+
+consumerResponsibilities:
+  - Use proper heading hierarchy by considering the surrounding page structure
+  - Associate all form labels with their corresponding inputs using htmlFor
+  - When using the destructive variant, ensure the footer actions match the intent

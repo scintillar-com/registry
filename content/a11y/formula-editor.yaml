@@ -1,0 +1,57 @@
+component: FormulaEditor
+wcag: AA
+standard: WAI-ARIA 1.2
+element: textarea
+role: textbox
+delegatesTo: null
+description: >
+  A custom textarea with autocomplete suggestions for formula editing.
+  Accessibility is provided through the native <textarea> element. Syntax
+  highlighting is visual-only and does not affect screen reader output.
+  Autocomplete suggestions appear in a listbox overlay.
+
+keyboard:
+  - key: Tab
+    action: Accepts the current autocomplete suggestion when suggestions are visible
+  - key: Escape
+    action: Closes the autocomplete suggestion list without accepting
+  - key: Ctrl+Enter
+    action: Saves/submits the formula
+  - key: ArrowDown
+    action: Navigates to the next suggestion in the autocomplete list
+  - key: ArrowUp
+    action: Navigates to the previous suggestion in the autocomplete list
+  - key: Enter
+    action: Accepts the selected suggestion when suggestions are visible; inserts newline otherwise
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus is on the textarea element. When autocomplete suggestions appear,
+    focus remains on the textarea while aria-activedescendant tracks the
+    highlighted suggestion. Syntax highlighting overlays do not affect focus.
+
+screenReader:
+  announcements:
+    - The textarea label is announced as the accessible name
+    - Autocomplete suggestions are announced via aria-activedescendant and role="listbox"
+    - The number of available suggestions should be announced via aria-live region
+    - Syntax highlighting is visual-only and not conveyed to screen readers
+  notes: >
+    The raw formula text in the textarea is what screen readers access.
+    Visual syntax highlighting (colors, formatting) provides no semantic
+    information and is purely decorative.
+
+contrast:
+  text: "Meets WCAG AA — formula text uses foreground on input background"
+  ui: "Meets WCAG AA — suggestion list highlight and focus ring meet 3:1 contrast ratio"
+
+motion:
+  reducedMotion: Suggestion list animations respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Provide a clear label for the textarea describing its purpose
+  - Ensure the Ctrl+Enter shortcut is documented or discoverable
+  - Provide a visible save/submit button as an alternative to Ctrl+Enter
+  - Do not rely on syntax highlighting colors alone to convey errors — use text messages

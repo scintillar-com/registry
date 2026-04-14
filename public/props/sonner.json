@@ -1,0 +1,7 @@
+[
+  {
+    "displayName": "Toaster",
+    "description": "Toast notification container. Renders toasts triggered via the `toast()` function from sonner. Automatically inherits the current theme.",
+    "props": []
+  }
+]

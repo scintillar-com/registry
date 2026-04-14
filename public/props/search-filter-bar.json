@@ -1,0 +1,78 @@
+[
+  {
+    "displayName": "SearchFilterBar",
+    "description": "A search bar with a filter button that opens a popover for adding filters.\nActive filters are shown as dismissible badges below the search input.\nEach badge can be edited inline via a select dropdown.",
+    "props": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Search...",
+        "description": "Placeholder text for the search input."
+      },
+      {
+        "name": "query",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Current search query."
+      },
+      {
+        "name": "onQueryChange",
+        "type": "(query: string) => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Called when the search query changes (after debounce / min char check)."
+      },
+      {
+        "name": "filters",
+        "type": "FilterDef[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Available filter definitions."
+      },
+      {
+        "name": "activeFilters",
+        "type": "ActiveFilter[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Currently active filters."
+      },
+      {
+        "name": "onFiltersChange",
+        "type": "(filters: ActiveFilter[]) => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Called when filters change."
+      },
+      {
+        "name": "debounceMs",
+        "type": "number",
+        "required": false,
+        "defaultValue": "300",
+        "description": "Debounce delay in ms before firing onQueryChange while the user types.\nSet to 0 to disable debounce. Defaults to 300ms."
+      },
+      {
+        "name": "minChars",
+        "type": "number",
+        "required": false,
+        "defaultValue": "3",
+        "description": "Minimum number of characters required before debounced onQueryChange fires.\nPressing Enter or blurring the field always commits regardless. Defaults to 3."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<SearchFilterBarLabels>",
+        "required": false,
+        "defaultValue": null,
+        "description": "Override internal labels for localization."
+      }
+    ]
+  }
+]

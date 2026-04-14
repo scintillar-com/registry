@@ -1,0 +1,37 @@
+[
+  {
+    "displayName": "Card",
+    "description": "A styled container card with rounded corners, border, and shadow.",
+    "props": []
+  },
+  {
+    "displayName": "CardHeader",
+    "description": "Header section of a Card, typically containing a title and description.",
+    "props": []
+  },
+  {
+    "displayName": "CardFooter",
+    "description": "Footer section of a Card, typically used for actions or metadata.",
+    "props": []
+  },
+  {
+    "displayName": "CardTitle",
+    "description": "Title element within a CardHeader.",
+    "props": []
+  },
+  {
+    "displayName": "CardAction",
+    "description": "Action area positioned at the top-right of a CardHeader.",
+    "props": []
+  },
+  {
+    "displayName": "CardDescription",
+    "description": "Description text within a CardHeader, rendered in muted style.",
+    "props": []
+  },
+  {
+    "displayName": "CardContent",
+    "description": "Main content area of a Card.",
+    "props": []
+  }
+]

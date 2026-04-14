@@ -1,0 +1,77 @@
+[
+  {
+    "displayName": "FormulaEditor",
+    "description": "Interactive formula editor with syntax highlighting, inline validation,\nautocomplete for functions and field references, and keyboard navigation.",
+    "props": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "The formula expression string (e.g. \"=add({Price}, {Tax})\")."
+      },
+      {
+        "name": "onChange",
+        "type": "(val: string) => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Called on every keystroke with the updated formula."
+      },
+      {
+        "name": "onBlur",
+        "type": "() => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Called when the editor should close (Escape, Ctrl+Enter, or outside click)."
+      },
+      {
+        "name": "fieldNames",
+        "type": "string[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Available field names for autocomplete and validation."
+      },
+      {
+        "name": "fieldTypes",
+        "type": "Record<string, string>",
+        "required": false,
+        "defaultValue": "{}",
+        "description": "Map of field name to property type (e.g. \"number\", \"date\", \"text\") for type checking."
+      },
+      {
+        "name": "inline",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": "Render inline instead of as a floating dialog. Use this inside transformed containers (e.g. preview canvases)."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes for the anchor element."
+      }
+    ]
+  },
+  {
+    "displayName": "FormulaDisplay",
+    "description": "Read-only formula display with syntax highlighting",
+    "props": [
+      {
+        "name": "formula",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "fieldNames",
+        "type": "string[]",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

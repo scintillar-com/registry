@@ -1,0 +1,48 @@
+component: Textarea
+wcag: AA
+standard: WAI-ARIA 1.2
+element: textarea
+role: null
+delegatesTo: null
+description: >
+  Renders a native <textarea> element with styled focus-visible ring. All
+  standard textarea semantics and keyboard interactions are handled by the
+  browser. Consumers must associate the textarea with a visible label for
+  accessibility.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to/from the textarea
+  - key: Any character
+    action: Types into the textarea field
+  - key: Enter
+    action: Inserts a new line within the textarea
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus ring uses a visible outline via focus-visible pseudo-class. Disabled
+    textareas remove pointer events and reduce opacity.
+
+screenReader:
+  announcements:
+    - The associated label is announced as the accessible name
+    - Placeholder text is announced as a fallback if no label is present
+    - The element is announced as a text area or multi-line edit field
+  notes: >
+    Placeholder text alone is not a sufficient accessible name. Always pair
+    with a label element or aria-label.
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for textarea text on background)"
+  ui: "Meets WCAG AA (>3:1 for border and focus ring)"
+
+motion:
+  reducedMotion: No animations by default
+
+consumerResponsibilities:
+  - Always associate the textarea with a <label> element using htmlFor or wrap the textarea inside a <label>
+  - If a visible label is not possible, provide aria-label or aria-labelledby
+  - Use aria-describedby to link helper text or error messages
+  - Set aria-invalid="true" and aria-errormessage when the textarea is in an error state

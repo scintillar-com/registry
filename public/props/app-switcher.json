@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "AppSwitcher",
+    "description": "A multi-organization, multi-project switcher with search, used in app headers or sidebars.",
+    "props": [
+      {
+        "name": "organizations",
+        "type": "Organization[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Available organizations and their projects."
+      },
+      {
+        "name": "selectedOrgId",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Currently selected organization ID."
+      },
+      {
+        "name": "selectedProjectId",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Currently selected project ID."
+      },
+      {
+        "name": "onSelect",
+        "type": "(orgId: string, projectId: string) => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Called when the user selects an org + project."
+      },
+      {
+        "name": "onCreateOrg",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user clicks \"Create Organization\"."
+      },
+      {
+        "name": "onCreateProject",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user clicks \"Create Project\"."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Additional CSS classes."
+      }
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "component": "OrgRolesForm",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "list",
+  "delegatesTo": null,
+  "description": "An interactive list of roles with expandable permission matrices. Each role header can be expanded to reveal a grid of checkboxes for toggling individual permissions.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus between role headers, permission checkboxes, and action buttons"
+    },
+    {
+      "key": "Enter",
+      "action": "Expands or collapses the focused role header; activates buttons"
+    },
+    {
+      "key": "Space",
+      "action": "Toggles the focused permission checkbox; expands/collapses role headers"
+    },
+    {
+      "key": "Escape",
+      "action": "Collapses the currently expanded role"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus follows a logical order through role headers, then into permission checkboxes when a role is expanded. Focus ring is visible on all interactive elements.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Role name, description, and permission count are announced for each role header",
+      "Built-in badge is announced when present",
+      "Each permission checkbox announces its label and checked state"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for role names, labels, and descriptions)",
+    "ui": "Meets WCAG AA (>3:1 for borders, checkboxes, and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide meaningful permission descriptions to aid screen reader users",
+    "Ensure onRolesChange feedback is communicated to assistive technology",
+    "When adding custom roles, ensure unique and descriptive names"
+  ]
+}

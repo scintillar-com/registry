@@ -1,0 +1,25 @@
+[
+  {
+    "displayName": "Alert",
+    "description": "Displays a callout message with an optional icon and variant styling.",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "AlertTitle",
+    "description": "Bold heading text displayed at the top of an alert.",
+    "props": []
+  },
+  {
+    "displayName": "AlertDescription",
+    "description": "Descriptive body text rendered below the alert title.",
+    "props": []
+  }
+]

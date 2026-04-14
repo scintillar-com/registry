@@ -1,0 +1,47 @@
+{
+  "component": "Collapsible",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "group",
+  "delegatesTo": "Radix UI Collapsible",
+  "description": "A collapsible section with a trigger that toggles visibility of its content. Built on Radix UI Collapsible which manages aria-expanded on the trigger and hides content when collapsed.\n",
+  "keyboard": [
+    {
+      "key": "Enter",
+      "action": "Toggles the collapsible content open or closed"
+    },
+    {
+      "key": "Space",
+      "action": "Toggles the collapsible content open or closed"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus to/from the trigger button"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus remains on the trigger button when toggling. When expanded, content inside the collapsible section becomes part of the tab order. When collapsed, content is hidden and removed from the tab order.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The trigger announces its expanded or collapsed state via aria-expanded",
+      "Content is hidden from screen readers when collapsed"
+    ],
+    "notes": "The trigger should have a clear label describing what content it controls. Use aria-controls to associate the trigger with the collapsible content.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA — inherits parent text contrast",
+    "ui": "Trigger focus ring meets 3:1 contrast ratio"
+  },
+  "motion": {
+    "reducedMotion": "Expand/collapse animations respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide a clear and descriptive label for the trigger",
+    "Ensure the trigger is a button or has role=\"button\"",
+    "Do not place essential content inside a collapsible that defaults to closed without clear indication"
+  ]
+}

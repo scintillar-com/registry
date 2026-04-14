@@ -1,0 +1,48 @@
+{
+  "component": "FileUpload",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "button",
+  "delegatesTo": null,
+  "description": "Renders a drag-and-drop file upload area with role=\"button\" on the drop zone. A hidden native <input type=\"file\"> handles the actual file selection dialog.\n",
+  "keyboard": [
+    {
+      "key": "Enter",
+      "action": "Opens the file browser dialog"
+    },
+    {
+      "key": "Space",
+      "action": "Opens the file browser dialog"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus to/from the drop zone"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus ring appears on the drop zone container. Disabled state removes pointer events and reduces opacity.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The drop zone is announced with aria-label \"Upload files\"",
+      "File validation errors are announced via role=\"alert\"",
+      "Each file in the list includes a remove button with aria-label \"Remove {filename}\""
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for text and descriptions)",
+    "ui": "Meets WCAG AA (>3:1 for borders and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Provide a description of accepted file types so users understand what they can upload",
+    "When maxSize is set, the limit is shown visually but consider providing additional context for screen readers",
+    "Handle the onFilesChange callback to process uploaded files"
+  ]
+}

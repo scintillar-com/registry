@@ -1,0 +1,38 @@
+[
+  {
+    "displayName": "MfaForm",
+    "description": "A multi-factor authentication configuration section.\nShows the current MFA status and allows enabling, disabling, or reconfiguring MFA.\nUses FormSection for consistent layout.",
+    "props": [
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false"
+      },
+      {
+        "name": "method",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "null"
+      },
+      {
+        "name": "onSetup",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null
+      },
+      {
+        "name": "onToggle",
+        "type": "(enabled: boolean) => void",
+        "required": false,
+        "defaultValue": null
+      }
+    ]
+  }
+]

@@ -1,0 +1,189 @@
+---
+title: AI agents
+description: Machine-readable endpoints, structured props, and agent recipes for navigating the Scintillar registry programmatically.
+order: 5
+---
+
+# AI agents (AIX)
+
+Scintillar treats **AI Experience** as a first-class concern, the same way most libraries treat **Developer Experience**. The registry exposes structured, machine-readable endpoints for every component so an LLM agent — Claude, GPT, your own — can discover, install, and reason about components without scraping HTML.
+
+## What "machine-readable" means here
+
+Three parallel JSON manifests live in `public/`:
+
+| Endpoint | Shape | Purpose |
+|---|---|---|
+| `/r/<name>.json` | shadcn registry item | The actual component source + dependencies, consumed by the shadcn CLI |
+| `/props/<name>.json` | array of `{ displayName, description, props[] }` | Auto-generated from TypeScript via `react-docgen-typescript`. Includes type, default value, required flag, JSDoc description for every prop |
+| `/a11y/<name>.json` | flat object | WCAG level, ARIA role, keyboard interactions, focus management notes, screen-reader behavior |
+
+These are regenerated from source by `pnpm api:snapshot`, `pnpm props:build`, and `pnpm a11y:build` — running them on every build keeps the manifests in lockstep with the actual TypeScript and YAML files.
+
+The single source of truth for what exists is `/r/registry.json`, which lists every item:
+
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ui-registry",
+  "homepage": "https://ui.sntlr.app",
+  "items": [
+    { "name": "button", "type": "registry:component" },
+    { "name": "data-table", "type": "registry:block" },
+    /* ... */
+  ]
+}
+```
+
+An agent that fetches this once knows every available component name and can then fan out to the per-component manifests.
+
+## Why structured props matter
+
+A well-typed component definition gives the agent enough information to construct a valid call without trial and error:
+
+```bash
+curl https://ui.sntlr.app/props/data-table.json | jq .
+```
+
+```json
+[{
+  "displayName": "DataTable",
+  "description": "Generic data table with sortable columns, resizable widths, ...",
+  "props": [
+    { "name": "tableId",        "type": "string",                       "required": true,  "defaultValue": null },
+    { "name": "columns",        "type": "DataTableColumn<T>[]",         "required": true,  "defaultValue": null },
+    { "name": "data",           "type": "T[]",                          "required": true,  "defaultValue": null },
+    { "name": "rowKey",         "type": "(row: T) => string",           "required": true,  "defaultValue": null },
+    { "name": "defaultSortDir", "type": "\"asc\" | \"desc\"",           "required": false, "defaultValue": "asc" },
+    { "name": "pagination",     "type": "boolean",                      "required": false, "defaultValue": "false" },
+    { "name": "pageSizes",      "type": "number[]",                     "required": false, "defaultValue": "[10, 25, 50, 100]" },
+    /* ... */
+  ]
+}]
+```
+
+The agent knows which props are required, which have defaults, and what literal types are accepted — no hallucinated `pageSizes={50}` instead of `pageSizes={[50]}`.
+
+## Why structured a11y matters
+
+The same idea, applied to accessibility. An agent that's writing tests, generating documentation, or validating a candidate component implementation can read:
+
+```bash
+curl https://ui.sntlr.app/a11y/data-table.json | jq .
+```
+
+```json
+{
+  "component": "Data Table",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "table",
+  "role": "table",
+  "delegatesTo": "null (uses native table elements + dnd-kit for drag)",
+  "description": "...",
+  "keyboard": [
+    { "key": "Tab",       "action": "Move focus into the table" },
+    { "key": "Space/Enter on header", "action": "Sort column" }
+  ],
+  "focus": "Standard tab order. Sort buttons are real <button>s.",
+  "screenReader": "Native <table> + <th> / <td> semantics."
+}
+```
+
+Now the agent doesn't have to guess whether the component supports keyboard sorting — it's stated.
+
+## Recipes
+
+### Claude tool definition
+
+Hand the agent a tool that knows how to install Scintillar components into the user's project:
+
+```ts
+const tools = [{
+  name: "install_scintillar_component",
+  description:
+    "Install a component or block from the Scintillar UI registry into the user's Next.js + shadcn project. " +
+    "Use this when the user asks for a UI primitive (Button, Input, Select, ...) or a complex block (DataTable, " +
+    "ProfileForm, AuthLogin, ...) that already exists in Scintillar. List available items at " +
+    "https://ui.sntlr.app/r/registry.json",
+  input_schema: {
+    type: "object",
+    properties: {
+      name: {
+        type: "string",
+        description: "The component slug, e.g. 'button', 'data-table', 'profile-form'.",
+      },
+    },
+    required: ["name"],
+  },
+}]
+
+// Tool handler:
+async function install_scintillar_component({ name }: { name: string }) {
+  return execSync(`npx shadcn@latest add @sntlr/${name}`).toString()
+}
+```
+
+### Claude registry-discovery prompt
+
+Give the agent the registry index URL up front so it doesn't need to scrape the homepage:
+
+```
+You can install components from the Scintillar UI registry. Before suggesting
+a component, fetch https://ui.sntlr.app/r/registry.json to see what's available.
+For props and types, fetch https://ui.sntlr.app/props/<name>.json. For
+accessibility behavior, fetch https://ui.sntlr.app/a11y/<name>.json.
+
+Always prefer existing Scintillar components over writing new ones. Install
+with: npx shadcn@latest add @sntlr/<name>
+```
+
+### OpenAI structured outputs
+
+If you want the model to *produce* a valid component invocation as JSON, the props manifest is your schema:
+
+```ts
+import OpenAI from "openai"
+import { zodToJsonSchema } from "zod-to-json-schema"
+import { z } from "zod"
+
+const buttonSchema = z.object({
+  variant: z.enum(["default", "destructive", "outline", "secondary", "ghost", "link"]),
+  size: z.enum(["default", "sm", "lg", "icon"]),
+  children: z.string(),
+})
+
+await client.chat.completions.create({
+  model: "gpt-4o",
+  messages: [/* ... */],
+  response_format: {
+    type: "json_schema",
+    json_schema: { name: "ButtonProps", schema: zodToJsonSchema(buttonSchema), strict: true },
+  },
+})
+```
+
+You can derive these Zod schemas mechanically from the `props/<name>.json` files. A small script that walks `public/props/` and emits one Zod file per component would let you regenerate the entire schema set on every `props:build`.
+
+## What makes a component "AIX-ready"
+
+When you contribute a new component to the registry, follow these rules so agents stay productive:
+
+1. **Use literal-union types instead of bare `string` for enum-like props.** `variant: "default" | "destructive"` is far more useful to a model than `variant: string`.
+2. **Add JSDoc to every prop.** `react-docgen-typescript` reads the comment immediately above the field and exposes it as `description` in the props manifest.
+3. **Default values via destructuring** (`function MyComp({ size = "md" }: Props)`) get picked up automatically. Avoid setting defaults inside the function body.
+4. **One component per file, named export matching the file.** The snapshot scripts use the file path as the canonical name.
+5. **Write the a11y YAML** at `content/a11y/<name>.yaml` even if the component is "just a primitive". The `pnpm a11y:build` script needs it as input.
+
+The healthcheck (`pnpm healthcheck`) reports missing props/a11y/preview docs across the registry — aim for 100% before merging.
+
+## Endpoints quick reference
+
+| URL | Description |
+|---|---|
+| `https://ui.sntlr.app/r/registry.json` | Master index of all 60+ items |
+| `https://ui.sntlr.app/r/<name>.json` | shadcn registry item (source + deps) |
+| `https://ui.sntlr.app/props/<name>.json` | Typed props with descriptions |
+| `https://ui.sntlr.app/a11y/<name>.json` | Accessibility behavior |
+
+All endpoints are static JSON, served with long cache headers, and safe to fetch from any agent runtime.

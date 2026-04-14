@@ -1,0 +1,45 @@
+{
+  "component": "Checkbox",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": "checkbox",
+  "delegatesTo": "Radix UI Checkbox",
+  "description": "A checkbox control built on Radix UI Checkbox. Renders a button with role=\"checkbox\" and manages aria-checked state automatically. Supports checked, unchecked, and indeterminate states.\n",
+  "keyboard": [
+    {
+      "key": "Space",
+      "action": "Toggles the checkbox between checked and unchecked"
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus to/from the checkbox"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus ring uses a visible outline via focus-visible pseudo-class. Disabled checkboxes remove pointer events and reduce opacity.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The checkbox label is announced as the accessible name",
+      "The checked state (checked, unchecked, or mixed) is announced on focus and toggle",
+      "State changes are announced immediately when toggled"
+    ],
+    "notes": "Radix Checkbox manages aria-checked automatically, including the \"mixed\" state for indeterminate checkboxes.\n"
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for label text)",
+    "ui": "Meets WCAG AA (>3:1 for checkbox border and check indicator)"
+  },
+  "motion": {
+    "reducedMotion": "Check/uncheck transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Always pair the checkbox with a label using the Label component and htmlFor",
+    "If a visible label is not possible, provide aria-label or aria-labelledby",
+    "When using indeterminate state, ensure the meaning is clear to all users",
+    "Group related checkboxes with a fieldset and legend for screen reader context"
+  ]
+}

@@ -1,0 +1,45 @@
+component: ConfirmDialog
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: alertdialog
+delegatesTo: Radix UI Dialog
+description: >
+  A confirmation dialog for dangerous or irreversible actions. Supports simple
+  confirmation and input-match confirmation where the user must type a specific
+  value to proceed.
+
+keyboard:
+  - key: Escape
+    action: Closes the dialog without confirming
+  - key: Tab
+    action: Cycles focus between interactive elements within the dialog
+  - key: Enter
+    action: Activates the focused button (confirm or cancel)
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is trapped within the dialog while it is open. When opened, focus
+    moves to the first interactive element. When closed, focus returns to the
+    trigger element.
+
+screenReader:
+  announcements:
+    - The dialog title and description are announced when the dialog opens
+    - The confirmation input label and hint are announced when the input receives focus
+  notes: null
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for all text content)"
+  ui: "Meets WCAG AA (>3:1 for buttons, input borders, and focus rings)"
+
+motion:
+  reducedMotion: All open/close transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Use the destructive variant for irreversible actions to provide clear visual warning
+  - Provide a clear, concise title that describes the action being confirmed
+  - When using input-match mode, ensure the confirmValue is something the user can easily reference
+  - The input must match the value exactly for dangerous actions before the confirm button is enabled

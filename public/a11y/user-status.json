@@ -1,0 +1,38 @@
+{
+  "component": "User Status",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "none",
+  "delegatesTo": null,
+  "description": "Presentational component that displays a user avatar with name, subtitle, and presence indicator. No interactive elements are rendered by default.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "No keyboard interaction; component is purely presentational"
+    }
+  ],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "This component does not receive focus as it is presentational.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The avatar image has alt text derived from the name prop",
+      "Name and subtitle are announced as static text"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for name and subtitle text)",
+    "ui": "Meets WCAG AA (>3:1 for presence indicator)"
+  },
+  "motion": {
+    "reducedMotion": "No animations"
+  },
+  "consumerResponsibilities": [
+    "Ensure the name prop is always provided so the avatar has meaningful alt text",
+    "When used inside an interactive context, wrap with an appropriate interactive element"
+  ]
+}

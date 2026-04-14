@@ -1,0 +1,28 @@
+{
+  "component": "user-status",
+  "hasUnitTests": false,
+  "hasInteractionTests": false,
+  "hasVisualTests": true,
+  "hasA11yTests": true,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/e2e/visual/components.spec.ts",
+      "type": "visual",
+      "tests": [
+        "user-status matches snapshot"
+      ]
+    },
+    {
+      "file": "tests/e2e/a11y/components.spec.ts",
+      "type": "a11y",
+      "tests": [
+        "user-status has no a11y violations"
+      ]
+    }
+  ],
+  "totalTests": 2
+}

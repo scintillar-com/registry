@@ -1,0 +1,46 @@
+component: ColorSwatch
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button
+role: button
+delegatesTo: null
+description: >
+  A button element that displays a color visually. The color is conveyed only
+  through background color, so an aria-label is required to describe the color
+  for screen readers. No keyboard interactions beyond standard button activation.
+
+keyboard:
+  - key: Enter
+    action: Activates the color swatch button
+  - key: Space
+    action: Activates the color swatch button
+  - key: Tab
+    action: Moves focus to/from the color swatch
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus ring uses standard button focus styling. The focus ring should be
+    visible against both light and dark color swatches.
+
+screenReader:
+  announcements:
+    - The color is announced via aria-label (e.g., "Red", "Blue #3366FF")
+    - Selected state should be conveyed via aria-pressed or aria-checked if applicable
+  notes: >
+    Color information is entirely visual. Without an aria-label, the swatch
+    is meaningless to screen reader users.
+
+contrast:
+  text: "N/A — color swatches do not contain text"
+  ui: "Focus ring must meet 3:1 contrast against the swatch color and background"
+
+motion:
+  reducedMotion: No animations used
+
+consumerResponsibilities:
+  - Always provide an aria-label describing the color name or value
+  - Ensure the focus ring is visible against the swatch color
+  - When used in a group, convey the selected state with aria-pressed or aria-checked
+  - Do not rely on color alone to convey meaning — pair with text labels when possible

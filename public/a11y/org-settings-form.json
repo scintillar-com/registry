@@ -1,0 +1,46 @@
+{
+  "component": "OrgSettingsForm",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "form",
+  "role": "form",
+  "delegatesTo": null,
+  "description": "A form section for editing general organization settings including name, slug, description, logo, and website. All inputs use native form elements with associated labels.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus between form fields (logo button, name, slug, description, website, cancel, save)"
+    },
+    {
+      "key": "Enter",
+      "action": "Submits the form when a button is focused"
+    },
+    {
+      "key": "Space",
+      "action": "Activates the focused button"
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus follows standard tab order through all form controls. Focus ring is visible on all interactive elements.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Each input is announced with its associated label",
+      "Buttons are announced with their text content"
+    ],
+    "notes": null
+  },
+  "contrast": {
+    "text": "Meets WCAG AA (>4.5:1 for labels and input text)",
+    "ui": "Meets WCAG AA (>3:1 for borders and focus rings)"
+  },
+  "motion": {
+    "reducedMotion": "All transitions respect prefers-reduced-motion"
+  },
+  "consumerResponsibilities": [
+    "Ensure the onSave handler provides feedback (e.g., a toast) on success or failure",
+    "If adding custom validation, display error messages associated with their inputs via aria-describedby"
+  ]
+}

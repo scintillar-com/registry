@@ -1,0 +1,62 @@
+{
+  "component": "search-filter-bar",
+  "hasUnitTests": true,
+  "hasInteractionTests": true,
+  "hasVisualTests": true,
+  "hasA11yTests": true,
+  "hasPerformanceTests": true,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/blocks/search-filter-bar.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders search input with placeholder",
+        "does not fire onQueryChange while typing below minChars (default 3)",
+        "fires onQueryChange after debounce when typing reaches minChars",
+        "debounces rapid typing — only fires once with final value",
+        "respects custom minChars threshold",
+        "commits immediately on Enter regardless of minChars",
+        "commits immediately on blur regardless of minChars",
+        "clear button commits an empty string immediately",
+        "filter button opens popover with ",
+        "active filter badge renders with correct label and value",
+        "removing a filter via X button calls onFiltersChange"
+      ]
+    },
+    {
+      "file": "tests/e2e/interaction/search-filter-bar.spec.ts",
+      "type": "interaction",
+      "tests": [
+        "search input accepts text",
+        "clear button clears search",
+        "filter button is clickable",
+        "keyboard: Tab reaches filter button"
+      ]
+    },
+    {
+      "file": "tests/e2e/visual/components.spec.ts",
+      "type": "visual",
+      "tests": [
+        "search-filter-bar matches snapshot"
+      ]
+    },
+    {
+      "file": "tests/e2e/a11y/components.spec.ts",
+      "type": "a11y",
+      "tests": [
+        "search-filter-bar has no a11y violations"
+      ]
+    },
+    {
+      "file": "tests/e2e/performance/mount-time.spec.ts",
+      "type": "performance",
+      "tests": [
+        "search-filter-bar mounts under threshold"
+      ]
+    }
+  ],
+  "totalTests": 18
+}

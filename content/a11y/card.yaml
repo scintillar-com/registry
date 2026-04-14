@@ -1,0 +1,44 @@
+component: Card
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: null
+delegatesTo: null
+description: >
+  A semantic container rendered as a <div> with no ARIA role by default.
+  Cards group related content visually using border, background, and shadow.
+  They are non-interactive by default — consumers must add appropriate roles
+  and ARIA attributes if the card is made interactive (e.g. clickable).
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    Card is not focusable by default. If the card is made interactive (e.g.
+    wrapping it in a link or adding onClick), ensure focus management and
+    focus-visible styling are handled by the consumer.
+
+screenReader:
+  announcements:
+    - Card content is read as part of the normal document flow
+    - No special announcements by default
+  notes: >
+    Without an explicit role, screen readers treat the card as a generic
+    container. Use role="region" with aria-label if the card represents a
+    distinct section, or role="article" for repeated content items.
+
+contrast:
+  text: "Meets WCAG AA (>4.5:1 for card-foreground on card background)"
+  ui: "Meets WCAG AA (>3:1 for card border)"
+
+motion:
+  reducedMotion: No animations by default
+
+consumerResponsibilities:
+  - Use CardHeader with CardTitle to provide a heading for screen reader navigation
+  - If the card is clickable, wrap content in an anchor or button and ensure a clear accessible name
+  - Add role="region" and aria-label if the card represents a distinct, labelled section
+  - Do not make the entire card a single large click target without providing a clear interactive element
+  - Ensure heading levels (h1-h6) inside CardTitle follow the correct document hierarchy

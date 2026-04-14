@@ -1,0 +1,12 @@
+[
+  {
+    "displayName": "RadioGroup",
+    "description": "A set of mutually exclusive radio buttons where only one can be selected at a time.",
+    "props": []
+  },
+  {
+    "displayName": "RadioGroupItem",
+    "description": "An individual radio button that displays a filled circle indicator when selected.",
+    "props": []
+  }
+]

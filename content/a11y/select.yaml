@@ -1,0 +1,51 @@
+component: Select
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button (trigger) + div (content)
+role: combobox / listbox
+delegatesTo: Radix UI Select
+description: >
+  A dropdown select component built on Radix UI Select. Provides full
+  keyboard navigation, ARIA listbox semantics, and focus management.
+
+keyboard:
+  - key: Enter/Space
+    action: Opens the select dropdown or selects the focused option
+  - key: Arrow Up/Down
+    action: Navigates between options
+  - key: Escape
+    action: Closes the dropdown and returns focus to the trigger
+  - key: Home/End
+    action: Jumps to first/last option
+  - key: Type-ahead
+    action: Focuses the first option matching the typed characters
+
+focus:
+  visible: true
+  trapped: true (within the dropdown while open)
+  notes: >
+    Focus moves to the selected item (or first item) when the dropdown opens.
+    On close, focus returns to the trigger button. The trigger shows a
+    focus-visible ring.
+
+screenReader:
+  announcements:
+    - Trigger announces current value and "combobox" role
+    - Options announce their label and selected state
+    - Group labels are announced as group headings
+    - The selected value is announced when changed
+  notes: >
+    Radix handles all ARIA attributes automatically including
+    aria-expanded, aria-activedescendant, and aria-selected.
+
+contrast:
+  text: "Trigger and option text meet WCAG AA"
+  ui: "Focus and selected states use accent colors meeting 3:1"
+
+motion:
+  reducedMotion: Open/close transitions respect prefers-reduced-motion
+
+consumerResponsibilities:
+  - Always include SelectValue with a placeholder for empty state
+  - Use SelectGroup and SelectLabel to organize related options
+  - Disabled items should have clear visual indication
