@@ -1,9 +1,14 @@
 # Dependencies
 node_modules
 
-# Next.js dev cache — the shell's `registry-shell dev/build` writes its
-# output to this project's root (via USER_DIST_DIR in the CLI).
+# Next.js dev cache (created when running `registry-shell dev` against
+# the shell's bundled Next app; lives inside node_modules but listed
+# defensively).
 .next
+
+# Static-export build output produced by `registry-shell build` (v2+).
+# Deploy this directory to any static host.
+/out
 
 # Generator incremental-build manifests — the scripts under scripts/
 # (generate:props, generate:a11y, generate:tests) write these to track
