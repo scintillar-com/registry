@@ -13,6 +13,7 @@
   "scripts": {
     "shell": "registry-shell dev",
     "shell:build": "registry-shell build",
+    "vercel-build": "registry-shell build",
     "registry:build": "shadcn build",
     "generate:props": "tsx scripts/generate-prop-docs.ts",
     "generate:a11y": "tsx scripts/generate-a11y-docs.ts",
