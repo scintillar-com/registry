@@ -64,8 +64,8 @@ importers:
         version: 4.3.6
     devDependencies:
       '@sntlr/registry-shell':
-        specifier: ^2.5.0
-        version: 2.5.0(@babel/core@7.29.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)
+        specifier: ^2.5.1
+        version: 2.5.1(@babel/core@7.29.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -1683,8 +1683,8 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@sntlr/registry-shell@2.5.0':
-    resolution: {integrity: sha512-cPSBtfovIpYSpP/4n43u7i2CuWTVPgGjKtK3QZHJHVf3GbLW6+pLlQEKPnjSslumalIz7lhCsHPZm/VvirXZtg==}
+  '@sntlr/registry-shell@2.5.1':
+    resolution: {integrity: sha512-CTO8jNSAhJVIVyh0w7VS+R/Wj+vBYz3udMzA3V0LqKAUSsOzwG0WVlfN9VP/z5rDfqoSKuLJIqCVFRt1H3TU/g==}
     engines: {node: '>=18.18'}
     hasBin: true
 
@@ -5625,7 +5625,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@sntlr/registry-shell@2.5.0(@babel/core@7.29.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)':
+  '@sntlr/registry-shell@2.5.1(@babel/core@7.29.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)':
     dependencies:
       '@dnd-kit/core': 6.3.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       '@dnd-kit/sortable': 10.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)
