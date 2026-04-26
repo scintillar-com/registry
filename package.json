@@ -13,7 +13,7 @@
   "scripts": {
     "shell": "registry-shell dev",
     "shell:build": "registry-shell build",
-    "vercel-build": "registry-shell build",
+    "vercel-build": "pnpm registry:build && registry-shell build",
     "registry:build": "shadcn build",
     "generate:props": "tsx scripts/generate-prop-docs.ts",
     "generate:a11y": "tsx scripts/generate-a11y-docs.ts",
@@ -55,7 +55,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@sntlr/registry-shell": "^2.5.2",
+    "@sntlr/registry-shell": "^2.5.6",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",

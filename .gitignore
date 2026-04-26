@@ -10,6 +10,11 @@ node_modules
 # Deploy this directory to any static host.
 /out
 
+# `shadcn build` output. Treating these as build artifacts (regenerated on
+# every `pnpm registry:build` / Vercel deploy) so palette edits in
+# `registry.json` can never silently ship the previous build's `theme.json`.
+public/r/
+
 # Generator incremental-build manifests — the scripts under scripts/
 # (generate:props, generate:a11y, generate:tests) write these to track
 # content hashes for skip-on-unchanged. Regenerate from scratch on a
