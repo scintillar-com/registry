@@ -10,7 +10,7 @@ export default defineConfig({
     twitterHandle: "scintillar",
     github: {
       owner: "scintillar-com",
-      repo: "registry",
+      repo: "ui",
       label: "Github",
       showStars: true,
     },
