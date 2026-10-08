@@ -1,18 +1,45 @@
 import { test, expect } from "@playwright/test"
+import { getAllNavigableNames } from "../_components"
 
-// Components to capture visual snapshots
-const components = [
-  "accordion", "alert", "avatar", "badge", "breadcrumb", "button",
-  "calendar", "card", "checkbox", "collapsible", "color-swatch",
-  "command", "data-table", "empty-state", "file-upload",
-  "input", "input-otp", "kbd", "label", "live-caret",
-  "pagination", "password-input", "radio-group", "select",
-  "separator", "skeleton", "social-links", "split-button",
-  "table", "tabs", "textarea", "toggle", "user-status",
-  // Blocks
-  "app-switcher", "auth-login", "confirm-dialog", "form-section",
-  "search-filter-bar",
-]
+/**
+ * Components excluded from visual regression:
+ *   - Overlay primitives that render nothing meaningful at rest (popover,
+ *     tooltip, dialog, sheet, dropdown-menu, context-menu, sonner).
+ *   - Blocks whose snapshots are flaky by design (auth-register,
+ *     authorized-devices, the account, email, MFA, org, profile and
+ *     password-reset forms, and live-cursor, which animates).
+ *   - backdrop and sidebar (full-viewport components that don't fit the
+ *     isolated snapshot container).
+ *   - color-picker and formula-editor, which have no baseline yet.
+ * Together this is the set the suite covered before it read registry.json:
+ * every remaining component has a committed snapshot.
+ */
+const EXCLUDE = new Set([
+  "account-deletion-form",
+  "auth-register",
+  "authorized-devices",
+  "backdrop",
+  "color-picker",
+  "context-menu",
+  "dialog",
+  "dropdown-menu",
+  "email-update-form",
+  "formula-editor",
+  "live-cursor",
+  "mfa-form",
+  "org-members-form",
+  "org-roles-form",
+  "org-settings-form",
+  "password-reset-form",
+  "popover",
+  "profile-form",
+  "sheet",
+  "sidebar",
+  "sonner",
+  "tooltip",
+])
+
+const components = getAllNavigableNames().filter((n) => !EXCLUDE.has(n))
 
 test.describe("Visual regression", () => {
   for (const name of components) {
