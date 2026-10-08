@@ -64,8 +64,8 @@ importers:
         version: 4.3.6
     devDependencies:
       '@sntlr/registry-shell':
-        specifier: ^2.8.1
-        version: 2.8.1(@babel/core@7.29.0)
+        specifier: ^2.8.2
+        version: 2.8.2(@babel/core@7.29.0)
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -1683,13 +1683,13 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@sntlr/docs-shell@2.8.1':
-    resolution: {integrity: sha512-NfEsyEeAhA21Pt9Uhx1C2XWPncj+EaOfZKKTkWu/01aCpDrC3VgJ2+mQQ98bpKDBWJMjfcStY0K7oAejFyLEoQ==}
+  '@sntlr/docs-shell@2.8.2':
+    resolution: {integrity: sha512-5ZKvxm8PGFsTPIkkHDX8oMG8mJwyf7H+qE1K2D3sy3zgEBihzfIAOvGjZFYIxbMjpBAbbORyexTH3BsuSI4yNQ==}
     engines: {node: '>=18.18'}
     hasBin: true
 
-  '@sntlr/registry-shell@2.8.1':
-    resolution: {integrity: sha512-5CPyjgDJivBA75qmT8xMR4MsAOe82+KXKF/kSvsjIDfJDF8quDrWuB30wCjXRpc370su+Dagr084zngFPXbrwQ==}
+  '@sntlr/registry-shell@2.8.2':
+    resolution: {integrity: sha512-0BGoFAQ13QiHvmQenu2iS+QzUShnilBbwtIT/abWP+dDODcthBAozlqRATvQFH7BS6pPa9flG33OGt+4NG/FNw==}
     engines: {node: '>=18.18'}
     hasBin: true
 
@@ -5626,7 +5626,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@sntlr/docs-shell@2.8.1(@babel/core@7.29.0)':
+  '@sntlr/docs-shell@2.8.2(@babel/core@7.29.0)':
     dependencies:
       '@tailwindcss/postcss': 4.2.4
       '@tailwindcss/typography': 0.5.19(tailwindcss@4.2.4)
@@ -5659,9 +5659,9 @@ snapshots:
       - sass
       - supports-color
 
-  '@sntlr/registry-shell@2.8.1(@babel/core@7.29.0)':
+  '@sntlr/registry-shell@2.8.2(@babel/core@7.29.0)':
     dependencies:
-      '@sntlr/docs-shell': 2.8.1(@babel/core@7.29.0)
+      '@sntlr/docs-shell': 2.8.2(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
       - '@opentelemetry/api'
